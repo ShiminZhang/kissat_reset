@@ -186,12 +186,15 @@ static void eagerly_subsume_last_learned (kissat *solver) {
   if (subsumed)
     flush_last_learned (solver);
 }
+
 void kissat_feature_vector (kissat *solver, double *features) {
     features[0] = 1.0;
     features[1] = solver->mlr.prevLbd1;
     features[2] = solver->mlr.prevLbd2;
     features[3] = solver->mlr.prevLbd3;
-    features[4] = solver->mlr.prevLbd2 * solver->mlr.prevLbd3;
+    features[4] = solver->mlr.prevLbd1 * solver->mlr.prevLbd2;
+    features[5] = solver->mlr.prevLbd1 * solver->mlr.prevLbd3;
+    features[6] = solver->mlr.prevLbd2 * solver->mlr.prevLbd3;
 }
 
 void kissat_adam_update (kissat *solver, double error, double *features) {
@@ -200,7 +203,8 @@ void kissat_adam_update (kissat *solver, double error, double *features) {
     const double beta1 = 0.9;
     const double beta2 = 0.999;
 
-    for (int i = 0; i < 5; i++) {
+    solver->mlr.t++;
+    for (int i = 0; i < 7; i++) {
         double g = error * features[i];
         solver->mlr.m[i] = beta1 * solver->mlr.m[i] + (1 - beta1) * g;
         solver->mlr.v[i] = beta2 * solver->mlr.v[i] + (1 - beta2) * g * g;
@@ -211,7 +215,6 @@ void kissat_adam_update (kissat *solver, double error, double *features) {
         solver->mlr.theta[i] -= alpha * m_hat / (sqrt(v_hat) + epsilon);
     }
 
-    solver->mlr.t++;
 }
 
 void kissat_learn_clause (kissat *solver) {
@@ -231,12 +234,12 @@ void kissat_learn_clause (kissat *solver) {
   solver->mlr.m2 += delta * (nextLbd - solver->mlr.mu);
   // If conflicts > 3, apply the learning process
   if (conflicts_count > 3) {
-      double features[5];
+      double features[7];
       kissat_feature_vector(solver, features);  // Compute feature vector
 
       // Predict using the linear model
       double predict = 0;
-      for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < 7; i++) {
           predict += solver->mlr.theta[i] * features[i];
       }
 
@@ -248,6 +251,7 @@ void kissat_learn_clause (kissat *solver) {
       solver->mlr.prevLbd3 = solver->mlr.prevLbd2;
       solver->mlr.prevLbd2 = solver->mlr.prevLbd1;
       solver->mlr.prevLbd1 = nextLbd;
+      // LOG ("mylog: error:%f, predict:%f, actual: %f", error,predict,nextLbd);
   }
 
 

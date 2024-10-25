@@ -4,6 +4,8 @@
         "require.h": "c",
         "options.h": "c",
         "random": "c",
-        "internal.h": "c"
+        "internal.h": "c",
+        "backtrack.h": "c",
+        "learn.h": "c"
     }
 }

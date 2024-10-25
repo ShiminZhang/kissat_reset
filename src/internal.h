@@ -79,8 +79,8 @@ struct mlr_stat{
     double prevLbd1, prevLbd2, prevLbd3;
     double mu, m2;  // For sample mean and variance of LBDs
     int conflictsSinceLastRestart;
-    double theta[5];  // Coefficients for the linear model
-    double m[5], v[5];  // Adam internal variables
+    double theta[7];  // Coefficients for the linear model
+    double m[7], v[7];  // Adam internal variables
     int t;  // Training step count
 };
 #endif
