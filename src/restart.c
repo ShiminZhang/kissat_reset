@@ -10,6 +10,32 @@
 #include "report.h"
 
 #include <inttypes.h>
+  
+bool kissat_restarting_reset (kissat *solver) {
+  // not implemented
+  return false;
+}
+
+
+bool kissat_restarting_mlr (kissat *solver) {
+
+  if (GET (clauses_learned) > 3 && solver->mlr.conflictsSinceLastRestart > 0) {
+      double sigma = sqrt(solver->mlr.m2 / (GET (clauses_learned) - 1));
+
+      double features[5];
+      kissat_feature_vector(solver, features);
+
+      double predict = 0;
+      for (int i = 0; i < 5; i++) {
+          predict += solver->mlr.theta[i] * features[i];
+      }
+
+      if (predict > solver->mlr.mu + 3.08 * sigma) {
+          solver->mlr.conflictsSinceLastRestart = 0;
+          kissat_restart(solver);  // Trigger the restart
+      }
+  }
+}
 
 bool kissat_restarting (kissat *solver) {
   assert (solver->unassigned);
@@ -128,4 +154,21 @@ void kissat_restart (kissat *solver) {
     kissat_update_focused_restart_limit (solver);
   REPORT (1, 'R');
   STOP (restart);
+}
+
+
+// what's the difference between reset and others
+void kissat_reset (kissat *solver){
+  unsigned level = reuse_trail (solver);
+  kissat_backtrack_in_consistent_state (solver, level);
+  if (!solver->stable)
+    kissat_update_focused_restart_limit (solver);
+
+  // reset scores
+  heap* const scores = SCORES;
+  const double SCALE_FACTOR = 1e-3;
+  for (all_variables (idx)) {
+    *(scores[idx].score) = SCALE_FACTOR * ((double) rand() / RAND_MAX);  // Random value between 0 and 1
+  }
+
 }

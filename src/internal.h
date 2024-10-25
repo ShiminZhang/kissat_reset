@@ -1,6 +1,6 @@
 #ifndef _internal_h_INCLUDED
 #define _internal_h_INCLUDED
-
+#define MLR true
 #include "arena.h"
 #include "array.h"
 #include "assign.h"
@@ -73,7 +73,24 @@ typedef STACK (watch *) patches;
 
 struct kitten;
 
+#if defined(MLR)
+struct mlr_stat{
+  // Adam parameters// Inside the solver state struct (solver.h or relevant header)
+    double prevLbd1, prevLbd2, prevLbd3;
+    double mu, m2;  // For sample mean and variance of LBDs
+    int conflictsSinceLastRestart;
+    double theta[5];  // Coefficients for the linear model
+    double m[5], v[5];  // Adam internal variables
+    int t;  // Training step count
+};
+#endif
+
+
 struct kissat {
+#if defined(MLR)
+  struct mlr_stat mlr;
+#endif
+
 #if !defined(NDEBUG) || defined(METRICS)
   bool backbone_computing;
 #endif

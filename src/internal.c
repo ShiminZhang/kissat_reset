@@ -45,6 +45,9 @@ kissat *kissat_init (void) {
 #ifndef NDEBUG
   kissat_init_checker (solver);
 #endif
+#ifdef MLR
+  kissat_init_mlr (solver);
+#endif
   return solver;
 }
 

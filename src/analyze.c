@@ -564,7 +564,7 @@ int kissat_analyze (kissat *solver, clause *conflict) {
           kissat_shrink_clause (solver);
       }
       analyze_reason_side_literals (solver);
-      kissat_learn_clause (solver);
+      kissat_learn_clause (solver); // TODO: assume this is the only entrance for learning a clause
       reset_analysis_but_not_analyzed_literals (solver);
       res = 1;
     }
