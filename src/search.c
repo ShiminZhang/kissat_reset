@@ -193,8 +193,15 @@ int kissat_search (kissat *solver) {
     start_search (solver);
     while (!res) {
       clause *conflict = kissat_search_propagate (solver);
-      if (conflict)
+      if (conflict){
         res = kissat_analyze (solver, conflict);
+#if MAB
+        solver->reset_conflicts++;
+#endif
+#if RL
+        solver->rl_conflicts++;
+#endif
+      }
       else if (solver->iterating)
         iterate (solver);
       else if (!solver->unassigned)
@@ -205,8 +212,13 @@ int kissat_search (kissat *solver) {
         res = kissat_reduce (solver);
       else if (kissat_switching_search_mode (solver))
         kissat_switch_search_mode (solver);
+#if MLR
+      else if (kissat_restarting_mlr (solver))
+        kissat_restart (solver);
+#else
       else if (kissat_restarting (solver))
         kissat_restart (solver);
+#endif
       else if (kissat_reordering (solver))
         kissat_reorder (solver);
       else if (kissat_rephasing (solver))

@@ -1,0 +1,111 @@
+c ---- [ banner ] ------------------------------------------------------------
+c
+c Kissat SAT Solver
+c 
+c Copyright (c) 2021-2024 Armin Biere University of Freiburg
+c Copyright (c) 2019-2021 Armin Biere Johannes Kepler University Linz
+c 
+c Version 4.0.1 09842bc81eec6c797326ce5aa67c4832c2200064
+c gcc (Ubuntu 13.2.0-23ubuntu4) 13.2.0 -W -Wall -ggdb3 -DEMBEDDED -DLOGGING -DMETRICS
+c Mon Dec 2 10:46:31 CST 2024 Linux PalGoose 5.10.16.3-microsoft-standard-WSL2 x86_64
+c
+c ---- [ parsing ] -----------------------------------------------------------
+c
+c opened and reading DIMACS file:
+c
+c   ./Benchmark_test/test3.cnf
+c
+c parsed 'p cnf 62500 204019' header
+c closing input after reading 3623033 bytes (3 MB)
+c finished parsing after 0.12 seconds
+c
+c ---- [ solving ] -----------------------------------------------------------
+c
+c  seconds switched rate     size/glue tier1  binary           remaining
+c         MB reductions conflicts size  tier2     irredundant
+c          level restarts redundant glue  trail           variables
+c
+c *  0.12 39 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 86062 117956 62499 100%
+c (  0.14 41 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 86062 117956 62499 100%
+c .  0.16 41 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 86063 117955 62499 100%
+c c  1.22 60 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 151587 117955 29312 47%
+c )  1.22 60 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 151587 117955 29312 47%
+c 0  1.22 60 0 0 0  0 0   0   0 0.0 0 0 0 0 0% 151587 117955 29312 47%
+c
+c ---- [ result ] ------------------------------------------------------------
+c
+s UNSATISFIABLE
+c
+c ---- [ profiling ] ---------------------------------------------------------
+c
+c           1.07   88.23 %  preprocess
+c           1.05   86.70 %  probe
+c           1.05   86.52 %  congruence
+c           0.12    9.87 %  parse
+c           0.02    1.89 %  lucky
+c           0.00    0.00 %  search
+c           0.00    0.00 %  simplify
+c =============================================
+c           1.22  100.00 %  total
+c
+c ---- [ statistics ] --------------------------------------------------------
+c
+c arena_enlarged:                          18              100 %  resize
+c arena_resized:                           18                0    interval
+c compacted:                                1                0 %  reductions
+c conflicts:                                0                0.00 per second
+c congruent:                            32727               52 %  variables
+c congruent_ands:                       21293               65 %  congruent
+c congruent_arity:                     199367                2.21 per gate
+c congruent_arity_ands:                 94452                2.00 per AND
+c congruent_arity_xors:                 47138                2.00 per XOR
+c congruent_binaries:                      70                0 %  clauses added
+c congruent_ites:                        3764               12 %  congruent
+c congruent_collisions:                199008                0.94 per lookup
+c congruent_collisions_find:           111366               56 %  collisions
+c congruent_collisions_index:           78676               40 %  collisions
+c congruent_collisions_removed:          8966                5 %  collisions
+c congruent_equivalences:                   8                0 %  congruent
+c congruent_indexed:                   123042                1.37 per gate
+c congruent_lookups:                   211683                2.35 per gate
+c congruent_lookups_find:              178695               84 %  lookups
+c congruent_lookups_removed:            32988               16 %  lookups
+c congruent_rewritten:                  84762               94 %  gates
+c congruent_rewritten_ands:             41204               49 %  rewritten
+c congruent_rewritten_ites:             23054               27 %  rewritten
+c congruent_rewritten_xors:             20504               24 %  rewritten
+c congruent_simplified:                   908                1 %  gates
+c congruent_simplified_ands:              453               50 %  simplified
+c congruent_simplified_xors:              455               50 %  simplified
+c congruent_unary:                        449                1 %  congruent
+c congruent_unary_ands:                   449              100 %  unary
+c congruent_units:                        454                1 %  variables
+c congruent_xors:                        7213               22 %  congruent
+c decisions:                                0                0.00 per conflict
+c defragmentations:                         1                0    interval
+c focused_propagations:                     1                0 %  propagations
+c focused_ticks:                            4                0 %  ticks
+c probing_propagations:                153489              100 %  propagations
+c propagations:                        153490           126154    per second
+c score_decisions:                          0                0 %  decision
+c switched:                                 0                0    interval
+c
+c ---- [ checker ] -----------------------------------------------------------
+c
+c checker_added:                      1095671              100 %  
+c checker_checked:                     894851               82 %  added
+c checker_removed:                     825221               75 %  added
+c
+c ---- [ glue usage ] --------------------------------------------------------
+c
+c no clauses used at all
+c
+c ---- [ resources ] ---------------------------------------------------------
+c
+c maximum-resident-set-size:         66772992 bytes         64 MB
+c max-allocated:                     57630168 bytes         86 %
+c process-time:                             1s               1.22 seconds
+c
+c ---- [ shutting down ] -----------------------------------------------------
+c
+c exit 20

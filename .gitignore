@@ -10,3 +10,8 @@ tissat
 *.gcov
 gmon.out
 *~
+cachegrind.*
+Outputs/*.out
+*.log
+tmp*
+tmp

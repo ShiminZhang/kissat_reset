@@ -1,6 +1,13 @@
 #ifndef _internal_h_INCLUDED
 #define _internal_h_INCLUDED
-
+#define MAB false
+#define RL false
+#define TickReset false
+#define IntegrateReset false
+#define FixedReset false
+#define MLR false
+#define all_stable_restart false
+#define all_focus_restart false
 #include "arena.h"
 #include "array.h"
 #include "assign.h"
@@ -73,7 +80,24 @@ typedef STACK (watch *) patches;
 
 struct kitten;
 
+#if MLR
+struct mlr_stat{
+  // Adam parameters// Inside the solver state struct (solver.h or relevant header)
+    double prevLbd1, prevLbd2, prevLbd3;
+    double mu, m2;  // For sample mean and variance of LBDs
+    int conflictsSinceLastRestart;
+    double theta[7];  // Coefficients for the linear model
+    double m[7], v[7];  // Adam internal variables
+    int t;  // Training step count
+};
+#endif
+
+
 struct kissat {
+#if MLR
+  struct mlr_stat mlr;
+#endif
+
 #if !defined(NDEBUG) || defined(METRICS)
   bool backbone_computing;
 #endif
@@ -127,6 +151,55 @@ struct kissat {
 
   heap scores;
   double scinc;
+#if RL
+  double stable_wins;
+  double focus_wins;
+  double stable_loses;
+  double focus_loses;
+  double aggressive_wins;
+  double aggressive_loses;
+  int rl_conflicts;
+  int rl_decisions;
+  int chosen_arm;
+  int nof_switch;
+  int nof_stable;
+  int nof_focus;
+  int nof_aggresive;
+  double EMALR;
+  int nof_deciding;
+#endif
+// MAB
+#if TickReset
+  int  reset_ticks;
+  int  reset_tick_limit;
+  int  delta;
+  int  nof_propagates;
+#endif
+
+#if MAB
+  int  reset_conflicts;
+  int  reset_ticks;
+  int  reset_decisions;
+  unsigned int        resetPrevLever;
+  double              learningRateEMA;
+  double              resetDecay;
+  double reset_wins;
+  double reset_loses;
+  double restart_wins;
+  double restart_loses;
+  int resetTotalTimes;
+  int nof_restarts;
+  int nof_resets;
+  unsigned heuristic;
+  bool mab;
+  double mabc;
+  double mab_reward[2];
+  unsigned mab_select[2];
+  unsigned mab_heuristics;
+  double mab_decisions;
+  unsigned *mab_chosen;
+  unsigned mab_chosen_tot;
+#endif
 
   heap schedule;
   double scoreshift;
