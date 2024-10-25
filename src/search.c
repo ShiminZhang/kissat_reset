@@ -205,8 +205,13 @@ int kissat_search (kissat *solver) {
         res = kissat_reduce (solver);
       else if (kissat_switching_search_mode (solver))
         kissat_switch_search_mode (solver);
+#if defined(MLR)
+      else if (kissat_restarting_mlr (solver))
+        kissat_restart (solver);
+#else
       else if (kissat_restarting (solver))
         kissat_restart (solver);
+#endif
       else if (kissat_reordering (solver))
         kissat_reorder (solver);
       else if (kissat_rephasing (solver))

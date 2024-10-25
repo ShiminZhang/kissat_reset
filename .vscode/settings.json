@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "inttypes.h": "c",
+        "require.h": "c",
+        "options.h": "c",
+        "random": "c",
+        "internal.h": "c",
+        "backtrack.h": "c",
+        "learn.h": "c",
+        "thompson.hpp": "c"
+    }
+}

@@ -45,6 +45,28 @@ kissat *kissat_init (void) {
 #ifndef NDEBUG
   kissat_init_checker (solver);
 #endif
+#ifdef MLR
+  kissat_init_mlr (solver);
+#endif
+
+#if MAB
+  solver->mab_heuristics = 2;
+  solver-> mab_decisions = 0;
+  solver-> mab_chosen_tot = 0;
+  solver-> reset_conflicts = 0;
+  solver-> reset_decisions = 0;
+  solver-> resetPrevLever = 0;
+  solver-> learningRateEMA = 0;
+  solver-> resetDecay = 0.8;
+  solver-> reset_wins = 1;
+  solver-> reset_loses = 1;
+  solver-> restart_wins = 1;
+  solver-> restart_loses = 1;
+  solver-> resetTotalTimes = 0;
+  solver-> nof_restarts = 0;
+  solver-> nof_resets   = 0;
+#endif
+
   return solver;
 }
 
