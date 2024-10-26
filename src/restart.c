@@ -8,12 +8,26 @@
 #include "print.h"
 #include "reluctant.h"
 #include "report.h"
+#include "inlineheap.h"
 
 #include <inttypes.h>
   
+#define IntegrateReset true
+
 bool kissat_restarting_reset (kissat *solver) {
   // not implemented
   return false;
+}
+
+void randomize_activity_score(kissat *solver){
+  // reset scores
+  heap* const scores = SCORES;
+  const double SCALE_FACTOR = 1e-3;
+  for (all_variables (idx)) {
+    if (!ACTIVE (idx))
+      continue;
+    kissat_update_heap (solver, &solver->scores, idx, SCALE_FACTOR * ((double) rand() / RAND_MAX));
+  }
 }
 
 #if defined(MLR)
@@ -152,8 +166,11 @@ void kissat_restart (kissat *solver) {
                             CONFLICTS, solver->limits.restart.conflicts);
   LOG ("restarting to level %u", level);
   kissat_backtrack_in_consistent_state (solver, level);
-  if (!solver->stable)
+  if (!solver->stable){
+    randomize_activity_score(solver);
     kissat_update_focused_restart_limit (solver);
+  }
+
   REPORT (1, 'R');
   STOP (restart);
 }
@@ -166,11 +183,5 @@ void kissat_reset (kissat *solver){
   if (!solver->stable)
     kissat_update_focused_restart_limit (solver);
 
-  // reset scores
-  heap* const scores = SCORES;
-  const double SCALE_FACTOR = 1e-3;
-  for (all_variables (idx)) {
-    *(scores[idx].score) = SCALE_FACTOR * ((double) rand() / RAND_MAX);  // Random value between 0 and 1
-  }
-
+  randomize_activity_score(solver);
 }
