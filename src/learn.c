@@ -187,6 +187,7 @@ static void eagerly_subsume_last_learned (kissat *solver) {
     flush_last_learned (solver);
 }
 
+#if defined(MLR)
 void kissat_feature_vector (kissat *solver, double *features) {
     features[0] = 1.0;
     features[1] = solver->mlr.prevLbd1;
@@ -214,8 +215,8 @@ void kissat_adam_update (kissat *solver, double error, double *features) {
 
         solver->mlr.theta[i] -= alpha * m_hat / (sqrt(v_hat) + epsilon);
     }
-
 }
+#endif
 
 void kissat_learn_clause (kissat *solver) {
   const unsigned not_uip = PEEK_STACK (solver->clause, 0);
@@ -223,7 +224,7 @@ void kissat_learn_clause (kissat *solver) {
   const size_t glue = SIZE_STACK (solver->levels);
   assert (glue <= UINT_MAX);
 
-
+#if defined(MLR)
   double nextLbd = glue;
   solver->mlr.conflictsSinceLastRestart++;
 
@@ -253,7 +254,7 @@ void kissat_learn_clause (kissat *solver) {
       solver->mlr.prevLbd1 = nextLbd;
       // LOG ("mylog: error:%f, predict:%f, actual: %f", error,predict,nextLbd);
   }
-
+#endif
 
   if (!solver->probing)
     kissat_update_learned (solver, glue, size);

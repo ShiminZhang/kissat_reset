@@ -16,7 +16,7 @@ bool kissat_restarting_reset (kissat *solver) {
   return false;
 }
 
-
+#if defined(MLR)
 bool kissat_restarting_mlr (kissat *solver) {
   if (GET (clauses_learned) > 3 && solver->mlr.conflictsSinceLastRestart > 0) {
 
@@ -37,6 +37,7 @@ bool kissat_restarting_mlr (kissat *solver) {
   }
   return false;
 }
+#endif
 
 bool kissat_restarting (kissat *solver) {
   assert (solver->unassigned);

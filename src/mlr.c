@@ -1,6 +1,7 @@
 #include "mlr.h"
 #include "internal.h"
 
+#if defined(MLR)
 void kissat_init_mlr (struct kissat * solver) {
     solver->mlr.prevLbd1 = 0;
     solver->mlr.prevLbd2 = 0;
@@ -18,3 +19,4 @@ void kissat_init_mlr (struct kissat * solver) {
         solver->mlr.v[i] = 0;
     }
 }
+#endif
