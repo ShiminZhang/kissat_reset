@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/kissat",
-            "args": ["test/cnf/add8.cnf","--eliminateinit=0","--no-extract"],  // 添加程序参数
+            "args": ["test.cnf","--eliminateinit=0","--no-extract"],  // 添加程序参数
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

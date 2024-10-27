@@ -1,6 +1,7 @@
 #ifndef _internal_h_INCLUDED
 #define _internal_h_INCLUDED
 // #define MLR true
+#define MAB true
 #include "arena.h"
 #include "array.h"
 #include "assign.h"
@@ -144,6 +145,31 @@ struct kissat {
 
   heap scores;
   double scinc;
+
+// MAB
+#if MAB
+  int  reset_conflicts;
+  int  reset_decisions;
+  unsigned int        resetPrevLever;
+  double              learningRateEMA;
+  double              resetDecay;
+  double reset_wins;
+  double reset_loses;
+  double restart_wins;
+  double restart_loses;
+  int resetTotalTimes;
+  int nof_restarts;
+  int nof_resets;
+  unsigned heuristic;
+  bool mab;
+  double mabc;
+  double mab_reward[2];
+  unsigned mab_select[2];
+  unsigned mab_heuristics;
+  double mab_decisions;
+  unsigned *mab_chosen;
+  unsigned mab_chosen_tot;
+#endif
 
   heap schedule;
   double scoreshift;

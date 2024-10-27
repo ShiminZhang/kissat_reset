@@ -1,4 +1,5 @@
 CC=@CC@
+CXX=g++
 LD=@LD@
 AR=@AR@
 
@@ -18,11 +19,10 @@ TSTSUB=$(subst ../test/,,$(TSTSRT))
 TSTSRC=$(filter-out test.c,$(TSTSUB))
 
 APPOBJ=$(APPSRC:.c=.o)
-LIBOBJ=$(LIBSRC:.c=.o)
-TSTOBJ=$(APPOBJ) $(TSTSRC:.c=.o)
+LIBOBJ=$(LIBSRC:.c=.o) Thompson.o
+TSTOBJ=$(APPOBJ) $(TSTSRC:.c=.o) Thompson.o
 
 INCLUDES=-I../$(shell pwd|sed -e 's,.*/,,')
-
 LIBS=libkissat.a
 
 all: @GOALS@
@@ -46,10 +46,10 @@ format:
 	clang-format -i ../*/*.[ch]
 
 kissat: main.o $(APPOBJ) libkissat.a makefile
-	$(LD) -o $@ main.o $(APPOBJ) $(LIBS) -lm
+	$(CXX) -o $@ main.o $(APPOBJ) Thompson.o -L. -lkissat -lm -lstdc++
 
 tissat: test.o $(TSTOBJ) libkissat.a makefile
-	$(LD) -o $@ test.o $(TSTOBJ) $(LIBS) -lm
+	$(CXX) -o $@ test.o $(TSTOBJ) $(LIBS) -lm -lstdc++
 
 kitten: kitten.c random.h stack.h makefile
 	$(CC) $(CFLAGS) -DSTAND_ALONE_KITTEN -o $@ ../src/kitten.c
@@ -78,6 +78,6 @@ libkissat.a: $(LIBOBJ) makefile
 	$(AR) rc $@ $(LIBOBJ)
 
 libkissat.so: $(LIBOBJ) makefile
-	$(LD) -shared -o $@ $(LIBOBJ)
+	$(CXX) -shared -o $@ $(LIBOBJ)
 
 .PHONY: all clean coverage indent test build.h
