@@ -13,6 +13,7 @@
 #include <inttypes.h>
   
 #define IntegrateReset true
+#define FixedReset true
 
 bool kissat_restarting_reset (kissat *solver) {
   // not implemented
@@ -22,12 +23,10 @@ bool kissat_restarting_reset (kissat *solver) {
 void randomize_activity_score(kissat *solver){
   // reset scores
   heap* const scores = SCORES;
-  const double SCALE_FACTOR = 1e-3;
   for (all_variables (idx)) {
-    if (!ACTIVE (idx))
-      continue;
-    kissat_update_heap (solver, &solver->scores, idx, SCALE_FACTOR * ((double) rand() / RAND_MAX));
+    kissat_update_heap (solver, &solver->scores, idx,(double) rand() / RAND_MAX*0.00001);
   }
+  kissat_update_scores(solver);
 }
 
 #if defined(MLR)
@@ -166,8 +165,21 @@ void kissat_restart (kissat *solver) {
                             CONFLICTS, solver->limits.restart.conflicts);
   LOG ("restarting to level %u", level);
   kissat_backtrack_in_consistent_state (solver, level);
+
+#if FixedReset
+    srand(time(NULL));
+    //Probability of the event occurring (e.g. 0.3 means 30% chance)
+    double probability = 0.5;
+    //Generate a random number between 0 and 1
+    double random_number = (double) rand() / RAND_MAX;
+    if (random_number <= probability) {
+      randomize_activity_score(solver);
+    }
+#endif
   if (!solver->stable){
+#if IntegrateReset
     randomize_activity_score(solver);
+#endif
     kissat_update_focused_restart_limit (solver);
   }
 
