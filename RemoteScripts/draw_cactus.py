@@ -35,24 +35,32 @@ def Plot(data : list, solver_name):
     y_array = np.arange(1, len(data) + 1)
     x_array = np.array(data)
     
-    plt.plot(x_array, y_array, label=f'Solver{solver_name}')
+    plt.plot(x_array, y_array, label=f'{solver_name}')
         
 if __name__ == "__main__":
     plt.figure(figsize=(10, 6))
     kissat_baseline_data,kissat_baseline_map = GetData("../../Benchmark/kissat/","baseline")
     kissat_mlr_data,kissat_mlr_map = GetData("../../Benchmark/kissat/","mlr")
     kissat_resetactinfocus_data,kissat_resetactinfocus_map = GetData("../../Benchmark/kissat/","resetactinfocus")
+    fix05_data,fix05_map = GetData("../../Benchmark/kissat/","fixed05")
+    fix50_data,fix50_map = GetData("../../Benchmark/kissat/","fixed50")
+    
+    # kissat_baseline_data,kissat_baseline_map = GetData("../../Benchmark/2024/benchmarks/kissat/","baseline")
+    # kissat_mlr_data,kissat_mlr_map = GetData("../../Benchmark/2024/benchmarks/kissat/","mlr")
+    # kissat_resetactinfocus_data,kissat_resetactinfocus_map = GetData("../../Benchmark/2024/benchmarks/kissat/","resetactinfocus")
+    # fix05_data,fix05_map = GetData("../../Benchmark/2024/benchmarks/kissat/","fixed05")
+    # fix50_data,fix50_map = GetData("../../Benchmark/2024/benchmarks/kissat/","fixed50")
+    # fix20_data,fix20_map = GetData("../../Benchmark/2024/benchmarks/kissat/","fixed20")
+    Plot(fix05_data, "fix05")
+    Plot(fix50_data, "fix50")
     Plot(kissat_baseline_data, "kissat_baseline")
-    Plot(kissat_mlr_data, "kissat_mlr")
     Plot(kissat_resetactinfocus_data, "kissat_resetactinfocus")
+    Plot(kissat_mlr_data, "kissat_mlr")
     plt.xlabel('Cumulative Time (seconds)')
     plt.ylabel('Number of Problems Solved')
-    plt.title('Solver Performance Over Time')
+    plt.title('SAT2023')
     plt.legend()
     plt.grid(True)
     plt.savefig("./test.png")
-    for k in kissat_baseline_map.keys():
-        if k in kissat_mlr_map.keys() and kissat_mlr_map[k] > kissat_baseline_map[k]:
-            print(k)
     
     

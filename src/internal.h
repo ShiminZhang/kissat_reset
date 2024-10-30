@@ -1,7 +1,7 @@
 #ifndef _internal_h_INCLUDED
 #define _internal_h_INCLUDED
-// #define MLR true
 #define MAB true
+#define MLR false
 #include "arena.h"
 #include "array.h"
 #include "assign.h"

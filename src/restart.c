@@ -15,8 +15,8 @@
 #include <time.h>
 #include "Thompson.hpp"
   
-#define IntegrateReset true
-#define FixedReset true
+#define IntegrateReset false
+#define FixedReset false
 
 bool kissat_restarting_reset (kissat *solver) {
   // not implemented
@@ -305,7 +305,7 @@ void kissat_restart (kissat *solver) {
 #if FixedReset
     srand(time(NULL));
     //Probability of the event occurring (e.g. 0.3 means 30% chance)
-    double probability = 0.5;
+    double probability = 0.1;
     //Generate a random number between 0 and 1
     double random_number = (double) rand() / RAND_MAX;
     if (random_number <= probability) {

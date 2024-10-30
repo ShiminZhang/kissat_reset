@@ -3,6 +3,6 @@
 
 struct kissat;
 #if defined(MLR)
-void kissat_init_mlr (struct kissat * solver);
+void kissat_init_mlr (struct kissat * solver);xxx
 #endif
 #endif

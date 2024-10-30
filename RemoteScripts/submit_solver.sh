@@ -3,7 +3,8 @@
 #SBATCH --account=def-vganesh                                                  
 # SBATCH --mem=10g      
 
-path=../../Benchmark/
+path=../../Benchmark/2024/benchmarks/
+# path=../../Benchmark/
 # path=./Benchmark_test
 build=./build/kissat
 suffix=$1
