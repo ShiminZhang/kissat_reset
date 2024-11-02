@@ -16,7 +16,7 @@
 #include "Thompson.hpp"
   
 #define IntegrateReset false
-#define FixedReset false
+#define FixedReset true
 
 bool kissat_restarting_reset (kissat *solver) {
   // not implemented
@@ -32,8 +32,10 @@ void randomize_activity_score(kissat *solver){
   kissat_update_scores(solver);
 }
 
-#if defined(MLR)
+#if MLR
 bool kissat_restarting_mlr (kissat *solver) {
+  assert(false) // this should not be called now
+
   if (GET (clauses_learned) > 3 && solver->mlr.conflictsSinceLastRestart > 0) {
 
       double sigma = sqrt(solver->mlr.m2 / (GET (clauses_learned) - 1));
@@ -281,6 +283,8 @@ void kissat_restart (kissat *solver) {
   INC (restarts);
 
 #if MAB
+  assert(false) // this should not be called for now
+
   // simply forward there
   kissat_restart_mab(solver);
   
@@ -290,22 +294,26 @@ void kissat_restart (kissat *solver) {
 #endif
 
   ADD (restarts_levels, solver->level);
-  if (solver->stable)
+  if (solver->stable){
     INC (stable_restarts);
-  else
+    // printf ("mylog: stable restart");
+  } else {
     INC (focused_restarts);
+    // printf ("mylog: focused restart");
+  }
   unsigned level = reuse_trail (solver);
   kissat_extremely_verbose (solver,
                             "restarting after %" PRIu64 " conflicts"
                             " (limit %" PRIu64 ")",
                             CONFLICTS, solver->limits.restart.conflicts);
   LOG ("restarting to level %u", level);
+  // printf ("mylog: restart to %u \n", level);
   kissat_backtrack_in_consistent_state (solver, level);
 
 #if FixedReset
     srand(time(NULL));
     //Probability of the event occurring (e.g. 0.3 means 30% chance)
-    double probability = 0.1;
+    double probability = 0.05;
     //Generate a random number between 0 and 1
     double random_number = (double) rand() / RAND_MAX;
     if (random_number <= probability) {

@@ -1,6 +1,6 @@
 #ifndef _internal_h_INCLUDED
 #define _internal_h_INCLUDED
-#define MAB true
+#define MAB false
 #define MLR false
 #include "arena.h"
 #include "array.h"
@@ -74,7 +74,7 @@ typedef STACK (watch *) patches;
 
 struct kitten;
 
-#if defined(MLR)
+#if MLR
 struct mlr_stat{
   // Adam parameters// Inside the solver state struct (solver.h or relevant header)
     double prevLbd1, prevLbd2, prevLbd3;
@@ -88,7 +88,7 @@ struct mlr_stat{
 
 
 struct kissat {
-#if defined(MLR)
+#if MLR
   struct mlr_stat mlr;
 #endif
 

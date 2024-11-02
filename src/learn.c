@@ -187,7 +187,7 @@ static void eagerly_subsume_last_learned (kissat *solver) {
     flush_last_learned (solver);
 }
 
-#if defined(MLR)
+#if MLR
 void kissat_feature_vector (kissat *solver, double *features) {
     features[0] = 1.0;
     features[1] = solver->mlr.prevLbd1;
@@ -224,7 +224,7 @@ void kissat_learn_clause (kissat *solver) {
   const size_t glue = SIZE_STACK (solver->levels);
   assert (glue <= UINT_MAX);
 
-#if defined(MLR)
+#if MLR
   double nextLbd = glue;
   solver->mlr.conflictsSinceLastRestart++;
 

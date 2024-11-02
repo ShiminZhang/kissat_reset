@@ -2,7 +2,7 @@
 #define _mlr_h_INLCUDED
 
 struct kissat;
-#if defined(MLR)
+#if MLR
 void kissat_init_mlr (struct kissat * solver);xxx
 #endif
 #endif
