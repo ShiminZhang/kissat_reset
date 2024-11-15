@@ -93,35 +93,10 @@ if __name__ == "__main__":
     parser.add_argument('--UseCache', action='store_true', help='Enable cache usage')
     args = parser.parse_args()
     use_cache_flag = args.UseCache
-    # print(use_cache_flag)
-    # year = 2023
-    bench_sub = "mode switch"
-    # bench_sub=2024
-    # kissat_log_path = f"./ERCL/dip-paper-benchs/{bench_sub}/"
-    # kissat_log_path = f"./Benchmarks/2024/benchmarks/"
-    kissat_log_path = "../Benchmark/2024/benchmarks/"
-    
-    def query_hashes(hashes, hash_tag="Frequency"):
-        conn = sqlite3.connect('./meta.db')
-        cursor = conn.cursor()
-        placeholders = ','.join('?' for _ in hashes)
-        query = f"SELECT hash, family FROM features WHERE hash IN ({placeholders})"
-        results = cursor.execute(query, hashes).fetchall()
-        hash_family_mapping = {hash_: family for hash_, family in results}
-        conn.close()
-        # print(hash_family_mapping)
-        value_counts = Counter(hash_family_mapping.values())
-        # print(value_counts)
-        df = pd.DataFrame(value_counts.items(), columns=['Value', hash_tag])
-        return df
-    def GetMergedDF(result,legend_better,legend_worse):
-        df1 = query_hashes(list(result["better"].keys()), legend_better)
-        df2 = query_hashes(list(result["worse"].keys()), legend_worse)
-        merged_df = pd.merge(df1, df2, on='Value', how='outer').fillna(0)
-        merged_df[legend_better] = merged_df[legend_better].astype(int)
-        merged_df[legend_worse] = merged_df[legend_worse].astype(int)
-        return merged_df
-        
+    print(use_cache_flag)
+    plt.figure(figsize=(10, 6))
+    kissat_log_path = "../../Benchmark/2024/benchmarks/kissat/"
+
     def CompareAndShowExcell(base_tag, better_tag):
         _,base,_ = GetData(kissat_log_path,base_tag,use_cache_flag)
         _,better,_ = GetData(kissat_log_path,better_tag,use_cache_flag)
@@ -147,34 +122,25 @@ if __name__ == "__main__":
         return base,better
     
     def wrapped_plot(tag):
-        return GetDataAndPlot(kissat_log_path, tag, use_cache_flag)
-        
-        
-    plt.figure(figsize=(10, 6))
-    wrapped_plot("kissat")
-    # wrapped_plot("allfocus")
-    # wrapped_plot("allstable")
-    # wrapped_plot("llr")
+        GetDataAndPlot(kissat_log_path, tag, use_cache_flag)
     # wrapped_plot("mab")
-    # wrapped_plot("tick")
+    wrapped_plot("baseline")
+    wrapped_plot("fixed05")
+    # wrapped_plot("fixed02")
+    # wrapped_plot("fixed03")
+    # wrapped_plot("fixed04")
+    # wrapped_plot("fixed06")
+    # wrapped_plot("fixed07")
+    # wrapped_plot("fixed08")
+    # wrapped_plot("fixed09")
+    # wrapped_plot("mlr")
+    # wrapped_plot("resetactinfocus")
+    CompareAndShowExcell("baseline", "fixed05")
     plt.xlabel('Cumulative Time (seconds)')
     plt.ylabel('Number of Problems Solved')
-    plt.title(f'{bench_sub}')
+    plt.title('SAT2024')
     plt.legend()
     plt.grid(True)
-    plt.savefig(f"./Cactus{bench_sub}.png")
-    
-    # df1 = CompareAndShowExcell("baseline", "f05a")
-    # df2 = CompareAndShowExcell("baseline", "f05b")
-    # result = pd.merge(df1, df2, on='value')
-    # df5 = CompareAndShowExcell("baseline", "f05e")
-    # df5 = CompareAndShowExcell("vanilla", "fixed05")
-    # df5 = CompareAndShowExcell("vanilla", "mab")
-    # df5 = CompareAndShowExcell("baseline", "f05e")
-
-    # result = pd.concat([df1, df2, df3, df4, df5], ignore_index=True).drop_duplicates()
-    # print(result)
-    # DrawDF(result,f"Overall.png", "baseline","fixed05")
-    
+    plt.savefig("./test.png")
     
     
