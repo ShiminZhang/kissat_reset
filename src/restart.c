@@ -16,7 +16,7 @@
 #include "Thompson.hpp"
   
 #define IntegrateReset false
-#define FixedReset true
+#define FixedReset false
 
 bool kissat_restarting_reset (kissat *solver) {
   // not implemented
@@ -178,17 +178,8 @@ void restart_mab(kissat * solver){
 
 
 void kissat_restart_mab(kissat *solver) {
-  unsigned old_heuristic = solver->heuristic;
-  if (solver->stable && solver->mab) 
-     restart_mab(solver);
-  unsigned new_heuristic = solver->heuristic;
-
-  unsigned level = old_heuristic==new_heuristic?reuse_trail (solver):0;
-
-  
-  if (solver->stable && solver->mab) solver->heuristic = old_heuristic;
+  unsigned level = reuse_trail (solver);
   kissat_backtrack_in_consistent_state (solver, level);
-  if (solver->stable && solver->mab) solver->heuristic = new_heuristic;
 if(level != 0){
     //printf("decisions: %d\n", solver->reset_decisions);
     //printf("conflicts: %d\n", solver->reset_conflicts);
@@ -201,8 +192,8 @@ if(level != 0){
     //compute local learning rate
     int delta = statistics->search_ticks - solver->reset_ticks;
     solver->reset_ticks = statistics->search_ticks;
-    // double localLearningRate = (solver->reset_conflicts * 1.0) / solver->reset_decisions;
-    double localLearningRate = (delta * 0.01) / solver->reset_decisions;
+    double localLearningRate = (solver->reset_conflicts * 1.0) / solver->reset_decisions;
+    // double localLearningRate = (delta * 0.01) / solver->reset_decisions;
 
     solver-> reset_conflicts = 0;
     solver-> reset_decisions = 0;
@@ -279,7 +270,6 @@ if(level != 0){
   
   if (!solver->stable)
     kissat_update_focused_restart_limit (solver);
-  if (solver->stable && solver->mab && old_heuristic!=new_heuristic) kissat_update_scores(solver);
 }
 #endif
 
@@ -288,8 +278,6 @@ void kissat_restart (kissat *solver) {
   INC (restarts);
 
 #if MAB
-  assert(false) // this should not be called for now
-
   // simply forward there
   kissat_restart_mab(solver);
   

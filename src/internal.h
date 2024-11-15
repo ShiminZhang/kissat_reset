@@ -1,6 +1,6 @@
 #ifndef _internal_h_INCLUDED
 #define _internal_h_INCLUDED
-#define MAB false
+#define MAB true
 #define MLR false
 #include "arena.h"
 #include "array.h"

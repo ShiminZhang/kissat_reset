@@ -17,6 +17,7 @@
         "unordered_map": "cpp",
         "vector": "cpp",
         "kissat.h": "c",
-        "averages.h": "c"
+        "averages.h": "c",
+        "extend.h": "c"
     }
 }
