@@ -3,7 +3,6 @@
 
 #include "inlinevector.h"
 #include "logging.h"
-
 #ifdef METRICS
 
 static inline size_t kissat_allocated (kissat *solver) {

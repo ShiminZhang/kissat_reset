@@ -17,6 +17,7 @@
   
 #define IntegrateReset false
 #define FixedReset false
+#define FixedReset false
 
 bool kissat_restarting_reset (kissat *solver) {
   // not implemented
@@ -65,7 +66,14 @@ bool kissat_restarting (kissat *solver) {
     return false;
   if (CONFLICTS < solver->limits.restart.conflicts)
     return false;
+    
+#if all_stable_restart
+  if (true)
+#elif all_focus_restart
+  if (false)
+#else
   if (solver->stable)
+#endif
     return kissat_reluctant_triggered (&solver->reluctant);
   const double fast = AVERAGE (fast_glue);
   const double slow = AVERAGE (slow_glue);
@@ -137,8 +145,13 @@ static unsigned reuse_trail (kissat *solver) {
     return 0;
 
   unsigned res;
-
+#if all_stable_restart
+  if (true)
+#elif all_focus_restart
+  if (false)
+#else
   if (solver->stable)
+#endif
     res = reuse_stable_trail (solver);
   else
     res = reuse_focused_trail (solver);
@@ -181,8 +194,6 @@ void kissat_restart_mab(kissat *solver) {
   unsigned level = reuse_trail (solver);
   kissat_backtrack_in_consistent_state (solver, level);
 if(level != 0){
-    //printf("decisions: %d\n", solver->reset_decisions);
-    //printf("conflicts: %d\n", solver->reset_conflicts);
     // Seed the random number generator
     srand(time(NULL));
 
@@ -197,8 +208,6 @@ if(level != 0){
 
     solver-> reset_conflicts = 0;
     solver-> reset_decisions = 0;
-    //printf("local learning rate: %0.2f\n", localLearningRate);
-    //printf("learning rateEMB: %0.2f\n\n", solver->learningRateEMA);
     //update success and failures
     if (solver-> resetTotalTimes != 0){
       if (localLearningRate >= solver->learningRateEMA){
@@ -222,11 +231,6 @@ if(level != 0){
     solver-> learningRateEMA *= solver-> resetDecay;
     solver->learningRateEMA += localLearningRate * (1.0 - solver->resetDecay);
 
-    // printf("reset_wins: %0.2f\n", solver->reset_wins);
-    // printf("reset_loses: %0.2f\n", solver->reset_loses);
-    // printf("restart_wins: %0.2f\n", solver->restart_wins);
-    // printf("restart_loses: %0.2f\n", solver->restart_loses);
-    //select a lever
     solver->resetPrevLever = select_lever(solver->reset_wins, solver->reset_loses, solver->restart_wins, solver->restart_loses);
     solver->resetTotalTimes++;
     if (solver->resetPrevLever == 0){
@@ -238,14 +242,6 @@ if(level != 0){
       solver->restart_loses *= solver->resetDecay;
     }
 
-    //printf("lever: %d\n\n",solver->resetPrevLever);
-
-    // Probability of the event occurring (e.g. 0.3 means 30% chance)
-    //double probability = 0.5;
-    // Generate a random number between 0 and 1
-    //double random_number = (double) rand() / RAND_MAX;
-    // Check if the event occurs
-    //if (random_number <= probability) {
     if (solver->resetPrevLever == 0) {
       // Event occurred, execute the code here
       //reset activities
@@ -304,7 +300,7 @@ void kissat_restart (kissat *solver) {
   kissat_backtrack_in_consistent_state (solver, level);
 
 #if FixedReset
-    srand(time(NULL));
+    // srand(time(NULL));
     //Probability of the event occurring (e.g. 0.3 means 30% chance)
     double probability = 0.05;
     //Generate a random number between 0 and 1

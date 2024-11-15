@@ -2,6 +2,8 @@
 #define _internal_h_INCLUDED
 #define MAB true
 #define MLR false
+#define all_stable_restart false
+#define all_focus_restart false
 #include "arena.h"
 #include "array.h"
 #include "assign.h"

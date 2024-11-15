@@ -90,16 +90,21 @@ def DrawDF(InDF, FigureName="DF.png", better="better", base="worse"):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process log files.')
-    parser.add_argument('--UseCache', action='store_true', help='Enable cache usage')
+    parser.add_argument(
+        "suffix",           
+        type=str
+    )
     args = parser.parse_args()
-    use_cache_flag = args.UseCache
+    suffix = args.suffix
+    assert(suffix)
+    use_cache_flag = False
     # print(use_cache_flag)
     # year = 2023
-    bench_sub = "mode switch"
+    bench_sub = "intervals"
     # bench_sub=2024
     # kissat_log_path = f"./ERCL/dip-paper-benchs/{bench_sub}/"
-    # kissat_log_path = f"./Benchmarks/2024/benchmarks/"
-    kissat_log_path = "../Benchmark/2024/benchmarks/"
+    kissat_log_path = f"/home/s568zhan/scratch/Benchmark/2024/benchmarks/"
+    # kissat_log_path = "./Results/"
     
     def query_hashes(hashes, hash_tag="Frequency"):
         conn = sqlite3.connect('./meta.db')
@@ -151,18 +156,13 @@ if __name__ == "__main__":
         
         
     plt.figure(figsize=(10, 6))
-    wrapped_plot("kissat")
-    # wrapped_plot("allfocus")
-    # wrapped_plot("allstable")
-    # wrapped_plot("llr")
-    # wrapped_plot("mab")
-    # wrapped_plot("tick")
+    wrapped_plot(suffix)
     plt.xlabel('Cumulative Time (seconds)')
     plt.ylabel('Number of Problems Solved')
     plt.title(f'{bench_sub}')
     plt.legend()
     plt.grid(True)
-    plt.savefig(f"./Cactus{bench_sub}.png")
+    # plt.savefig(f"./Cactus{bench_sub}.png")
     
     # df1 = CompareAndShowExcell("baseline", "f05a")
     # df2 = CompareAndShowExcell("baseline", "f05b")

@@ -11,3 +11,6 @@ tissat
 gmon.out
 *~
 cachegrind.*
+Outputs/*.out
+*.log
+
