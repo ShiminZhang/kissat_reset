@@ -149,6 +149,7 @@ struct kissat {
 // MAB
 #if MAB
   int  reset_conflicts;
+  int  reset_ticks;
   int  reset_decisions;
   unsigned int        resetPrevLever;
   double              learningRateEMA;

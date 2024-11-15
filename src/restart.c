@@ -196,9 +196,14 @@ if(level != 0){
     srand(time(NULL));
 
     //Thompson
+    statistics *statistics = &solver->statistics;
 
     //compute local learning rate
-    double localLearningRate = (solver->reset_conflicts * 1.0) / solver->reset_decisions;
+    int delta = statistics->search_ticks - solver->reset_ticks;
+    solver->reset_ticks = statistics->search_ticks;
+    // double localLearningRate = (solver->reset_conflicts * 1.0) / solver->reset_decisions;
+    double localLearningRate = (delta * 0.01) / solver->reset_decisions;
+
     solver-> reset_conflicts = 0;
     solver-> reset_decisions = 0;
     //printf("local learning rate: %0.2f\n", localLearningRate);

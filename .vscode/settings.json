@@ -7,6 +7,16 @@
         "internal.h": "c",
         "backtrack.h": "c",
         "learn.h": "c",
-        "thompson.hpp": "c"
+        "thompson.hpp": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "utility": "c",
+        "deque": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "kissat.h": "c",
+        "averages.h": "c"
     }
 }

@@ -193,8 +193,12 @@ int kissat_search (kissat *solver) {
     start_search (solver);
     while (!res) {
       clause *conflict = kissat_search_propagate (solver);
-      if (conflict)
+      if (conflict){
         res = kissat_analyze (solver, conflict);
+#if MAB
+        solver->reset_conflicts++;
+#endif
+      }
       else if (solver->iterating)
         iterate (solver);
       else if (!solver->unassigned)

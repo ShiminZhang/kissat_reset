@@ -54,6 +54,7 @@ kissat *kissat_init (void) {
   solver-> mab_decisions = 0;
   solver-> mab_chosen_tot = 0;
   solver-> reset_conflicts = 0;
+  solver-> reset_conflicts = 0;
   solver-> reset_decisions = 0;
   solver-> resetPrevLever = 0;
   solver-> learningRateEMA = 0;

@@ -229,6 +229,9 @@ void kissat_decide (kissat *solver) {
   assert (solver->level < SIZE_STACK (solver->frames));
   LOG ("decide literal %s", LOGLIT (lit));
   kissat_assign_decision (solver, lit);
+#if MAB
+  solver->reset_decisions++;
+#endif
   STOP (decide);
 }
 

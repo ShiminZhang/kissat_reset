@@ -192,7 +192,7 @@ bool kissat_switching_search_mode (kissat *solver) {
   limits *limits = &solver->limits;
   statistics *statistics = &solver->statistics;
 
-  if (limits->mode.count & 1)
+  if (limits->mode.count & 1) //wuts this count?
     return statistics->search_ticks >= limits->mode.ticks;
   else
     return statistics->conflicts >= limits->mode.conflicts;
