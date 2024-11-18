@@ -169,27 +169,6 @@ static unsigned reuse_trail (kissat *solver) {
 }
 
 #if MAB
-void restart_mab(kissat * solver){   
-	unsigned stable_restarts = 0;
-	solver->mab_reward[solver->heuristic] += !solver->mab_chosen_tot?0:log2(solver->mab_decisions)/solver->mab_chosen_tot;
-	for (all_variables (idx)) solver->mab_chosen[idx]=0;
-	solver->mab_chosen_tot = 0;
-	solver->mab_decisions = 0;
-	for(unsigned i=0;i<solver->mab_heuristics;i++) stable_restarts +=  solver->mab_select[i];
-	if(stable_restarts < solver->mab_heuristics) {
-		solver->heuristic = solver->heuristic==0?1:0; 
-	}else{
-		double ucb[2];
-		solver->heuristic = 0;
-		for(unsigned i=0;i<solver->mab_heuristics;i++) {
-		     ucb[i] = solver->mab_reward[i]/solver->mab_select[i] + sqrt(solver->mabc*log(stable_restarts+1)/solver->mab_select[i]);
-		     if(i!=0 && ucb[i]>ucb[solver->heuristic]) solver->heuristic = i;
-		  }
-	}
-	solver->mab_select[solver->heuristic]++; 
-}
-
-
 void kissat_restart_mab(kissat *solver) {
   unsigned level = reuse_trail (solver);
   kissat_backtrack_in_consistent_state (solver, level);

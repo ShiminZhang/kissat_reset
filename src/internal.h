@@ -1,6 +1,7 @@
 #ifndef _internal_h_INCLUDED
 #define _internal_h_INCLUDED
-#define MAB true
+#define MAB false
+#define RL true
 #define MLR false
 #define all_stable_restart false
 #define all_focus_restart false
@@ -147,7 +148,20 @@ struct kissat {
 
   heap scores;
   double scinc;
-
+#if RL
+  double stable_wins;
+  double focus_wins;
+  double stable_loses;
+  double focus_loses;
+  int rl_conflicts;
+  int rl_decisions;
+  int chosen_arm;
+  int nof_switch;
+  int nof_stable;
+  int nof_focus;
+  double EMALR;
+  int nof_deciding;
+#endif
 // MAB
 #if MAB
   int  reset_conflicts;

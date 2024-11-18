@@ -232,6 +232,9 @@ void kissat_decide (kissat *solver) {
 #if MAB
   solver->reset_decisions++;
 #endif
+#if RL
+  solver->rl_decisions++;
+#endif
   STOP (decide);
 }
 

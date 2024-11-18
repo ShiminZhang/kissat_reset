@@ -198,6 +198,9 @@ int kissat_search (kissat *solver) {
 #if MAB
         solver->reset_conflicts++;
 #endif
+#if RL
+        solver->rl_conflicts++;
+#endif
       }
       else if (solver->iterating)
         iterate (solver);

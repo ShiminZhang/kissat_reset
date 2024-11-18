@@ -48,7 +48,20 @@ kissat *kissat_init (void) {
 #if MLR
   kissat_init_mlr (solver);
 #endif
-
+#if RL
+  solver->stable_wins = 0;
+  solver->focus_wins = 0;
+  solver->rl_conflicts = 0;
+  solver->chosen_arm = 0;
+  solver->nof_switch = 0;
+  solver->nof_stable = 0;
+  solver->nof_focus = 0;
+  solver->rl_decisions = 0;
+  solver->EMALR = 0;
+  solver->stable_loses = 0;
+  solver->focus_loses = 0;
+  solver->nof_deciding = 0;
+#endif
 #if MAB
   solver->mab_heuristics = 2;
   solver-> mab_decisions = 0;

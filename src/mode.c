@@ -86,9 +86,9 @@ static void update_mode_limit (kissat *solver, uint64_t delta_ticks) {
 #endif
   } else {
     assert (limits->mode.ticks);
-    const uint64_t interval = GET_OPTION (modeint);
-    const uint64_t count = (statistics->switched + 1) / 2;
-    const uint64_t scaled = interval * kissat_nlogpown (count, 4);
+    const uint64_t interval = GET_OPTION (modeint); //1e3
+    const uint64_t count = (statistics->switched + 1) / 2; // increased on every switch
+    const uint64_t scaled = interval * kissat_nlogpown (count, 4);//count*(log_10(count+9))^4
     limits->mode.conflicts = statistics->conflicts + scaled;
 #ifndef QUIET
     assert (!solver->stable);
@@ -191,7 +191,44 @@ bool kissat_switching_search_mode (kissat *solver) {
 
   limits *limits = &solver->limits;
   statistics *statistics = &solver->statistics;
+#if RL
+  double localLearningRate = (solver->rl_conflicts * 1.0) / solver->rl_decisions;
+  solver->rl_conflicts = 0;
+  solver->rl_decisions = 0;
+  int choice_stable = 0;
+  int choice_focus = 1;
 
+  if (localLearningRate > solver->EMALR){
+    if (solver->chosen_arm == choice_stable){
+      solver->stable_wins++;
+    } else {
+      solver->focus_wins++;
+    }
+  } else {
+    if (solver->chosen_arm == choice_focus){
+      solver->stable_loses++;
+    } else {
+      solver->focus_loses++;
+    }
+  }
+  solver-> EMALR *= 0.8;
+  solver->EMALR += localLearningRate * (1.0 - 0.8);
+
+  solver->chosen_arm = select_lever(solver->stable_wins, solver->stable_loses, solver->focus_wins, solver->focus_loses);
+  solver->nof_deciding++;
+  if (solver->chosen_arm == choice_stable){
+    solver->stable_wins *= 0.8;
+    solver->stable_loses *= 0.8;
+    solver->nof_stable++;
+  }
+  else{
+    solver->focus_wins *= 0.8;
+    solver->focus_loses *= 0.8;
+    solver->nof_focus++;
+  }
+
+  return true;
+#endif
   if (limits->mode.count & 1) //wuts this count?
     return statistics->search_ticks >= limits->mode.ticks;
   else

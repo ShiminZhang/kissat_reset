@@ -18,6 +18,9 @@
         "vector": "cpp",
         "kissat.h": "c",
         "averages.h": "c",
-        "extend.h": "c"
+        "extend.h": "c",
+        "arena.h": "c",
+        "frames.h": "c",
+        "assign.h": "c"
     }
 }
