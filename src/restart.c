@@ -274,6 +274,7 @@ void kissat_restart (kissat *solver) {
   // printf ("mylog: restart to %u \n", level);
   kissat_backtrack_in_consistent_state (solver, level);
 
+  if (!solver->stable){
 #if FixedReset
     // srand(time(NULL));
     //Probability of the event occurring (e.g. 0.3 means 30% chance)
@@ -284,7 +285,6 @@ void kissat_restart (kissat *solver) {
       randomize_activity_score(solver);
     }
 #endif
-  if (!solver->stable){
 #if IntegrateReset
     randomize_activity_score(solver);
 #endif
