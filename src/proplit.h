@@ -1,4 +1,3 @@
-#include <valgrind/callgrind.h>
 static inline void kissat_watch_large_delayed (kissat *solver,
                                                watches *all_watches,
                                                unsigneds *delayed) {
@@ -88,11 +87,9 @@ static inline clause *PROPAGATE_LITERAL (kissat *solver,
 #endif
       } else {
         assert (!blocking_value);
-        CALLGRIND_START_INSTRUMENTATION;
         kissat_fast_binary_assign (solver, probing, level, values, assigned,
                                    blocking, not_lit);
         ticks++;
-        CALLGRIND_STOP_INSTRUMENTATION;
       }
     } else {
       const reference ref = tail.raw;
@@ -146,11 +143,9 @@ static inline clause *PROPAGATE_LITERAL (kissat *solver,
         lits[1] = replacement;
         assert (lits[0] != lits[1]);
         *r = not_lit;
-        CALLGRIND_START_INSTRUMENTATION;
         kissat_delay_watching_large (solver, delayed, replacement, other,
                                      ref);
         ticks++;
-        CALLGRIND_STOP_INSTRUMENTATION;
       } else if (other_value) {
         assert (replacement_value < 0);
         assert (blocking_value < 0);
@@ -174,11 +169,9 @@ static inline clause *PROPAGATE_LITERAL (kissat *solver,
           continue;
         }
 #endif
-        CALLGRIND_START_INSTRUMENTATION;
         kissat_fast_assign_reference (solver, values, assigned, other, ref,
                                       c);
         ticks++;
-        CALLGRIND_STOP_INSTRUMENTATION;
       }
     }
   }
