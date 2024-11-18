@@ -2,6 +2,8 @@
 #define _internal_h_INCLUDED
 #define MAB false
 #define RL true
+#define IntegrateReset false
+#define FixedReset true
 #define MLR false
 #define all_stable_restart false
 #define all_focus_restart false

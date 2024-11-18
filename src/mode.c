@@ -182,16 +182,9 @@ static void switch_to_stable_mode (kissat *solver) {
   kissat_init_reluctant (solver);
   kissat_update_scores (solver);
 }
-
-bool kissat_switching_search_mode (kissat *solver) {
-  assert (!solver->inconsistent);
-
-  if (GET_OPTION (stable) != 1)
-    return false;
-
-  limits *limits = &solver->limits;
-  statistics *statistics = &solver->statistics;
 #if RL
+bool RL_switching_search_mode (kissat *solver) {
+  if (solver->rl_decisions == 0) return false;
   double localLearningRate = (solver->rl_conflicts * 1.0) / solver->rl_decisions;
   solver->rl_conflicts = 0;
   solver->rl_decisions = 0;
@@ -226,17 +219,40 @@ bool kissat_switching_search_mode (kissat *solver) {
     solver->focus_loses *= 0.8;
     solver->nof_focus++;
   }
-
-  return true;
+  bool should_stable = solver->chosen_arm == choice_stable;
+  if (should_stable == solver->stable){
+    return false;
+  } else {
+    return true;
+  }
+}
 #endif
+
+bool kissat_switching_search_mode (kissat *solver) {
+  assert (!solver->inconsistent);
+
+  if (GET_OPTION (stable) != 1)
+    return false;
+
+  limits *limits = &solver->limits;
+  statistics *statistics = &solver->statistics;
   if (limits->mode.count & 1) //wuts this count?
+#if RL
+    if (statistics->search_ticks >= limits->mode.ticks){
+      return RL_switching_search_mode(solver);
+    }
+#else
     return statistics->search_ticks >= limits->mode.ticks;
+#endif
   else
     return statistics->conflicts >= limits->mode.conflicts;
 }
 
 void kissat_switch_search_mode (kissat *solver) {
+#if RL
+#else
   assert (kissat_switching_search_mode (solver));
+#endif
 
   INC (switched);
   solver->limits.mode.count++;

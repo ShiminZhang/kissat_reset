@@ -15,9 +15,6 @@
 #include <time.h>
 #include "Thompson.hpp"
   
-#define IntegrateReset false
-#define FixedReset false
-#define FixedReset false
 
 bool kissat_restarting_reset (kissat *solver) {
   // not implemented
@@ -26,7 +23,6 @@ bool kissat_restarting_reset (kissat *solver) {
 
 void randomize_activity_score(kissat *solver){
   // reset scores
-  heap* const scores = SCORES;
   for (all_variables (idx)) {
     kissat_update_heap (solver, &solver->scores, idx,(double) rand() / RAND_MAX*0.00001);
   }

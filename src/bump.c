@@ -112,7 +112,10 @@ void kissat_bump_analyzed (kissat *solver) {
 }
 
 void kissat_update_scores (kissat *solver) {
+#if FixedReset
+#else
   assert (solver->stable);
+#endif
   heap *scores = SCORES;
   for (all_variables (idx))
     if (ACTIVE (idx) && !kissat_heap_contains (scores, idx))
