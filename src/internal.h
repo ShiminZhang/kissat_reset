@@ -3,7 +3,7 @@
 #define MAB false
 #define RL false
 #define IntegrateReset false
-#define FixedReset true
+#define FixedReset false
 #define MLR false
 #define all_stable_restart false
 #define all_focus_restart false
@@ -155,12 +155,15 @@ struct kissat {
   double focus_wins;
   double stable_loses;
   double focus_loses;
+  double aggressive_wins;
+  double aggressive_loses;
   int rl_conflicts;
   int rl_decisions;
   int chosen_arm;
   int nof_switch;
   int nof_stable;
   int nof_focus;
+  int nof_aggresive;
   double EMALR;
   int nof_deciding;
 #endif

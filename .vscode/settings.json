@@ -21,6 +21,7 @@
         "extend.h": "c",
         "arena.h": "c",
         "frames.h": "c",
-        "assign.h": "c"
+        "assign.h": "c",
+        "array.h": "c"
     }
 }
