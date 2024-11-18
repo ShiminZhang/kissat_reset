@@ -2,7 +2,7 @@
 #SBATCH --time=0-0:0:5300                                                      
 #SBATCH --account=def-vganesh   
 
-suffixlist=("llrmab" "tickmab" "kissat" "allstable")
+suffixlist=("llrmab" "tickmab" "kissat" "allstable" "fixed05" "rlbase")
 length=${#suffixlist[@]}
 benchmark_l=${#benchmark[@]}
 
