@@ -18,9 +18,13 @@ typedef boost::mt19937 base_generator;
 
 #endif
   
-int select_lever_C(double reset_wins, double reset_loses, double noreset_wins, double noreset_loses);
+int select_lever_C(double reset_wins, double reset_loses,
+                          double noreset_wins, double noreset_loses,
+                          double explore_wins, double explore_loses);
 
-unsigned int select_lever (double reset_wins, double reset_loses, double noreset_wins, double noreset_loses);
+unsigned int select_lever (double reset_wins, double reset_loses,
+                          double noreset_wins, double noreset_loses,
+                          double explore_wins, double explore_loses);
 
 #ifdef __cplusplus  
 } // extern "C"  

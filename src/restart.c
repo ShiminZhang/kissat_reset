@@ -275,6 +275,15 @@ void kissat_restart (kissat *solver) {
   kissat_backtrack_in_consistent_state (solver, level);
 
   if (!solver->stable){
+#if RL
+    if (solver->chosen_arm == 2){
+      double probability = 0.1;
+      double random_number = (double) rand() / RAND_MAX;
+      if (random_number <= probability) {
+        randomize_activity_score(solver);
+      }
+    }
+#endif
 #if FixedReset
     // srand(time(NULL));
     //Probability of the event occurring (e.g. 0.3 means 30% chance)

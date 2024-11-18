@@ -186,17 +186,14 @@ static void switch_to_stable_mode (kissat *solver) {
 bool RL_switching_search_mode(kissat *solver) {
   if (solver->rl_decisions == 0) return false;
 
-  // 计算局部学习率
   double localLearningRate = (solver->rl_conflicts * 1.0) / solver->rl_decisions;
   solver->rl_conflicts = 0;
   solver->rl_decisions = 0;
 
-  // 定义三个 arm 的选择
   int choice_stable = 0;
   int choice_focus = 1;
   int choice_explore = 2;
 
-  // 奖励更新逻辑
   if (localLearningRate > solver->EMALR) {
     if (solver->chosen_arm == choice_stable) {
       solver->stable_wins++;
@@ -215,18 +212,15 @@ bool RL_switching_search_mode(kissat *solver) {
     }
   }
 
-  // 更新 EMA 学习率
   solver->EMALR *= 0.8;
   solver->EMALR += localLearningRate * (1.0 - 0.8);
 
-  // 使用 select_lever 更新当前 arm
   solver->chosen_arm = select_lever(
     solver->stable_wins, solver->stable_loses,
     solver->focus_wins, solver->focus_loses,
     solver->aggressive_wins, solver->aggressive_loses
   );
 
-  // 计数器更新
   solver->nof_deciding++;
   if (solver->chosen_arm == choice_stable) {
     solver->stable_wins *= 0.8;

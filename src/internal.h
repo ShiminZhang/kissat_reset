@@ -1,7 +1,7 @@
 #ifndef _internal_h_INCLUDED
 #define _internal_h_INCLUDED
 #define MAB false
-#define RL false
+#define RL true
 #define IntegrateReset false
 #define FixedReset false
 #define MLR false

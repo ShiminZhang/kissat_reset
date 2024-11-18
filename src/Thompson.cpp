@@ -1,8 +1,12 @@
 #include "Thompson.hpp"
 
-extern "C" int select_lever_C(double reset_wins, double reset_loses, double noreset_wins, double noreset_loses)
+extern "C" int select_lever_C(double reset_wins, double reset_loses,
+                          double noreset_wins, double noreset_loses,
+                          double explore_wins, double explore_loses)
 {
-  return (select_lever(reset_wins, reset_loses, noreset_wins, noreset_loses));
+  return (select_lever(reset_wins, reset_loses,
+                          noreset_wins, noreset_loses,
+                          explore_wins, explore_loses));
 }
 
 template<class T>
