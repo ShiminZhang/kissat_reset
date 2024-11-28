@@ -265,6 +265,11 @@ void kissat_restart (kissat *solver) {
     INC (focused_restarts);
     // printf ("mylog: focused restart");
   }
+
+  statistics *statistics = &solver->statistics;
+  int delta = statistics->search_ticks - solver->reset_ticks;
+  solver->reset_ticks = statistics->search_ticks;
+  
   unsigned level = reuse_trail (solver);
   kissat_extremely_verbose (solver,
                             "restarting after %" PRIu64 " conflicts"
@@ -296,6 +301,11 @@ void kissat_restart (kissat *solver) {
 #endif
 #if IntegrateReset
     randomize_activity_score(solver);
+#endif
+#if TickReset
+    int limit = solver->reset_tick_limit;
+    if (delta > limit)
+      randomize_activity_score(solver);
 #endif
     kissat_update_focused_restart_limit (solver);
   }

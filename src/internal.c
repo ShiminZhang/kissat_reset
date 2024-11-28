@@ -48,6 +48,10 @@ kissat *kissat_init (void) {
 #if MLR
   kissat_init_mlr (solver);
 #endif
+#if TickReset
+  solver->reset_ticks = 0;
+  solver->reset_tick_limit = 100;
+#endif
 #if RL
   solver->stable_wins = 1;
   solver->focus_wins = 1;

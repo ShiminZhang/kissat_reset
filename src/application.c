@@ -494,6 +494,12 @@ static bool parse_options (application *application, int argc,
       application->binary = -1;
 #endif
 #ifndef NOPTIONS
+#if TickReset
+    else if (!strcmp(arg, "--tick_limit_reset")) {
+      int number = atoi(argv[++i]);
+      solver->reset_tick_limit = number;
+    }
+#endif
     else if (arg[0] == '-' && arg[1] == '-' &&
              kissat_has_configuration (arg + 2)) {
       if (configuration)

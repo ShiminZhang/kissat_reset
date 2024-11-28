@@ -112,7 +112,7 @@ void kissat_bump_analyzed (kissat *solver) {
 }
 
 void kissat_update_scores (kissat *solver) {
-#if FixedReset
+#if FixedReset || TickReset
 #else
   assert (solver->stable);
 #endif

@@ -1,7 +1,8 @@
 #ifndef _internal_h_INCLUDED
 #define _internal_h_INCLUDED
 #define MAB false
-#define RL true
+#define RL false
+#define TickReset true
 #define IntegrateReset false
 #define FixedReset false
 #define MLR false
@@ -168,6 +169,11 @@ struct kissat {
   int nof_deciding;
 #endif
 // MAB
+#if TickReset
+  int  reset_ticks;
+  int  reset_tick_limit;
+#endif
+
 #if MAB
   int  reset_conflicts;
   int  reset_ticks;
