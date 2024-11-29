@@ -172,6 +172,7 @@ struct kissat {
 #if TickReset
   int  reset_ticks;
   int  reset_tick_limit;
+  int  delta;
 #endif
 
 #if MAB

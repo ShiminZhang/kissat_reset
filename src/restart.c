@@ -60,6 +60,11 @@ bool kissat_restarting (kissat *solver) {
     return false;
   if (!solver->level)
     return false;
+  
+  statistics *statistics = &solver->statistics;
+  solver->delta = statistics->search_ticks - solver->reset_ticks;
+  solver->reset_ticks = statistics->search_ticks;
+
   if (CONFLICTS < solver->limits.restart.conflicts)
     return false;
     
@@ -266,9 +271,7 @@ void kissat_restart (kissat *solver) {
     // printf ("mylog: focused restart");
   }
 
-  statistics *statistics = &solver->statistics;
-  int delta = statistics->search_ticks - solver->reset_ticks;
-  solver->reset_ticks = statistics->search_ticks;
+  printf ("mylog: delta %d stable:%d\n", solver->delta, (int)solver->stable);
   
   unsigned level = reuse_trail (solver);
   kissat_extremely_verbose (solver,
@@ -276,7 +279,6 @@ void kissat_restart (kissat *solver) {
                             " (limit %" PRIu64 ")",
                             CONFLICTS, solver->limits.restart.conflicts);
   LOG ("restarting to level %u", level);
-  // printf ("mylog: restart to %u \n", level);
   kissat_backtrack_in_consistent_state (solver, level);
 
   if (!solver->stable){
@@ -304,7 +306,7 @@ void kissat_restart (kissat *solver) {
 #endif
 #if TickReset
     int limit = solver->reset_tick_limit;
-    if (delta > limit)
+    if (solver->delta > limit)
       randomize_activity_score(solver);
 #endif
     kissat_update_focused_restart_limit (solver);
