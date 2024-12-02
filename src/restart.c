@@ -23,6 +23,7 @@ bool kissat_restarting_reset (kissat *solver) {
 
 void randomize_activity_score(kissat *solver){
   // reset scores
+  // printf("  mylog: reset\n");
   for (all_variables (idx)) {
     kissat_update_heap (solver, &solver->scores, idx,(double) rand() / RAND_MAX*0.00001);
   }
@@ -62,9 +63,27 @@ bool kissat_restarting (kissat *solver) {
     return false;
   
   statistics *statistics = &solver->statistics;
-  solver->delta = statistics->search_ticks - solver->reset_ticks;
-  solver->reset_ticks = statistics->search_ticks;
+  // solver->delta = (statistics->search_ticks - solver->reset_ticks) / solver->nof_propagates;
 
+  { // Interval
+    // solver->delta = statistics->search_ticks - solver->reset_ticks;
+    // solver->reset_ticks = statistics->search_ticks;
+  }
+
+  { // Avg
+    
+  }
+
+  { // EMA
+    float decay = 0.8;
+    int CurrentDelta = (statistics->search_ticks - solver->reset_ticks);
+    solver->delta *= decay;
+    solver->delta += CurrentDelta * (1.0 - decay);
+    solver->reset_ticks = statistics->search_ticks;
+  }
+
+  solver->nof_propagates++;
+  // printf("mylog delta: %d\n",solver->delta);
   if (CONFLICTS < solver->limits.restart.conflicts)
     return false;
     
@@ -252,7 +271,9 @@ if(level != 0){
 void kissat_restart (kissat *solver) {
   START (restart);
   INC (restarts);
-
+  // statistics *statistics = &solver->statistics;
+  // solver->reset_ticks = statistics->search_ticks;
+  // solver->nof_propagates = 0;
 #if MAB
   // simply forward there
   kissat_restart_mab(solver);
@@ -271,7 +292,7 @@ void kissat_restart (kissat *solver) {
     // printf ("mylog: focused restart");
   }
 
-  printf ("mylog: delta %d stable:%d\n", solver->delta, (int)solver->stable);
+  // printf ("mylog: delta %d stable:%d\n", solver->delta, (int)solver->stable);
   
   unsigned level = reuse_trail (solver);
   kissat_extremely_verbose (solver,
@@ -306,12 +327,14 @@ void kissat_restart (kissat *solver) {
 #endif
 #if TickReset
     int limit = solver->reset_tick_limit;
-    if (solver->delta > limit)
+    if (solver->delta > limit){
       randomize_activity_score(solver);
+    }
 #endif
     kissat_update_focused_restart_limit (solver);
   }
-
+  // printf("  mylog: restart\n");
+  
   REPORT (1, 'R');
   STOP (restart);
 }

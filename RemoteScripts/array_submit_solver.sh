@@ -4,9 +4,6 @@
 #SBATCH --mem=10g         
 #SBATCH --array=1-400
 
-# path=../Benchmark/2024/benchmarks/
-# path=./Benchmark_test/
-# path=./dip-paper-benchs/intervals/
 build=$1
 suffix=$2
 path=$3
@@ -35,5 +32,7 @@ test -f $LOG_FILE && rm $LOG_FILE
 # exec > "$LOG_FILE" 2>&1
 test -f $build && echo $build $suffix
 time $build $i > $LOG_FILE
-echo run $build $suffix $filename
+# $build $i
+echo $suffix "${@:4}"
+echo run $build $suffix $filename "${@:4}"
 
