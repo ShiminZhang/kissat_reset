@@ -32,6 +32,7 @@
 #include "value.h"
 #include "vector.h"
 #include "watch.h"
+#define TickReset true
 
 typedef struct datarank datarank;
 
@@ -147,6 +148,14 @@ struct kissat {
 #if defined(LOGGING) || !defined(NDEBUG)
   unsigneds resolvent;
 #endif
+
+#if TickReset
+  int  reset_ticks;
+  int  reset_tick_limit;
+  int  delta;
+  int  nof_propagates;
+#endif
+
   unsigned resolvent_size;
   unsigned antecedent_size;
 

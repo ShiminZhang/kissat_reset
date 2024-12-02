@@ -8,8 +8,17 @@
 #include "print.h"
 #include "reluctant.h"
 #include "report.h"
+#include "inlineheap.h"
 
 #include <inttypes.h>
+
+void randomize_activity_score(kissat *solver){
+  // printf("  mylog: reset\n");
+  for (all_variables (idx)) {
+    kissat_update_heap (solver, &solver->scores, idx,(double) rand() / RAND_MAX*0.00001);
+  }
+  kissat_update_scores(solver);
+}
 
 bool kissat_restarting (kissat *solver) {
   assert (solver->unassigned);
@@ -17,6 +26,22 @@ bool kissat_restarting (kissat *solver) {
     return false;
   if (!solver->level)
     return false;
+    
+#if TickReset
+  statistics *statistics = &solver->statistics;
+  { // Interval
+    // solver->delta = statistics->search_ticks - solver->reset_ticks;
+    // solver->reset_ticks = statistics->search_ticks;
+  }
+  { // EMA
+    // float decay = 0.8;
+    // int CurrentDelta = (statistics->search_ticks - solver->reset_ticks);
+    // solver->delta *= decay;
+    // solver->delta += CurrentDelta * (1.0 - decay);
+    // solver->reset_ticks = statistics->search_ticks;
+  }
+  solver->nof_propagates++;
+#endif
   if (CONFLICTS < solver->limits.restart.conflicts)
     return false;
   if (solver->stable)
@@ -124,8 +149,17 @@ void kissat_restart (kissat *solver) {
                             CONFLICTS, solver->limits.restart.conflicts);
   LOG ("restarting to level %u", level);
   kissat_backtrack_in_consistent_state (solver, level);
-  if (!solver->stable)
+  if (!solver->stable){
+
+#if TickReset
+    int limit = solver->reset_tick_limit;
+    if (solver->delta > limit){
+      randomize_activity_score(solver);
+    }
+#endif
     kissat_update_focused_restart_limit (solver);
+  }
+
   REPORT (1, 'R');
   STOP (restart);
 }

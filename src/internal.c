@@ -32,6 +32,14 @@ kissat *kissat_init (void) {
 #ifndef QUIET
   kissat_init_profiles (&solver->profiles);
 #endif
+
+#if TickReset
+  solver->reset_ticks = 0;
+  solver->reset_tick_limit = 100;
+  solver->delta = 0;
+  solver->nof_propagates = 0;
+#endif
+
   START (total);
   kissat_init_queue (solver);
   assert (INTERNAL_MAX_LIT < UINT_MAX);
