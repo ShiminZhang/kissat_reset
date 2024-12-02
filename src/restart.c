@@ -64,7 +64,7 @@ bool kissat_restarting (kissat *solver) {
   
   statistics *statistics = &solver->statistics;
   // solver->delta = (statistics->search_ticks - solver->reset_ticks) / solver->nof_propagates;
-
+#if TickReset
   { // Interval
     // solver->delta = statistics->search_ticks - solver->reset_ticks;
     // solver->reset_ticks = statistics->search_ticks;
@@ -75,14 +75,16 @@ bool kissat_restarting (kissat *solver) {
   }
 
   { // EMA
-    float decay = 0.8;
-    int CurrentDelta = (statistics->search_ticks - solver->reset_ticks);
-    solver->delta *= decay;
-    solver->delta += CurrentDelta * (1.0 - decay);
-    solver->reset_ticks = statistics->search_ticks;
+    // float decay = 0.8;
+    // int CurrentDelta = (statistics->search_ticks - solver->reset_ticks);
+    // solver->delta *= decay;
+    // solver->delta += CurrentDelta * (1.0 - decay);
+    // solver->reset_ticks = statistics->search_ticks;
   }
 
   solver->nof_propagates++;
+#endif
+
   // printf("mylog delta: %d\n",solver->delta);
   if (CONFLICTS < solver->limits.restart.conflicts)
     return false;

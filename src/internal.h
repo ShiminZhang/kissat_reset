@@ -2,7 +2,7 @@
 #define _internal_h_INCLUDED
 #define MAB false
 #define RL false
-#define TickReset true
+#define TickReset false
 #define IntegrateReset false
 #define FixedReset false
 #define MLR false
