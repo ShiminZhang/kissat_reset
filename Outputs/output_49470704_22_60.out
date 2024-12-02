@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_60
+
+real	0m4.530s
+user	0m4.312s
+sys	0m0.050s
+tickEMA_60 --tick_limit_reset 60
+run ./build/tickEMA tickEMA_60 0a02751cacf5e1cdfcc842a7f220199f-hwmcc17miters-xits-iso-bobsmfpu.sanitized.cnf --tick_limit_reset 60

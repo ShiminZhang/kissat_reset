@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	0m0.708s
+user	0m0.030s
+sys	0m0.008s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 7e1d279559b202016e5797901e731a39-simon-r25-0.sanitized.cnf --tick_limit_reset 30

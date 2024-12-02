@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	27m3.061s
+user	26m41.059s
+sys	0m0.151s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 c5ae0ec49de0959cd14431ce851c14f8-Circuit_multiplier22.cnf --tick_limit_reset 200

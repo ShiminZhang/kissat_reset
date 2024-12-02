@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_80
+
+real	80m46.407s
+user	80m14.027s
+sys	0m5.861s
+tickEMA_80 --tick_limit_reset 80
+run ./build/tickEMA tickEMA_80 e8abb9c83efdd96a99990f3b914ea873-linked_list_swap_contents_safety_unwind57.cnf --tick_limit_reset 80

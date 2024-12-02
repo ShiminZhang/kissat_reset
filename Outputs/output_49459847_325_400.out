@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	10m58.848s
+user	10m35.285s
+sys	0m0.114s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 a9cb77454c6cfdf4092fb304d3aae8b7-mdp-32-16-sat.cnf --tick_limit_reset 400

@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	7m4.910s
+user	6m56.491s
+sys	0m0.835s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 b5028686db9bd1073fa09cbd8c805f47-spg_200_316.cnf --tick_limit_reset 800

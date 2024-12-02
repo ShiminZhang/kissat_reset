@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_50
+
+real	9m15.760s
+user	9m12.899s
+sys	0m0.106s
+tickEMA_50 --tick_limit_reset 50
+run ./build/tickEMA tickEMA_50 7083b70c1976162e2693d7a493717ffd-battleship-14-26-sat.cnf --tick_limit_reset 50

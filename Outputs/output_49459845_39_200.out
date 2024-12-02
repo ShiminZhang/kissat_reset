@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	7m38.195s
+user	7m34.311s
+sys	0m0.716s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 d02fae1e84cfbe799c792ba237f08f66-exam_flat_0.04_2018_3.cnf --tick_limit_reset 200

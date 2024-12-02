@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	6m1.840s
+user	5m59.092s
+sys	0m0.117s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 07e6413459f92b613498a719125b6239-j3037_10_mdd_bm1.cnf --tick_limit_reset 100

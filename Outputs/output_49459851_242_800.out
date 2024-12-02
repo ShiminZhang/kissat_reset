@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	2m34.591s
+user	2m25.958s
+sys	0m1.912s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 aaa3654cc92d80da84ecf5d18040c634-linked_list_swap_contents_safety_unwind62.cnf --tick_limit_reset 800

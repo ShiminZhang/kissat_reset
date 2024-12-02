@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_40
+
+real	74m10.349s
+user	73m47.554s
+sys	0m0.142s
+tickEMA_40 --tick_limit_reset 40
+run ./build/tickEMA tickEMA_40 d1940d3d830eb16a7d2270ca4af4acba-mdp-28-11-sat.cnf --tick_limit_reset 40

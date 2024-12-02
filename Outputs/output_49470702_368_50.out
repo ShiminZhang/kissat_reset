@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_50
+
+real	7m32.321s
+user	7m30.096s
+sys	0m0.085s
+tickEMA_50 --tick_limit_reset 50
+run ./build/tickEMA tickEMA_50 ecca77b5350eca6a4323edd5b38208c6-004.cnf --tick_limit_reset 50

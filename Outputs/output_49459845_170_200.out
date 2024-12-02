@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	29m34.440s
+user	29m26.764s
+sys	0m0.174s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 41f4cb4992a481c9d43e2e1a4e2349ac-sgen1-sat-180-100.cnf --tick_limit_reset 200

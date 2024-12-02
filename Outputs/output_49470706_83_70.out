@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_70
+
+real	7m36.628s
+user	7m34.222s
+sys	0m0.061s
+tickEMA_70 --tick_limit_reset 70
+run ./build/tickEMA tickEMA_70 2a53e9c6a25a50d753a94ead66065826-mp1-ps_5000_21250_3_0_0.8_0_1.50_6.cnf --tick_limit_reset 70

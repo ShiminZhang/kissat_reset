@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_40
+
+real	0m17.499s
+user	0m16.505s
+sys	0m0.316s
+tickEMA_40 --tick_limit_reset 40
+run ./build/tickEMA tickEMA_40 aacfb8797097f698d14337d3a04f3065-barman-pfile06-022.sas.ex.7.cnf --tick_limit_reset 40

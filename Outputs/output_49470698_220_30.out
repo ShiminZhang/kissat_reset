@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	83m22.501s
+user	82m56.652s
+sys	0m3.794s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 8704094951693f99fd21403a039c8131-mchess_16.cnf --tick_limit_reset 30

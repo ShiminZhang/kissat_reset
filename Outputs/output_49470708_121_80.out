@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_80
+
+real	30m56.370s
+user	30m48.559s
+sys	0m0.082s
+tickEMA_80 --tick_limit_reset 80
+run ./build/tickEMA tickEMA_80 41f4cb4992a481c9d43e2e1a4e2349ac-sgen1-sat-180-100.cnf --tick_limit_reset 80

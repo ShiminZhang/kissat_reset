@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	11m10.587s
+user	11m5.986s
+sys	0m0.096s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 a9cb77454c6cfdf4092fb304d3aae8b7-mdp-32-16-sat.cnf --tick_limit_reset 800

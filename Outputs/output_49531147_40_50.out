@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_50
+
+real	56m55.449s
+user	56m41.314s
+sys	0m0.106s
+tickEMA_50 --tick_limit_reset 50
+run ./build/tickEMA tickEMA_50 a5419a63d913bde0ba5bcd8a8571342f-asconhashv12_opt64_H11_M2-tBi5i1RIgRz_m0_1_U23.c.cnf --tick_limit_reset 50

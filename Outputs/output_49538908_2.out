@@ -1,0 +1,8 @@
+
+./build/tickbase tickbase
+
+real	11m58.710s
+user	11m54.829s
+sys	0m0.048s
+tickbase
+run ./build/tickbase tickbase f561c52b987bdb9031a477864070b759-Ptn-7824-b18.cnf

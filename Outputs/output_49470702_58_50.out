@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_50
+
+real	0m6.726s
+user	0m6.248s
+sys	0m0.058s
+tickEMA_50 --tick_limit_reset 50
+run ./build/tickEMA tickEMA_50 1a20d903db74ab566efc68a35e6b0ec5-hwmcc20miters-iso-rast-p11.sanitized.cnf --tick_limit_reset 50

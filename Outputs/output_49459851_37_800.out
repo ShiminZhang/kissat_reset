@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	7m22.170s
+user	6m55.718s
+sys	0m0.103s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 40737c2f46512069d54b0d2bb3b47a20-ER_400_20_4.apx_2_DC-AD.cnf --tick_limit_reset 800

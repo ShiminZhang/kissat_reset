@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	88m13.931s
+user	87m32.236s
+sys	0m9.731s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 29ab150158d641568f888e8401d2ac13-bmc_QICE_snp_vld_30.cnf --tick_limit_reset 30

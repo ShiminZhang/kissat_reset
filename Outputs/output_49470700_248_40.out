@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_40
+
+real	7m35.215s
+user	7m32.964s
+sys	0m0.277s
+tickEMA_40 --tick_limit_reset 40
+run ./build/tickEMA tickEMA_40 9dcbf221b8d2bb01f30bcca283f3608d-EDP3-11000.cnf --tick_limit_reset 40

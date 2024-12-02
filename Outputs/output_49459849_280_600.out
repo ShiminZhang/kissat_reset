@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_600
+
+real	8m17.822s
+user	8m11.541s
+sys	0m3.882s
+tickfix_600 --tick_limit_reset 600
+run ./build/tickfix tickfix_600 29ab150158d641568f888e8401d2ac13-bmc_QICE_snp_vld_30.cnf --tick_limit_reset 600

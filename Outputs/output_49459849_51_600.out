@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_600
+
+real	0m35.473s
+user	0m34.637s
+sys	0m0.219s
+tickfix_600 --tick_limit_reset 600
+run ./build/tickfix tickfix_600 6f7a0e1cf94b6b26eafc08a827a692ce-circuit_64in64out_with_64gates_8in5out_dist256_seed1.sanitized.cnf --tick_limit_reset 600

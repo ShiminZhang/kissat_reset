@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	11m33.015s
+user	11m28.599s
+sys	0m0.373s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 9dcbf221b8d2bb01f30bcca283f3608d-EDP3-11000.cnf --tick_limit_reset 100

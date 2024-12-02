@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_80
+
+real	3m26.179s
+user	3m25.033s
+sys	0m0.050s
+tickEMA_80 --tick_limit_reset 80
+run ./build/tickEMA tickEMA_80 c76f3c6c2e2eae85fc5f3d499f3db88d-mp1-blockpuzzle_5x10_s7_free4.cnf --tick_limit_reset 80

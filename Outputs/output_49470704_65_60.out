@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_60
+
+real	0m30.531s
+user	0m30.070s
+sys	0m0.139s
+tickEMA_60 --tick_limit_reset 60
+run ./build/tickEMA tickEMA_60 1ea68d0008f01c50a1e4fec77dd0775e-REGRandom-K4-L1-Seed30.sanitized.cnf --tick_limit_reset 60

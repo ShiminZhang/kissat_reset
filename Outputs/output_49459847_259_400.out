@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	2m24.295s
+user	2m23.145s
+sys	0m0.065s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 170b13af977e962321c493544b2bd0a9-circuit_48in64out_with_800gates_4in4out_dist128_seed4.sanitized.cnf --tick_limit_reset 400

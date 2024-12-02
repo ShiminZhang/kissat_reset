@@ -1,0 +1,3 @@
+
+./build/tickEMA tickEMA_60
+slurmstepd: error: *** JOB 49537882 ON cdr1163 CANCELLED AT 2024-12-01T19:20:24 ***

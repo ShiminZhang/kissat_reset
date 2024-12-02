@@ -1,0 +1,3 @@
+
+./build/tickEMA tickEMA_40
+slurmstepd: error: *** JOB 49532472 ON cdr1892 CANCELLED AT 2024-12-01T08:26:33 DUE TO TIME LIMIT ***

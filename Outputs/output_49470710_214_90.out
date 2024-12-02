@@ -1,0 +1,10 @@
+
+./build/tickEMA tickEMA_90
+/localscratch/spool/slurmd/job49478651/slurm_script: line 34: 2082126 Killed                  $build $i > $LOG_FILE
+
+real	3m15.984s
+user	1m47.934s
+sys	0m7.044s
+tickEMA_90 --tick_limit_reset 90
+run ./build/tickEMA tickEMA_90 812926407774771b3bd9885f7bfa4841-lru_9.sanitized.cnf --tick_limit_reset 90
+slurmstepd: error: Detected 1 oom_kill event in StepId=49478651.batch. Some of the step tasks have been OOM Killed.

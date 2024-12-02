@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_60
+
+real	11m7.036s
+user	11m4.079s
+sys	0m0.059s
+tickEMA_60 --tick_limit_reset 60
+run ./build/tickEMA tickEMA_60 83b330c934d6dd35d56e1b1ca3638b3c-j3037_1_mdd_b.cnf --tick_limit_reset 60

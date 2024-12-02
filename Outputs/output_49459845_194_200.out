@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	7m23.209s
+user	7m20.229s
+sys	0m0.382s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 907e7dc703e16ad2c7e56a33fe3b3e5f-manol-pipe-g10bid_i.cnf --tick_limit_reset 200

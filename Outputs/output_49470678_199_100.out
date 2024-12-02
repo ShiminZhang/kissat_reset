@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	0m3.599s
+user	0m3.255s
+sys	0m0.164s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 0cfe9c90d3a51435a5e4dba7634b882f-g2-ak128boothbg2msisc.cnf --tick_limit_reset 100

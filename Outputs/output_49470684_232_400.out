@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	18m54.313s
+user	18m44.644s
+sys	0m2.436s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 3ed56242f55e3653dbceeb4a70221787-rbsat-v945c61409gyes9-sc2009.cnf --tick_limit_reset 400

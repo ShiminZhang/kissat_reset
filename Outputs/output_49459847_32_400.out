@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	31m13.557s
+user	31m5.830s
+sys	0m0.120s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 07c50b89d97a55b6e1629999a445a2ba-ctl_4201_555_unsat_pre.cnf --tick_limit_reset 400

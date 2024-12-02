@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	30m53.135s
+user	30m41.345s
+sys	0m0.813s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 5411047bc24f4321f0e490e01e4a0910-goldcrest-and-9.cnf --tick_limit_reset 30

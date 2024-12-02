@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	59m20.967s
+user	59m5.395s
+sys	0m0.845s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 479b1413f8bd1d6fc0723856ffca9792-constraints_18_0.4_2.sanitized.cnf --tick_limit_reset 200

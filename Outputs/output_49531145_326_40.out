@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_40
+
+real	3m4.218s
+user	3m3.282s
+sys	0m0.079s
+tickEMA_40 --tick_limit_reset 40
+run ./build/tickEMA tickEMA_40 1009c791cee542cdf19651fe25e6881a-summle_X4053_steps8_I1-2-2-4-4-8-25-100.cnf --tick_limit_reset 40

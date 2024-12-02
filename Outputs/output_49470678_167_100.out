@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	4m2.307s
+user	3m59.859s
+sys	0m0.527s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 2a15a30186afdad41a49c5c5366d01be-Timetable_C_392_E_62_Cl_26_S_28.cnf --tick_limit_reset 100

@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	12m44.104s
+user	12m38.648s
+sys	0m0.067s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 ec84eecb124c63d4757e083dd0e5a9ff-mchess_15.cnf --tick_limit_reset 100

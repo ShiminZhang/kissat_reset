@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	5m33.248s
+user	5m29.906s
+sys	0m0.057s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 e6cdc2687fa53506021f05b60ad0c6a2-GracefulGraph-K05-P02_c18.cnf --tick_limit_reset 400

@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_80
+
+real	0m7.969s
+user	0m7.897s
+sys	0m0.017s
+tickEMA_80 --tick_limit_reset 80
+run ./build/tickEMA tickEMA_80 7f7109dce621ef361a72b3e8cee9a962-Break_unsat_06_07.xml.cnf --tick_limit_reset 80

@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	68m0.765s
+user	67m30.686s
+sys	0m7.754s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 ee57608ea4b74f25aebca809d59711c9-oisc-subrv-sll-nested-13.cnf --tick_limit_reset 200

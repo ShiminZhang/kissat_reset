@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	59m46.078s
+user	59m23.403s
+sys	0m0.167s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 9276ce38c625b2d00de247f8588f1542-combined-crypto1-wff-seed-102-wffvars-500-cryptocplx-31-overlap-2.cnf --tick_limit_reset 100

@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_70
+
+real	0m4.417s
+user	0m3.776s
+sys	0m0.187s
+tickEMA_70 --tick_limit_reset 70
+run ./build/tickEMA tickEMA_70 d3893e43819a907055a84e48a6ee97ba-g2-ak128boothbg2msaig.cnf --tick_limit_reset 70

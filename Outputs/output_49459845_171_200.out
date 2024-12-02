@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	8m59.033s
+user	8m54.516s
+sys	0m1.377s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 9e6c2e7b0d6f58e449716deb9305525a-circuit_32in32out_with_96gates_7in7out_dist128_seed1.sanitized.cnf --tick_limit_reset 200

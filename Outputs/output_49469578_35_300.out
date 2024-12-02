@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	0m10.961s
+user	0m0.123s
+sys	0m0.003s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 09d7add3bf3b75c5d1023a92e752989a-Break_unsat_04_03.xml.cnf --tick_limit_reset 300

@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	54m0.076s
+user	48m14.217s
+sys	0m0.127s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 a552a058e6376a36b1f1b2724f228364-IBM_FV_2004_rule_batch_1_31_1_SAT_dat.k40.debugged.cnf --tick_limit_reset 300

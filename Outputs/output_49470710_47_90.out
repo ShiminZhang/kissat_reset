@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_90
+
+real	0m7.284s
+user	0m6.955s
+sys	0m0.078s
+tickEMA_90 --tick_limit_reset 90
+run ./build/tickEMA tickEMA_90 1545660e72158c7e90da5ad4c877a124-hwmcc20miters-iso-rast-p06.sanitized.cnf --tick_limit_reset 90

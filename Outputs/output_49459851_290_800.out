@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	0m54.516s
+user	0m54.115s
+sys	0m0.040s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 07e6413459f92b613498a719125b6239-j3037_10_mdd_bm1.cnf --tick_limit_reset 800

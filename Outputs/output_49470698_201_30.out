@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	6m23.653s
+user	6m20.385s
+sys	0m0.093s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 79b9e24dd9af185dbec18c9b0a32b1e2-g2-slp-synthesis-aes-top30.cnf --tick_limit_reset 30

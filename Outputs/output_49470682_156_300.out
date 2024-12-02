@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	30m5.676s
+user	29m50.243s
+sys	0m0.122s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 5ea72bcdccc86bd1a924029f7b81aec5-atco_enc1_opt1_10_15.cnf --tick_limit_reset 300

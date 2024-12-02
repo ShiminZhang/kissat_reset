@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	29m45.995s
+user	29m31.075s
+sys	0m3.221s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 6f4df706246d29bf38adadd274fadab3-SGI_30_60_19_60_6-dir.shuffled-as.sat03-112.cnf --tick_limit_reset 200

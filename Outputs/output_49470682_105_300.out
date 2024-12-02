@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	34m59.255s
+user	34m49.032s
+sys	0m0.160s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 d1940d3d830eb16a7d2270ca4af4acba-mdp-28-11-sat.cnf --tick_limit_reset 300

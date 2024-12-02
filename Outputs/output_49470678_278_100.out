@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	0m0.952s
+user	0m0.021s
+sys	0m0.005s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 2fcd8533eba981967292f1b6e41f7433-simon-r20-0.sanitized.cnf --tick_limit_reset 100

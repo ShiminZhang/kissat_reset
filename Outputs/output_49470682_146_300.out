@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	66m14.699s
+user	66m2.000s
+sys	0m0.108s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 305ad7d773d6c72be9b1efbf7bf482e0-asconhashv12_opt64_H9_M2-MIC4kfhiA_m0_6_U2.c.cnf --tick_limit_reset 300

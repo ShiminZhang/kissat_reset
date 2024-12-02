@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	3m34.047s
+user	3m31.646s
+sys	0m0.180s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 fb51311320bb42bdb893249998a77f40-constraints_16_0.3_1.sanitized.cnf --tick_limit_reset 800

@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	18m48.996s
+user	18m43.300s
+sys	0m0.117s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 2d6d26e1c5b4f2763c03697a6d00d3cf-fixedbandwidth-eq-31_shuffled.cnf --tick_limit_reset 200

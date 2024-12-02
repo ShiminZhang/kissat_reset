@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	1m59.466s
+user	1m57.852s
+sys	0m0.838s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 7b48f9354d25521bd542d859c0ecdde9-hwmcc17miters-xits-iso-oski15a08b00s.sanitized.cnf --tick_limit_reset 100

@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_600
+
+real	0m47.482s
+user	0m47.186s
+sys	0m0.055s
+tickfix_600 --tick_limit_reset 600
+run ./build/tickfix tickfix_600 f054205a7cef98e5021016f864c69816-summle_X11112_steps6_I1-2-2-4-4-8-25-100.cnf --tick_limit_reset 600

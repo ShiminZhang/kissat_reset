@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	42m3.451s
+user	41m51.476s
+sys	0m0.198s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 1548977b4e27032fe07cda357782cd6a-mdp-28-14-unsat.cnf --tick_limit_reset 200

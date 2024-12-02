@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	41m34.450s
+user	41m19.039s
+sys	0m3.335s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 878bcc11e1e243680f7946bcf428f465-linked_list_swap_contents_safety_unwind45.cnf --tick_limit_reset 30

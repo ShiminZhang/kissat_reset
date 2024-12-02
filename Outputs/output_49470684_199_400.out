@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	0m3.414s
+user	0m3.025s
+sys	0m0.134s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 0cfe9c90d3a51435a5e4dba7634b882f-g2-ak128boothbg2msisc.cnf --tick_limit_reset 400

@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	2m18.443s
+user	2m17.180s
+sys	0m0.054s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 f054205a7cef98e5021016f864c69816-summle_X11112_steps6_I1-2-2-4-4-8-25-100.cnf --tick_limit_reset 100

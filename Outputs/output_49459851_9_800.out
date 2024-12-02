@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	0m1.209s
+user	0m0.573s
+sys	0m0.016s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 ca14adcb9296a7b31d7815c2ed16d0f1-ITC2021_Early_3.xml.cnf --tick_limit_reset 800

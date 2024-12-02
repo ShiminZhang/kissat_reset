@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	0m0.443s
+user	0m0.200s
+sys	0m0.034s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 0a02751cacf5e1cdfcc842a7f220199f-hwmcc17miters-xits-iso-bobsmfpu.sanitized.cnf --tick_limit_reset 200

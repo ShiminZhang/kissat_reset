@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_600
+
+real	0m9.086s
+user	0m8.831s
+sys	0m0.028s
+tickfix_600 --tick_limit_reset 600
+run ./build/tickfix tickfix_600 e481a97a93fd6b4303f39024d19c2867-j3037_1_gmto_b.cnf --tick_limit_reset 600

@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	0m5.497s
+user	0m4.563s
+sys	0m0.016s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 0ef029cb7616d4a89eb6d1f63e89f67e-or_randxor_k3_n510_m510.sanitized.cnf --tick_limit_reset 400

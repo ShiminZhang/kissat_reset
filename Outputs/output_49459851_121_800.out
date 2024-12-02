@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	0m8.319s
+user	0m8.093s
+sys	0m0.091s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 1ea68d0008f01c50a1e4fec77dd0775e-REGRandom-K4-L1-Seed30.sanitized.cnf --tick_limit_reset 800

@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	2m57.775s
+user	2m56.123s
+sys	0m0.144s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 9cd3acdb765c15163bc239ae3a57f880-FmlaEquivChain_4_6_6.sanitized.cnf --tick_limit_reset 200

@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_60
+
+real	72m8.857s
+user	71m52.439s
+sys	0m0.174s
+tickEMA_60 --tick_limit_reset 60
+run ./build/tickEMA tickEMA_60 1a1c9d1dc1ae7fcff92e3c3499864b75-af-synthesis_stb_50_200_4_unsat.cnf --tick_limit_reset 60

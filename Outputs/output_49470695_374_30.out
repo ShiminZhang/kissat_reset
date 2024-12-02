@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	46m52.064s
+user	44m11.005s
+sys	0m5.681s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 ef16970ab9da31165d3c401ff9b29168-Folkman-185-152478531.sanitized.cnf --tick_limit_reset 30

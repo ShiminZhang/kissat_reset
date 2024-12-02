@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_70
+
+real	12m0.876s
+user	10m20.957s
+sys	0m0.072s
+tickEMA_70 --tick_limit_reset 70
+run ./build/tickEMA tickEMA_70 bd8bc25be2b36c64b38459c17e815814-pcmax-scheduling-m11-1517-6802-UNSAT.sanitized.cnf --tick_limit_reset 70

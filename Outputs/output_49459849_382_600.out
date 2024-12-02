@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_600
+
+real	0m23.850s
+user	0m23.690s
+sys	0m0.016s
+tickfix_600 --tick_limit_reset 600
+run ./build/tickfix tickfix_600 09c1b79b1cfe3522364fe60aef780703-x9-12092.sat.sanitized.cnf --tick_limit_reset 600

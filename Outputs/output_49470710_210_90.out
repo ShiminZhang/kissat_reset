@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_90
+
+real	40m24.909s
+user	30m18.647s
+sys	0m0.117s
+tickEMA_90 --tick_limit_reset 90
+run ./build/tickEMA tickEMA_90 7f2b4b2bde9b866b93fbfe01341213da-asconhashv12_opt64_H5_M2-xEJ8F_m0_3_U5.c.cnf --tick_limit_reset 90

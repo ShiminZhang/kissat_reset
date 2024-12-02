@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_90
+
+real	46m24.901s
+user	46m10.666s
+sys	0m1.142s
+tickEMA_90 --tick_limit_reset 90
+run ./build/tickEMA tickEMA_90 0e5ffe8651c6d9c3cccc3f6cb72be39a-g2-test_v5_r10_vr10_c1_s21502.smt2-cvc4.cnf --tick_limit_reset 90

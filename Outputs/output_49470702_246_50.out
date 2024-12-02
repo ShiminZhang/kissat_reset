@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_50
+
+real	3m4.547s
+user	3m3.645s
+sys	0m0.125s
+tickEMA_50 --tick_limit_reset 50
+run ./build/tickEMA tickEMA_50 9cd3acdb765c15163bc239ae3a57f880-FmlaEquivChain_4_6_6.sanitized.cnf --tick_limit_reset 50

@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_50
+
+real	49m10.981s
+user	48m59.114s
+sys	0m1.035s
+tickEMA_50 --tick_limit_reset 50
+run ./build/tickEMA tickEMA_50 44fd38bd0c5fc7336be468161dee4eda-post-cbmc-aes-ee-r3-noholes.cnf --tick_limit_reset 50

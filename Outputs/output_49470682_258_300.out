@@ -1,0 +1,10 @@
+
+./build/tickfix tickfix_300
+/localscratch/spool/slurmd/job49471914/slurm_script: line 34: 4090554 Killed                  $build $i > $LOG_FILE
+
+real	1m41.396s
+user	1m35.511s
+sys	0m5.305s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 e371cd7cdde3e7ccb9834290fd4a92d0-32_350.sanitized.cnf --tick_limit_reset 300
+slurmstepd: error: Detected 1 oom_kill event in StepId=49471914.batch. Some of the step tasks have been OOM Killed.

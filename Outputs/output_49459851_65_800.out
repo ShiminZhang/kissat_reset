@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	2m34.529s
+user	2m33.032s
+sys	0m0.049s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 be18894105e006399cc018abc14b204f-af-synthesis_stb_50_40_9_sat.cnf --tick_limit_reset 800

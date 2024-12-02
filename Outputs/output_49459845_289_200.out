@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	17m37.549s
+user	17m29.669s
+sys	0m1.337s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 69e34d0f49c71a7e145d8104ebe0273f-sokoban-p16.sas.ex.15-sc2016.cnf --tick_limit_reset 200

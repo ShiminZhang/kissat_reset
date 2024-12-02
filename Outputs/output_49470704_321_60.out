@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_60
+
+real	2m54.710s
+user	2m53.823s
+sys	0m0.060s
+tickEMA_60 --tick_limit_reset 60
+run ./build/tickEMA tickEMA_60 cb2e8b7fada420c5046f587ea754d052-clique_n2_k10.sanitized.cnf --tick_limit_reset 60

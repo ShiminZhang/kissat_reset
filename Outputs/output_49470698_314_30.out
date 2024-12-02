@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	3m33.056s
+user	3m31.672s
+sys	0m0.051s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 c76f3c6c2e2eae85fc5f3d499f3db88d-mp1-blockpuzzle_5x10_s7_free4.cnf --tick_limit_reset 30

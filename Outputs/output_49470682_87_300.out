@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	0m0.159s
+user	0m0.027s
+sys	0m0.005s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 3129198788f182ce6955b18aa3c7e61e-simon-r24-1.sanitized.cnf --tick_limit_reset 300

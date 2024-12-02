@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_80
+
+real	60m47.367s
+user	60m29.105s
+sys	0m0.130s
+tickEMA_80 --tick_limit_reset 80
+run ./build/tickEMA tickEMA_80 c9f511adbb3d6e1b37b410f972f270c6-af-synthesis_stb_50_140_3_unsat.cnf --tick_limit_reset 80

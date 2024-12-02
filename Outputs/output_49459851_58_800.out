@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	4m13.801s
+user	4m12.301s
+sys	0m0.086s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 b8f5fc2425facb3aec52a665f32a500c-asconhashv12_opt64_H6_M2-PgbpwX_m0_4_U1.c.cnf --tick_limit_reset 800

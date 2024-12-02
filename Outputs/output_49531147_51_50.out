@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_50
+
+real	5m4.712s
+user	4m52.206s
+sys	0m0.245s
+tickEMA_50 --tick_limit_reset 50
+run ./build/tickEMA tickEMA_50 6f7a0e1cf94b6b26eafc08a827a692ce-circuit_64in64out_with_64gates_8in5out_dist256_seed1.sanitized.cnf --tick_limit_reset 50

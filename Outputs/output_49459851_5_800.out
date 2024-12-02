@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	8m10.111s
+user	8m6.016s
+sys	0m0.764s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 cd361d33986dccd7f2d86016d6c35241-ecarev-110-4099-22-30-7.cnf --tick_limit_reset 800

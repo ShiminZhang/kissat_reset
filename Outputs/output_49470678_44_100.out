@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	63m30.682s
+user	57m30.522s
+sys	0m0.121s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 7b9d8b9b31b530effd634f5a8f1f4411-stb_531_83.apx_2_DC-ST.cnf --tick_limit_reset 100

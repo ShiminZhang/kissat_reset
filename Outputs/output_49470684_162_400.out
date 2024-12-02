@@ -1,0 +1,3 @@
+
+./build/tickfix tickfix_400
+slurmstepd: error: *** JOB 49472509 ON cdr1726 CANCELLED AT 2024-11-29T09:52:18 DUE TO TIME LIMIT ***

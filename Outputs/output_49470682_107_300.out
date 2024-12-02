@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	0m7.003s
+user	0m6.844s
+sys	0m0.076s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 1a20d903db74ab566efc68a35e6b0ec5-hwmcc20miters-iso-rast-p11.sanitized.cnf --tick_limit_reset 300

@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	25m5.828s
+user	24m57.843s
+sys	0m0.163s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 f32bb347996c351bc3e9a91c58e8601d-DLTM_twitter774_83_17.cnf --tick_limit_reset 400

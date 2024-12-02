@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	0m18.836s
+user	0m18.377s
+sys	0m0.034s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 c76f3c6c2e2eae85fc5f3d499f3db88d-mp1-blockpuzzle_5x10_s7_free4.cnf --tick_limit_reset 400

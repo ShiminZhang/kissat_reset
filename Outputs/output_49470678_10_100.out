@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	7m3.487s
+user	6m25.886s
+sys	0m0.045s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 22b4cf412c811872d6ba5078106aeb6c-j3037_10_rggt_b.cnf --tick_limit_reset 100

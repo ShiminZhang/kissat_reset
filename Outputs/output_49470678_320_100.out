@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	70m35.682s
+user	70m5.920s
+sys	0m10.468s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 02f6ca52f1ada872d82035088701b66a-linked_list_swap_contents_safety_unwind69.cnf --tick_limit_reset 100

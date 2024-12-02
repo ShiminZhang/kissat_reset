@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	0m11.402s
+user	0m11.176s
+sys	0m0.066s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 1f44da3598ccf8bcbe9a90fb1b2f1ebd-REGRandom-K3-L3-Seed25.sanitized.cnf --tick_limit_reset 30

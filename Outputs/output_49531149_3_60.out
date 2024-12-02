@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_60
+
+real	42m11.929s
+user	42m0.124s
+sys	0m0.123s
+tickEMA_60 --tick_limit_reset 60
+run ./build/tickEMA tickEMA_60 a552a058e6376a36b1f1b2724f228364-IBM_FV_2004_rule_batch_1_31_1_SAT_dat.k40.debugged.cnf --tick_limit_reset 60

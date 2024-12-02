@@ -1,0 +1,3 @@
+
+./build/tickfix tickfix_600
+slurmstepd: error: *** JOB 49468131 ON cdr648 CANCELLED AT 2024-11-29T07:32:13 ***

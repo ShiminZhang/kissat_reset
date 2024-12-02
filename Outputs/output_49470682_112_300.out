@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	73m44.365s
+user	72m53.043s
+sys	0m0.336s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 2b032f8a8976a302ad125eb50a3e8445-1-ZC-512-K-60.sanitized.cnf --tick_limit_reset 300

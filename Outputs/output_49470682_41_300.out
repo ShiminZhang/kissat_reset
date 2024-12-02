@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	0m17.840s
+user	0m16.288s
+sys	0m0.248s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 aacfb8797097f698d14337d3a04f3065-barman-pfile06-022.sas.ex.7.cnf --tick_limit_reset 300

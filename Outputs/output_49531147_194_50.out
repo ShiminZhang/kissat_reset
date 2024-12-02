@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_50
+
+real	30m53.518s
+user	30m38.307s
+sys	0m0.409s
+tickEMA_50 --tick_limit_reset 50
+run ./build/tickEMA tickEMA_50 907e7dc703e16ad2c7e56a33fe3b3e5f-manol-pipe-g10bid_i.cnf --tick_limit_reset 50

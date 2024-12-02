@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_90
+
+real	33m44.677s
+user	20m19.656s
+sys	0m0.083s
+tickEMA_90 --tick_limit_reset 90
+run ./build/tickEMA tickEMA_90 e99e266b422513a2898c13898a1de501-rbsat-v760c43649gyes9.cnf --tick_limit_reset 90

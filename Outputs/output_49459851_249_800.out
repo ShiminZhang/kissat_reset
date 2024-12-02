@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	0m6.535s
+user	0m6.343s
+sys	0m0.029s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 0876c518e5653369e20fb1ee0bb8db40-mp1-klieber2017s-0500-023-t12.cnf --tick_limit_reset 800

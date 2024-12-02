@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	33m14.484s
+user	31m42.946s
+sys	0m0.068s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 c6e03256680b96b52e3345a497333c2b-hwb-n24-02-S786928571.shuffled-as.sat03-1618.cnf --tick_limit_reset 300

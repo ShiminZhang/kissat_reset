@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_600
+
+real	1m36.159s
+user	1m35.532s
+sys	0m0.054s
+tickfix_600 --tick_limit_reset 600
+run ./build/tickfix tickfix_600 71a3dd6156463c0c55c4b38394faa753-af-synthesis_stb_50_120_4_sat.cnf --tick_limit_reset 600

@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_600
+
+real	4m30.099s
+user	4m7.644s
+sys	0m0.066s
+tickfix_600 --tick_limit_reset 600
+run ./build/tickfix tickfix_600 0ac6aaf6db6a0e4ec3a06e865d01086f-pcmax-scheduling-m13-2011-12813-UNSAT.sanitized.cnf --tick_limit_reset 600

@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	4m37.214s
+user	4m35.082s
+sys	0m0.062s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 cb2e8b7fada420c5046f587ea754d052-clique_n2_k10.sanitized.cnf --tick_limit_reset 100

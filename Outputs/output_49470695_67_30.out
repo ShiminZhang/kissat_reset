@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	25m46.849s
+user	25m36.827s
+sys	0m1.098s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 1427381a809c64c721838894ece6756d-shuffling-2-s25242449-of-bench-sat04-727.used-as.sat04-753.cnf --tick_limit_reset 30

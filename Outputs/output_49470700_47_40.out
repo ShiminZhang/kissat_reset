@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_40
+
+real	0m6.103s
+user	0m5.940s
+sys	0m0.057s
+tickEMA_40 --tick_limit_reset 40
+run ./build/tickEMA tickEMA_40 1545660e72158c7e90da5ad4c877a124-hwmcc20miters-iso-rast-p06.sanitized.cnf --tick_limit_reset 40

@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_70
+
+real	13m29.323s
+user	11m49.060s
+sys	0m0.072s
+tickEMA_70 --tick_limit_reset 70
+run ./build/tickEMA tickEMA_70 b44ea915362c3a140269003d45b1d053-x9-11034.sat.sanitized.cnf --tick_limit_reset 70

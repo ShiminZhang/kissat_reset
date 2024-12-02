@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_100
+
+real	46m54.960s
+user	46m41.382s
+sys	0m1.208s
+tickfix_100 --tick_limit_reset 100
+run ./build/tickfix tickfix_100 44fd38bd0c5fc7336be468161dee4eda-post-cbmc-aes-ee-r3-noholes.cnf --tick_limit_reset 100

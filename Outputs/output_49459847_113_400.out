@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	0m18.412s
+user	0m17.801s
+sys	0m0.050s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 3bf8ba6bb4e4ea9ad08b1b058661ba2e-summle_X4044_steps7_I1-2-2-4-4-8-25-100.cnf --tick_limit_reset 400

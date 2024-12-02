@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	3m55.565s
+user	3m38.182s
+sys	0m0.222s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 1009c791cee542cdf19651fe25e6881a-summle_X4053_steps8_I1-2-2-4-4-8-25-100.cnf --tick_limit_reset 300

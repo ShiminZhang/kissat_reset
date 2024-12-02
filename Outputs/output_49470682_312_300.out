@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	59m5.136s
+user	53m13.538s
+sys	0m0.890s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 0e5ffe8651c6d9c3cccc3f6cb72be39a-g2-test_v5_r10_vr10_c1_s21502.smt2-cvc4.cnf --tick_limit_reset 300

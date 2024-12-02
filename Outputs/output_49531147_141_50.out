@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_50
+
+real	0m4.670s
+user	0m4.421s
+sys	0m0.093s
+tickEMA_50 --tick_limit_reset 50
+run ./build/tickEMA tickEMA_50 912ce8c21d8fb8abc491cb205ec23e9f-hwmcc20miters-iso-mul2.sanitized.cnf --tick_limit_reset 50

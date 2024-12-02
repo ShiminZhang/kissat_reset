@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	3m3.908s
+user	3m2.177s
+sys	0m0.306s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 5411047bc24f4321f0e490e01e4a0910-goldcrest-and-9.cnf --tick_limit_reset 400

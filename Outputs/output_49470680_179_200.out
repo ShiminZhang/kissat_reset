@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	21m33.953s
+user	21m27.186s
+sys	0m0.202s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 4a8285a53f30b35016b0c85ea17ba155-1-TC-256-K-68.sanitized.cnf --tick_limit_reset 200

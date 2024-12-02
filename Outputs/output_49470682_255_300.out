@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	10m8.773s
+user	9m25.462s
+sys	0m0.043s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 2a53e9c6a25a50d753a94ead66065826-mp1-ps_5000_21250_3_0_0.8_0_1.50_6.cnf --tick_limit_reset 300

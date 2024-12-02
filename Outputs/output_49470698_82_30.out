@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	6m4.568s
+user	5m28.079s
+sys	0m0.480s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 2a15a30186afdad41a49c5c5366d01be-Timetable_C_392_E_62_Cl_26_S_28.cnf --tick_limit_reset 30

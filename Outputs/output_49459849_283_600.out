@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_600
+
+real	0m1.838s
+user	0m1.616s
+sys	0m0.162s
+tickfix_600 --tick_limit_reset 600
+run ./build/tickfix tickfix_600 f70788e8446c1bc42684316de0a6c164-hwmcc20miters-iso-mul3.sanitized.cnf --tick_limit_reset 600

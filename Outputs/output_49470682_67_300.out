@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	10m56.185s
+user	10m52.679s
+sys	0m0.580s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 1427381a809c64c721838894ece6756d-shuffling-2-s25242449-of-bench-sat04-727.used-as.sat04-753.cnf --tick_limit_reset 300

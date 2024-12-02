@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_80
+
+real	8m52.782s
+user	8m16.312s
+sys	0m0.062s
+tickEMA_80 --tick_limit_reset 80
+run ./build/tickEMA tickEMA_80 c82eee3badbc8432dad72d1d575a0ea6-preimage_80r_495m_160h_seed_379.cnf --tick_limit_reset 80

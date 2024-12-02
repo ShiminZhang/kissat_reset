@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_90
+
+real	85m19.600s
+user	84m55.261s
+sys	0m0.118s
+tickEMA_90 --tick_limit_reset 90
+run ./build/tickEMA tickEMA_90 c5ae0ec49de0959cd14431ce851c14f8-Circuit_multiplier22.cnf --tick_limit_reset 90

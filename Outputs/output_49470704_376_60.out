@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_60
+
+real	0m50.462s
+user	0m49.373s
+sys	0m0.554s
+tickEMA_60 --tick_limit_reset 60
+run ./build/tickEMA tickEMA_60 f0426369f61595aee97055965ee7e6a3-hwmcc12miters-xits-iso-6s111.sanitized.cnf --tick_limit_reset 60

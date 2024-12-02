@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	10m22.837s
+user	10m20.191s
+sys	0m0.050s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 0876c518e5653369e20fb1ee0bb8db40-mp1-klieber2017s-0500-023-t12.cnf --tick_limit_reset 30

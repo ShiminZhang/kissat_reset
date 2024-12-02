@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_50
+
+real	0m34.478s
+user	0m34.242s
+sys	0m0.023s
+tickEMA_50 --tick_limit_reset 50
+run ./build/tickEMA tickEMA_50 0ef029cb7616d4a89eb6d1f63e89f67e-or_randxor_k3_n510_m510.sanitized.cnf --tick_limit_reset 50

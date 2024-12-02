@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	33m5.547s
+user	32m53.318s
+sys	0m0.178s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 e7248b57a310ad461924eb17956cdf3a-Folkman-190-358004741.sanitized.cnf --tick_limit_reset 200

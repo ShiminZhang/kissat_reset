@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	45m3.962s
+user	44m52.852s
+sys	0m0.429s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 c73edc350cfa8e07af58db50054aea45-noL-11-12.sanitized.cnf --tick_limit_reset 400

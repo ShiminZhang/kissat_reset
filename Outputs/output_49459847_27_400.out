@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_400
+
+real	33m3.912s
+user	32m54.751s
+sys	0m0.191s
+tickfix_400 --tick_limit_reset 400
+run ./build/tickfix tickfix_400 d7f2e4ec8e631387c928c79e1054c663-stb_418_125.apx_1_DC-AD.cnf --tick_limit_reset 400

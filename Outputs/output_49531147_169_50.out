@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_50
+
+real	2m3.985s
+user	2m3.283s
+sys	0m0.031s
+tickEMA_50 --tick_limit_reset 50
+run ./build/tickEMA tickEMA_50 a38affaa741c958fc32769d5fe89b06c-frb65-12-2.used-as.sat04-874.cnf --tick_limit_reset 50

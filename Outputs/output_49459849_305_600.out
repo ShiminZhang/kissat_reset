@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_600
+
+real	1m48.625s
+user	1m47.690s
+sys	0m0.084s
+tickfix_600 --tick_limit_reset 600
+run ./build/tickfix tickfix_600 79b9e24dd9af185dbec18c9b0a32b1e2-g2-slp-synthesis-aes-top30.cnf --tick_limit_reset 600

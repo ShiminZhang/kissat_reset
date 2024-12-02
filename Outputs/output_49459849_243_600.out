@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_600
+
+real	0m11.794s
+user	0m11.603s
+sys	0m0.017s
+tickfix_600 --tick_limit_reset 600
+run ./build/tickfix tickfix_600 02066c116dbacc40ec5cca2067db26c0-mrpp_4x4#12_12.cnf --tick_limit_reset 600

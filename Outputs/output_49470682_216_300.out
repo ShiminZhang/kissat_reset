@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_300
+
+real	71m16.049s
+user	70m56.099s
+sys	0m0.107s
+tickfix_300 --tick_limit_reset 300
+run ./build/tickfix tickfix_300 96a6796405061571e12d383efe27b703-WS_500_16_70_10.apx_1_DC-ST.cnf --tick_limit_reset 300

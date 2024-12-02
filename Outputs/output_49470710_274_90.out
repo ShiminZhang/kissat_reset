@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_90
+
+real	0m0.473s
+user	0m0.208s
+sys	0m0.014s
+tickEMA_90 --tick_limit_reset 90
+run ./build/tickEMA tickEMA_90 ae9522ea003ea9f75891b2d37a5e264b-srhd-sgi-m37-q446.25-n35-p30-s33692332.cnf --tick_limit_reset 90

@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_30
+
+real	0m8.181s
+user	0m6.248s
+sys	0m0.029s
+tickEMA_30 --tick_limit_reset 30
+run ./build/tickEMA tickEMA_30 ca14adcb9296a7b31d7815c2ed16d0f1-ITC2021_Early_3.xml.cnf --tick_limit_reset 30

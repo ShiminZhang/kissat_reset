@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_200
+
+real	51m44.727s
+user	51m5.262s
+sys	0m0.428s
+tickfix_200 --tick_limit_reset 200
+run ./build/tickfix tickfix_200 7fca438c38e5b7a70e38778ec146cfe0-ctl_4291_567_2_unsat-sc2013.cnf --tick_limit_reset 200

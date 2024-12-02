@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_60
+
+real	3m56.980s
+user	3m55.751s
+sys	0m0.040s
+tickEMA_60 --tick_limit_reset 60
+run ./build/tickEMA tickEMA_60 e6cdc2687fa53506021f05b60ad0c6a2-GracefulGraph-K05-P02_c18.cnf --tick_limit_reset 60

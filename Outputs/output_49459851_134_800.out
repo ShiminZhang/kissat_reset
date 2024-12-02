@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_800
+
+real	0m2.322s
+user	0m1.926s
+sys	0m0.212s
+tickfix_800 --tick_limit_reset 800
+run ./build/tickfix tickfix_800 e06be7a69dbd6d6866a2799cd40c4bfe-hwmcc20miters-iso-mul7.sanitized.cnf --tick_limit_reset 800

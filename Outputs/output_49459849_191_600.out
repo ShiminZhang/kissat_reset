@@ -1,0 +1,8 @@
+
+./build/tickfix tickfix_600
+
+real	1m15.440s
+user	1m14.421s
+sys	0m0.071s
+tickfix_600 --tick_limit_reset 600
+run ./build/tickfix tickfix_600 7083b70c1976162e2693d7a493717ffd-battleship-14-26-sat.cnf --tick_limit_reset 600

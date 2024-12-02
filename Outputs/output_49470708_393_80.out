@@ -1,0 +1,8 @@
+
+./build/tickEMA tickEMA_80
+
+real	2m10.363s
+user	2m9.722s
+sys	0m0.042s
+tickEMA_80 --tick_limit_reset 80
+run ./build/tickEMA tickEMA_80 f86dad4ba35369eb720a0c9ddc45037a-combined-crypto1-wff-seed-1-wffvars-450-cryptocplx-40-overlap-2.cnf --tick_limit_reset 80
