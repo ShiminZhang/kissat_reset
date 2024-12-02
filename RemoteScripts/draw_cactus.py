@@ -54,7 +54,7 @@ def GetData(folder,name, use_cache = False):
             result_table["data"] = data_for_this_solver
             result_table["map"] = instance_time_map
             result_table["par2"] = par2
-            json.dump(result_table, file)
+            # json.dump(result_table, file)
     
     print(par2)
     print(len(data_for_this_solver))
@@ -95,7 +95,7 @@ if __name__ == "__main__":
     use_cache_flag = args.UseCache
     print(use_cache_flag)
     plt.figure(figsize=(10, 6))
-    kissat_log_path = "../../Benchmark/2024/benchmarks/kissat/"
+    kissat_log_path = "../Benchmark/2024/benchmarks/"
 
     def CompareAndShowExcell(base_tag, better_tag):
         _,base,_ = GetData(kissat_log_path,base_tag,use_cache_flag)
@@ -124,8 +124,19 @@ if __name__ == "__main__":
     def wrapped_plot(tag):
         GetDataAndPlot(kissat_log_path, tag, use_cache_flag)
     # wrapped_plot("mab")
-    wrapped_plot("baseline")
-    wrapped_plot("fixed05")
+    wrapped_plot("tickEMA_30")
+    wrapped_plot("tickEMA_40")
+    wrapped_plot("tickEMA_50")
+    wrapped_plot("tickEMA_60")
+    wrapped_plot("tickEMA_70")
+    wrapped_plot("tickEMA_80")
+    wrapped_plot("tickEMA_90")
+    # wrapped_plot("tickfix_100")
+    # wrapped_plot("tickfix_200")
+    # wrapped_plot("tickfix_300")
+    # wrapped_plot("tickfix_400")
+    # wrapped_plot("tickfix_600")
+    # wrapped_plot("tickfix_800")
     # wrapped_plot("fixed02")
     # wrapped_plot("fixed03")
     # wrapped_plot("fixed04")
@@ -135,7 +146,7 @@ if __name__ == "__main__":
     # wrapped_plot("fixed09")
     # wrapped_plot("mlr")
     # wrapped_plot("resetactinfocus")
-    CompareAndShowExcell("baseline", "fixed05")
+    # CompareAndShowExcell("baseline", "fixed05")
     plt.xlabel('Cumulative Time (seconds)')
     plt.ylabel('Number of Problems Solved')
     plt.title('SAT2024')

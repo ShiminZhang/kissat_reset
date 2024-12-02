@@ -96,16 +96,11 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     suffix = args.suffix
+    print(suffix)
     assert(suffix)
     use_cache_flag = False
-    # print(use_cache_flag)
-    # year = 2023
     bench_sub = "intervals"
-    # bench_sub=2024
-    # kissat_log_path = f"./ERCL/dip-paper-benchs/{bench_sub}/"
     kissat_log_path = f"/home/s568zhan/scratch/Benchmark/2024/benchmarks/"
-    # kissat_log_path = "./Results/"
-    
     def query_hashes(hashes, hash_tag="Frequency"):
         conn = sqlite3.connect('./meta.db')
         cursor = conn.cursor()
