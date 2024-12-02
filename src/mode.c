@@ -86,9 +86,9 @@ static void update_mode_limit (kissat *solver, uint64_t delta_ticks) {
 #endif
   } else {
     assert (limits->mode.ticks);
-    const uint64_t interval = GET_OPTION (modeint); //1e3
-    const uint64_t count = (statistics->switched + 1) / 2; // increased on every switch
-    const uint64_t scaled = interval * kissat_nlogpown (count, 4);//count*(log_10(count+9))^4
+    const uint64_t interval = GET_OPTION (modeint);
+    const uint64_t count = (statistics->switched + 1) / 2;
+    const uint64_t scaled = interval * kissat_nlogpown (count, 4);
     limits->mode.conflicts = statistics->conflicts + scaled;
 #ifndef QUIET
     assert (!solver->stable);
@@ -182,68 +182,6 @@ static void switch_to_stable_mode (kissat *solver) {
   kissat_init_reluctant (solver);
   kissat_update_scores (solver);
 }
-#if RL
-bool RL_switching_search_mode(kissat *solver) {
-  if (solver->rl_decisions == 0) return false;
-
-  double localLearningRate = (solver->rl_conflicts * 1.0) / solver->rl_decisions;
-  solver->rl_conflicts = 0;
-  solver->rl_decisions = 0;
-
-  int choice_stable = 0;
-  int choice_focus = 1;
-  int choice_explore = 2;
-
-  if (localLearningRate > solver->EMALR) {
-    if (solver->chosen_arm == choice_stable) {
-      solver->stable_wins++;
-    } else if (solver->chosen_arm == choice_focus) {
-      solver->focus_wins++;
-    } else if (solver->chosen_arm == choice_explore) {
-      solver->aggressive_wins++;
-    }
-  } else {
-    if (solver->chosen_arm == choice_stable) {
-      solver->stable_loses++;
-    } else if (solver->chosen_arm == choice_focus) {
-      solver->focus_loses++;
-    } else if (solver->chosen_arm == choice_explore) {
-      solver->aggressive_loses++;
-    }
-  }
-
-  solver->EMALR *= 0.8;
-  solver->EMALR += localLearningRate * (1.0 - 0.8);
-
-  solver->chosen_arm = select_lever(
-    solver->stable_wins, solver->stable_loses,
-    solver->focus_wins, solver->focus_loses,
-    solver->aggressive_wins, solver->aggressive_loses
-  );
-
-  solver->nof_deciding++;
-  if (solver->chosen_arm == choice_stable) {
-    solver->stable_wins *= 0.8;
-    solver->stable_loses *= 0.8;
-    solver->nof_stable++;
-  } else if (solver->chosen_arm == choice_focus) {
-    solver->focus_wins *= 0.8;
-    solver->focus_loses *= 0.8;
-    solver->nof_focus++;
-  } else if (solver->chosen_arm == choice_explore) {
-    solver->aggressive_wins *= 0.8;
-    solver->aggressive_loses *= 0.8;
-    solver->nof_aggresive++;
-  }
-
-  bool should_stable = (solver->chosen_arm == choice_stable);
-  if (should_stable == solver->stable) {
-    return false;
-  } else {
-    return true;
-  }
-}
-#endif
 
 bool kissat_switching_search_mode (kissat *solver) {
   assert (!solver->inconsistent);
@@ -253,23 +191,15 @@ bool kissat_switching_search_mode (kissat *solver) {
 
   limits *limits = &solver->limits;
   statistics *statistics = &solver->statistics;
-  if (limits->mode.count & 1) //wuts this count?
-#if RL
-    if (statistics->search_ticks >= limits->mode.ticks){
-      return RL_switching_search_mode(solver);
-    }
-#else
+
+  if (limits->mode.count & 1)
     return statistics->search_ticks >= limits->mode.ticks;
-#endif
   else
     return statistics->conflicts >= limits->mode.conflicts;
 }
 
 void kissat_switch_search_mode (kissat *solver) {
-#if RL
-#else
   assert (kissat_switching_search_mode (solver));
-#endif
 
   INC (switched);
   solver->limits.mode.count++;
