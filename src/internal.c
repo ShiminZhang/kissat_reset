@@ -35,9 +35,10 @@ kissat *kissat_init (void) {
 
 #if TickReset
   solver->reset_ticks = 0;
-  solver->reset_tick_limit = 100;
+  solver->reset_tick_limit = 100000;
   solver->delta = 0;
   solver->nof_propagates = 0;
+  srand(time(NULL));
 #endif
 
   START (total);

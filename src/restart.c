@@ -13,9 +13,14 @@
 #include <inttypes.h>
 
 void randomize_activity_score(kissat *solver){
-  // printf("  mylog: reset\n");
+  // printf("  mylog:  reset\n");
   for (all_variables (idx)) {
-    kissat_update_heap (solver, &solver->scores, idx,(double) rand() / RAND_MAX*0.00001);
+    double new_score = (double) rand() / RAND_MAX * 0.00001;
+    // printf("scorelog:%g\n", new_score);
+    // double old_score = kissat_get_heap_score (&solver->scores, idx);
+    kissat_update_heap (solver, &solver->scores, idx, new_score);
+    // double after_score = kissat_get_heap_score (&solver->scores, idx);
+    // printf("scorelog: update heap %u score from %g to %g, now %g\n", idx, old_score, new_score, after_score);
   }
   kissat_update_scores(solver);
 }
@@ -30,8 +35,9 @@ bool kissat_restarting (kissat *solver) {
 #if TickReset
   statistics *statistics = &solver->statistics;
   { // Interval
-    // solver->delta = statistics->search_ticks - solver->reset_ticks;
-    // solver->reset_ticks = statistics->search_ticks;
+    solver->delta = statistics->search_ticks - solver->reset_ticks;
+    solver->reset_ticks = statistics->search_ticks;
+    printf("  mylog: ticks during propagation %d\n", solver->delta);
   }
   { // EMA
     // float decay = 0.8;
@@ -138,6 +144,8 @@ void kissat_restart (kissat *solver) {
   START (restart);
   INC (restarts);
   ADD (restarts_levels, solver->level);
+  printf("  mylog: restart\n");
+
   if (solver->stable)
     INC (stable_restarts);
   else
@@ -153,9 +161,9 @@ void kissat_restart (kissat *solver) {
 
 #if TickReset
     int limit = solver->reset_tick_limit;
-    if (solver->delta > limit){
+    // if (solver->delta > limit){
       randomize_activity_score(solver);
-    }
+    // }
 #endif
     kissat_update_focused_restart_limit (solver);
   }

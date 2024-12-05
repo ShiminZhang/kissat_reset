@@ -11,3 +11,5 @@ tissat
 gmon.out
 *~
 Outputs/*.out
+*.log
+tmp*
