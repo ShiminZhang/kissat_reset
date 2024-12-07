@@ -32,7 +32,7 @@
 #include "value.h"
 #include "vector.h"
 #include "watch.h"
-#define TickReset true
+#define TickReset false
 
 typedef struct datarank datarank;
 

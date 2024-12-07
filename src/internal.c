@@ -38,8 +38,8 @@ kissat *kissat_init (void) {
   solver->reset_tick_limit = 100000;
   solver->delta = 0;
   solver->nof_propagates = 0;
-  srand(time(NULL));
 #endif
+  srand(time(NULL));
 
   START (total);
   kissat_init_queue (solver);
