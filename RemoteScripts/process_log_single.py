@@ -11,10 +11,10 @@ import pandas as pd
 from matplotlib.ticker import MaxNLocator
 
 def GetData(folder,name, use_cache = False):
-    file_name = f'{folder}*{name}*.log'
+    file_name = f'{folder}*{name}.log'
     cache_name = f'{folder}/{name}.solverCache.json'
     log_files = glob.glob(file_name)
-    print(f'{folder}.*{name}.*.log matched {len(log_files)}')
+    print(f'{folder}.*{name}.log matched {len(log_files)}')
     data_for_this_solver = []
     sum_time = 0.0
     instance_time_map = {}
@@ -100,7 +100,8 @@ if __name__ == "__main__":
     assert(suffix)
     use_cache_flag = False
     bench_sub = "intervals"
-    kissat_log_path = f"/home/s568zhan/scratch/Benchmark/2024/benchmarks/"
+    # kissat_log_path = f"/home/s568zhan/scratch/Benchmark/2024/benchmarks/"
+    kissat_log_path = f"/home/s568zhan/scratch/CryptoBenchmark/"
     def query_hashes(hashes, hash_tag="Frequency"):
         conn = sqlite3.connect('./meta.db')
         cursor = conn.cursor()

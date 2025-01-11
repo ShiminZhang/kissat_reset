@@ -33,9 +33,9 @@ static void kissat_alarm_handler (void) {
   kissat_terminate (solver);
 }
 
-#ifndef NDEBUG
+// #ifndef NDEBUG
 extern int kissat_dump (kissat *);
-#endif
+// #endif
 
 #include "error.h"
 #include "random.h"
@@ -51,9 +51,10 @@ int main (int argc, char **argv) {
   ignore_alarm = true;
   kissat_reset_alarm ();
   kissat_release (solver);
-#ifndef NDEBUG
-  if (!res)
-    return kissat_dump (0);
-#endif
+  kissat_dump (solver);
+// #ifndef NDEBUG
+//   if (!res)
+//     return kissat_dump (0);
+// #endif
   return res;
 }

@@ -5,13 +5,17 @@
 #include <inttypes.h>
 
 static void dump_literal (kissat *solver, unsigned ilit) {
+  // printf ("%u", ilit);
+
   const int elit = kissat_export_literal (solver, ilit);
-  printf ("%u(%d)", ilit, elit);
-  const int value = VALUE (ilit);
-  if (value) {
-    const unsigned ilit_level = LEVEL (ilit);
-    printf ("@%u=%d", ilit_level, value);
-  }
+  printf ("%d", elit);
+
+  // printf ("%u(%d)", ilit, elit);
+  // const int value = VALUE (ilit);
+  // if (value) {
+    // const unsigned ilit_level = LEVEL (ilit);
+    // printf ("@%u=%d", ilit_level, value);
+  // }
 }
 
 static void dump_binary (kissat *solver, unsigned a, unsigned b) {
@@ -262,21 +266,21 @@ int kissat_dump (kissat *solver) {
   printf ("active = %u\n", solver->active);
   printf ("assigned = %u\n", kissat_assigned (solver));
   printf ("unassigned = %u\n", solver->unassigned);
-  dump_import (solver);
-  dump_export (solver);
+  // dump_import (solver);
+  // dump_export (solver);
 #ifdef LOGGING
   if (solver->compacting)
     dump_map (solver);
 #endif
-  dump_etrail (solver);
-  dump_extend (solver);
+  // dump_etrail (solver);
+  // dump_extend (solver);
   dump_trail (solver);
-  printf ("stable = %u\n", (unsigned) solver->stable);
-  if (solver->stable)
-    dump_scores (solver);
-  else
-    dump_queue (solver);
-  dump_values (solver);
+  // printf ("stable = %u\n", (unsigned) solver->stable);
+  // if (solver->stable)
+  //   dump_scores (solver);
+  // else
+  //   dump_queue (solver);
+  // dump_values (solver);
   printf ("binary = %" PRIu64 "\n", solver->statistics.clauses_binary);
   printf ("irredundant = %" PRIu64 "\n",
           solver->statistics.clauses_irredundant);
@@ -284,7 +288,7 @@ int kissat_dump (kissat *solver) {
           solver->statistics.clauses_redundant);
   dump_binaries (solver);
   dump_clauses (solver);
-  dump_extend (solver);
+  // dump_extend (solver);
   return 0;
 }
 

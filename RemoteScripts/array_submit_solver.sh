@@ -2,7 +2,6 @@
 #SBATCH --time=0-0:0:5300                                                      
 #SBATCH --account=def-vganesh   
 #SBATCH --mem=10g         
-#SBATCH --array=1-400
 
 build=$1
 suffix=$2
@@ -28,11 +27,10 @@ fi
 
 filename=$(basename $i)
 LOG_FILE="./$path$filename.$suffix.log"
+PROOF_FILE="./$path$filename.$suffix.drat"
 test -f $LOG_FILE && rm $LOG_FILE
-# exec > "$LOG_FILE" 2>&1
 test -f $build && echo $build $suffix
-time $build $i > $LOG_FILE
-# $build $i
+time $build $i $PROOF_FILE > $LOG_FILE
 echo $suffix "${@:4}"
 echo run $build $suffix $filename "${@:4}"
 

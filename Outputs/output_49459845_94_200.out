@@ -1,3 +1,0 @@
-
-./build/tickfix tickfix_200
-slurmstepd: error: *** JOB 49464173 ON cdr2249 CANCELLED AT 2024-11-29T07:23:49 DUE TO TIME LIMIT ***

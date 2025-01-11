@@ -13,3 +13,4 @@ gmon.out
 Outputs/*.out
 *.log
 tmp*
+Outputs/

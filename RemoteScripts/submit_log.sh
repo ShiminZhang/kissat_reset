@@ -3,7 +3,7 @@
 #SBATCH --account=def-vganesh   
 
 # suffixlist=("tickEMA_30" "tickEMA_40" "tickEMA_50" "tickEMA_60" "tickEMA_70" "tickEMA_80" "tickEMA_90")
-suffixlist=("tickfix_100" "tickfix_200" "tickfix_300" "tickfix_400")
+suffixlist=("fixed10" "fixed15" "fixed05" "baseline")
 length=${#suffixlist[@]}
 
 for (( j=0; j<length; j++ )); do

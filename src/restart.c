@@ -11,10 +11,28 @@
 #include "inlineheap.h"
 
 #include <inttypes.h>
-#define FixedReset true
+#define FixedReset false
+// #define PartialResetK 20
+
 void randomize_activity_score(kissat *solver){
   // printf("  mylog: reset\n");
-  for (all_variables (idx)) {
+#ifdef PartialResetK
+  heap *heap = &solver->scores;
+  unsigned ValidK = MIN(PartialResetK, solver->vars);
+  unsigned KLits[ValidK];
+  if (kissat_empty_heap (heap))
+    return;
+  for (unsigned i = 0;i < ValidK; i++ ) {
+    unsigned l = PEEK_STACK (heap->stack, i);
+    // KLits[i] = LIT(l);
+    KLits[i] = l;
+  }
+  
+  for (unsigned i = 0;i < ValidK; i++ ) {
+    unsigned idx = KLits[i];
+#else
+  for (unsigned idx = 0; idx < solver->vars; idx++ ) {
+#endif
     double new_score = (double) rand() / RAND_MAX * 0.00001;
     kissat_update_heap (solver, &solver->scores, idx, new_score);
   }

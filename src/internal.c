@@ -10,7 +10,7 @@
 #include "resize.h"
 #include "resources.h"
 #include "search.h"
-
+#include <time.h>
 #include <assert.h>
 #include <inttypes.h>
 #include <limits.h>
@@ -38,6 +38,7 @@ kissat *kissat_init (void) {
   solver->reset_tick_limit = 100000;
   solver->delta = 0;
   solver->nof_propagates = 0;
+  srand(time(NULL));
 #endif
   srand(time(NULL));
 

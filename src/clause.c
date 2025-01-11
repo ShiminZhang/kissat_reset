@@ -102,6 +102,18 @@ static reference new_large_clause (kissat *solver, bool original,
   if (!original) {
     CHECK_AND_ADD_CLAUSE (c);
     ADD_CLAUSE_TO_PROOF (c);
+    
+    printf("mylog: lbd %u, length %u; ", c->glue, c->size);
+    for (size_t i = 0; i < size; i++){
+      unsigned ilit = c->lits[i];
+      int elit = kissat_export_literal (solver, ilit);
+
+    // for (all_literals_in_clause (lit, c)) {
+      fputc (' ', stdout);
+      printf ("%d", elit);
+    }
+    // }
+    printf("\n");
   }
   return res;
 }
