@@ -1,7 +1,7 @@
 #!/bin/bash                                                    
 #SBATCH --time=0-0:0:5300                                                      
 #SBATCH --account=def-vganesh   
-#SBATCH --mem=10g         
+#SBATCH --mem=32g         
 
 build=$1
 suffix=$2
@@ -30,7 +30,7 @@ LOG_FILE="./$path$filename.$suffix.log"
 PROOF_FILE="./$path$filename.$suffix.drat"
 test -f $LOG_FILE && rm $LOG_FILE
 test -f $build && echo $build $suffix
-time $build $i $PROOF_FILE > $LOG_FILE
+time $build $i $PROOF_FILE &> $LOG_FILE
 echo $suffix "${@:4}"
 echo run $build $suffix $filename "${@:4}"
 

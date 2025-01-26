@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 import utils.states as states
-from utils.utils import GetData,ParseBits
+from utils.utils import GetData,ParseBits,GetDataForBit
 import numpy as np
+from matplotlib.ticker import MaxNLocator
 
 def Plot(data : list, solver_name):
     data.sort()
@@ -12,21 +13,51 @@ def Plot(data : list, solver_name):
     plt.plot(x_array, y_array, label=f'{solver_name}')
 
 def GetDataAndPlot(LogPath, tag, use_cache_flag):
-    data,map,par2 = GetData(LogPath, tag, use_cache_flag)
+    data,map,par2,mem = GetData(LogPath, tag, use_cache_flag)
     if not data:
         print(f"no data for {tag}")
         return
     Plot(data, tag)
     return len(data),par2
 
-def PlotScaling(LogPath, tag, use_cache_flag):
-    data,map,par2 = GetData(LogPath, tag, use_cache_flag)
+def GetDataAndPlotMem(LogPath, tag, use_cache_flag):
+    data,map,par2,mem = GetData(LogPath, tag, use_cache_flag)
     if not data:
         print(f"no data for {tag}")
         return
-    bits = ParseBits(LogPath)
-    for bit in bits:
-        #plot for that tag
+    print(list(mem.values()))
+    Plot(list(mem.values()), tag)
+    return len(data),par2
+
+def PlotScaling(LogPath, tag, use_cache_flag):
+    bits = ParseBits(LogPath,tag,use_cache_flag)
+    
+    if not bits:
+        print("Found no bits")
+        return
+    x_bits=[]
+    y_instances=[]
+    # print(f"bits: {bits}")
+    for bit in set(bits):
+        data,map,par2,mem = GetDataForBit(LogPath, tag, bit,use_cache_flag)
+        y_instances.append(len(data))
+        x_bits.append(bit)
+        print(f"bits{bit} : {len(map)}")
+    # print(x_bits)
+    # print(sorted(pairs))
+    
+    pairs = list(zip(x_bits, y_instances))
+    filtered_pairs = []
+    for pair in pairs:
+        # if pair[0] > 170000 and pair[0] < 3770000:
+        filtered_pairs.append(pair)
+    sorted_pairs = sorted(filtered_pairs)
+    # print(sorted_pairs)
+    # 提取排序后的 x 和 y 数据
+    sorted_x, sorted_y = zip(*sorted_pairs)
+    x_indices = range(len(sorted_x))
+    plt.plot(x_indices, sorted_y, label=f'{tag}')
+    plt.xticks(x_indices,sorted_x)
         
 
 def DrawDF(InDF, FigureName="DF.png", better="better", base="worse"):

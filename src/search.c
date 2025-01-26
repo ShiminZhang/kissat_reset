@@ -195,7 +195,7 @@ int kissat_search (kissat *solver) {
       clause *conflict = kissat_search_propagate (solver);
       if (conflict){
         res = kissat_analyze (solver, conflict);
-        printf("mylog: lbd %u\n", conflict->glue);
+        // printf("mylog: lbd %u\n", conflict->glue);
       }
       else if (solver->iterating)
         iterate (solver);

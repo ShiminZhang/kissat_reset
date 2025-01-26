@@ -21,31 +21,21 @@
 # buildlist=("fixed05" "fixed20" "baseline" "fixed15" "fixed10")
 # suffixlist=("fixed05" "fixed20" "baseline" "fixed15" "fixed10")
 
+# buildlist=("fixed05" "baseline" "partial3")
+# suffixlist=("fixed05" "baseline" "partial3")
 buildlist=(
-    "fixed05"
-    "fixed10"
-    "baseline"
+    # "fixed05_stat"
+    # "fixed10_stat"
+    # "baseline_stat"
     "partial10"
     )
-suffixlist=(
-    "fixed05"
-    "fixed10"
-    "baseline"
-    "partial10"
-    )
-# buildlist=(
-#     "fixed05_stat"
-#     # "fixed10_stat"
-#     "baseline_stat"
-#     "partial5"
-#     )
 
-# suffixlist=(
-#     "fixed05_stat"
-#     # "fixed10_stat"
-#     "baseline_stat"
-#     "partial5"
-#     )
+suffixlist=(
+    # "fixed05_stat"
+    # "fixed10_stat"
+    # "baseline_stat"
+    "partial10"
+    )
 # buildlist=("fixed20" "baseline" "fixed10"  "partial10" "fixed10" "fixed10" "fixed05" "partial15" "partial20" "partial10")
 # suffixlist=("fixed20" "baseline"  "fixed10a" "partial10a" "fixed10b" "fixed10c" "fixed05" "partial15" "partial20" "partial10b")
 # buildlist=("partial10" "baseline" "partial15"  "partial10" "partial15" "partial20" "partial20" "partial15" "partial20" "partial10")
@@ -62,18 +52,17 @@ suffixlist=(
 # benchmark=("../FPBenchmark/bvadd/")
 # benchmark=("../FPBenchmark/bvaddjku_arc1/")
 # benchmark=("../FPBenchmark/bvaddjku/")
-benchmark=(
-# "../FPBenchmark/mitercircuits/all/"
-# "../FPBenchmark/nbitadd_translation/"
+# benchmark=(
 # "../FPBenchmark/nbitadd/add_assoc/"
-# "../FPBenchmark/nbitadd/mixed/"
 # "../FPBenchmark/nbitadd/add_commu/"
 # "../FPBenchmark/nbitmult/mult_assoc/"
-"../FPBenchmark/nbitmult/vanilla/"
 # "../FPBenchmark/nbitmult/mult_commu/"
-)
+# )
+# benchmark=("../FPBenchmark/nbitadd/add_commu/")
+# benchmark=("../FPBenchmark/nbitadd/mult_assoc/")
+# benchmark=("../FPBenchmark/nbitmult/mult_commu/")
 
-# benchmark=("../FPBenchmark/nbitadd_translation/")
+benchmark=("../FPBenchmark/nbitadd_translation/")
 
 # benchmark=("../FPBenchmark/fpsmts/")
 # benchmark=("../FPBenchmark/cppvsbv_smts/")

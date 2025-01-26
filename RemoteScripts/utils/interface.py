@@ -1,5 +1,5 @@
 from utils.utils import GetAllKeys,GetData
-from utils.plotting import GetDataAndPlot 
+from utils.plotting import GetDataAndPlot,PlotScaling,GetDataAndPlotMem
 import utils.states as states
 import pandas as pd
 from collections import Counter
@@ -46,8 +46,8 @@ def GetMergedDF(result,legend_better,legend_worse):
     return merged_df
 
 def CompareTime(base_tag, better_tag):
-    _,base,_ = GetData(states.kissat_log_path,base_tag,states.use_cache_flag)
-    _,better,_ = GetData(states.kissat_log_path,better_tag,states.use_cache_flag)
+    _,base,_,_ = GetData(states.kissat_log_path,base_tag,states.use_cache_flag)
+    _,better,_,_ = GetData(states.kissat_log_path,better_tag,states.use_cache_flag)
     result = {}
     result["better"] = {}
     result["worse"] = {}
@@ -63,7 +63,7 @@ def ConstructVirtualBest(tags: list):
     others = {}
     missing = []
     for tag in tags:
-        _,current,_ = GetData(states.kissat_log_path,tag,states.use_cache_flag)
+        _,current,_,_ = GetData(states.kissat_log_path,tag,states.use_cache_flag)
         if not current:
             missing.append(tag)
             continue
@@ -91,9 +91,10 @@ def CompareAndShowExcell(base_tag, better_tag):
     
     DrawDF(merged_df,f"Catagories_{better_tag}(A)_vs_{base_tag}(B).png", better_tag,base_tag)
     return
+
 def CompareByNormalPar2(base_tag, better_tag):
-    _,base,_ = GetData(states.kissat_log_path,base_tag,states.use_cache_flag)
-    _,better,_ = GetData(states.kissat_log_path,better_tag,states.use_cache_flag)
+    _,base,_,_ = GetData(states.kissat_log_path,base_tag,states.use_cache_flag)
+    _,better,_,_ = GetData(states.kissat_log_path,better_tag,states.use_cache_flag)
     result = {}
     result["better"] = {}
     result["base"] = {}
@@ -129,9 +130,17 @@ def WrappedPlot(tag):
     print(f"Plotting for {tag} in {states.kissat_log_path}")
     GetDataAndPlot(states.kissat_log_path, tag, states.use_cache_flag)
     
+def WrappedPlotMem(tag):
+    print(f"Plotting mem for {tag} in {states.kissat_log_path}")
+    GetDataAndPlotMem(states.kissat_log_path, tag, states.use_cache_flag)
+    
+def WrappedPlotScaling(tag):
+    print(f"Plotting Scaling for {tag} in {states.kissat_log_path}")
+    PlotScaling(states.kissat_log_path, tag, states.use_cache_flag)
+    
 def HowMuchBetter(base_tag, better_tag):
-    _,base,_ = GetData(states.kissat_log_path,base_tag,states.use_cache_flag)
-    _,better,_ = GetData(states.kissat_log_path,better_tag,states.use_cache_flag)
+    _,base,_,_ = GetData(states.kissat_log_path,base_tag,states.use_cache_flag)
+    _,better,_,_ = GetData(states.kissat_log_path,better_tag,states.use_cache_flag)
     result = CompareTime(base_tag, better_tag)
     keys = GetAllKeys(states.kissat_log_path,"baseline_stat")
     print(len(keys))
