@@ -5,50 +5,231 @@ c
 c Copyright (c) 2021-2024 Armin Biere University of Freiburg
 c Copyright (c) 2019-2021 Armin Biere Johannes Kepler University Linz
 c 
-c Version 4.0.1 37c5a484649795bb12e6b25f798fc70e0f2003aa
+c Version 4.0.1 1b7d78f929a5c17aaec7be3084331ae35341165b
 c gcc (Gentoo 12.3.1_p20230526 p2) 12.3.1 20230526 -W -Wall -ggdb3 -DEMBEDDED -DLOGGING -DMETRICS
-c Mon Jan 20 10:24:49 EST 2025 Linux narval3.narval.calcul.quebec 4.18.0-553.30.1.el8_10.x86_64 x86_64
+c Sun Feb 9 19:40:07 EST 2025 Linux narval2.narval.calcul.quebec 4.18.0-553.34.1.el8_10.x86_64 x86_64
 c
 c ---- [ parsing ] -----------------------------------------------------------
 c
 c opened and reading DIMACS file:
 c
-c   ../FPBenchmark/nbitadd/mixed/addassoc_1F88B4771F34159E87596C2C019C25B4.bits_140000.smt2.cnf
+c   test.cnf
 c
-c parsed 'p cnf 3919972 10569900' header
-c caught signal 2 (SIGINT)
+c parsed 'p cnf 20 75' header
+c closing input after reading 1068 bytes (1 KB)
+c finished parsing after 0.00 seconds
+c
+c ---- [ solving ] -----------------------------------------------------------
+c
+c  seconds switched rate     size/glue tier1 binary   remaining
+c         MB reductions conflicts size  tier2 irredundant
+c          level restarts redundant glue  trail   variables
+c
+c *  0.00  3 0 0 0  0 0   0   0 0.0 0 0 0 0 0%  10 65 20 100%
+c (  0.00  3 0 0 0  0 0   0   0 0.0 0 0 0 0 0%  10 65 20 100%
+c .  0.00  3 0 0 0  0 0   0   0 0.0 0 0 0 0 0%  10 65 20 100%
+c )  0.00  4 0 0 0  0 0   0   0 0.0 0 0 0 0 0%  10 65 20 100%
+c {  0.00  4 0 0 0  0 0   0   0 0.0 0 0 2 6 0%  10 65 20 100%
+c i  0.00  4 4 0 0  0 1  17   5 1.6 4 3 3 4 95%  11 65 19 95%
+c i  0.00  4 4 0 0  0 1  22   6 1.6 4 2 2 4 90%  12 64 18 90%
+c i  0.00  4 4 0 0  0 1  25   3 1.7 3 2 2 4 86%  12 64 16 80%
+c }  0.00  4 3 0 0  0 1  27   3 1.7 3 2 2 4 84%  12 64  8 40%
+c 0  0.00  4 3 0 0  0 1  27   3 1.7 3 2 2 4 84%  12 64  8 40%
+c
+c ---- [ result ] ------------------------------------------------------------
+c
+s UNSATISFIABLE
 c
 c ---- [ profiling ] ---------------------------------------------------------
 c
-c           7.93   99.99 %  parse
-c           0.00    0.00 %  search
+c           0.00   65.33 %  preprocess
+c           0.00   58.62 %  probe
+c           0.00   48.73 %  sweep
+c           0.00   13.56 %  parse
+c           0.00    7.90 %  search
+c           0.00    7.12 %  focused
+c           0.00    4.69 %  fastel
+c           0.00    4.34 %  congruence
+c           0.00    2.37 %  factor
+c           0.00    2.20 %  lucky
+c           0.00    1.07 %  substitute
+c           0.00    0.57 %  backbone
 c           0.00    0.00 %  simplify
 c =============================================
-c           7.93  100.00 %  total
+c           0.00  100.00 %  total
 c
 c ---- [ statistics ] --------------------------------------------------------
 c
-c arena_enlarged:                          23              100 %  resize
-c arena_resized:                           23                0    interval
-c conflicts:                                0                0.00 per second
-c decisions:                                0                0.00 per conflict
-c propagations:                             0                0    per second
+c arena_enlarged:                           8              100 %  resize
+c arena_garbage:                          160                0 %  resident set
+c arena_resized:                            8                3    interval
+c clauses_improved:                         5               45 %  learned
+c clauses_kept1:                            4               80 %  improved
+c clauses_kept2:                            1               20 %  improved
+c conflicts:                               27             3696.10 per second
+c decisions:                               19                0.70 per conflict
+c defragmentations:                         1               27    interval
+c eagerly_subsumed:                         3               27 %  learned
+c focused_decisions:                       19              100 %  decisions
+c focused_propagations:                   152               45 %  propagations
+c focused_ticks:                         1028               54 %  ticks
+c initial_decisions:                        8               42 %  decisions
+c iterations:                               4               20 %  variables
+c jumped_reasons:                           2                1 %  propagations
+c kitten_conflicts:                       388                1.84 per solved
+c kitten_decisions:                      1629                7.72 per solved
+c kitten_flip:                           1934 
+c kitten_flipped:                         281               15 %  flip
+c kitten_sat:                             193               91 %  solved
+c kitten_unsat:                            18                9 %  solved
+c literals_bumped:                        183               16.64 per clause
+c literals_deduced:                        33                3.00 per clause
+c literals_learned:                        34                3.09 per clause
+c literals_shrunken:                        2                6 %  deduced
+c on_the_fly_strengthened:                  6               22 %  of conflicts
+c probing_propagations:                   188               55 %  propagations
+c propagations:                           340            46543    per second
+c queue_decisions:                         19              100 %  decision
+c saved_decisions:                         11               58 %  decisions
 c score_decisions:                          0                0 %  decision
+c sweep_clauses:                         1440               72.00 per sweep_variables
+c sweep_depth:                             40                2.00 per sweep_variables
+c sweep_environment:                      400               20.00 per sweep_variables
+c sweep_flip_backbone:                    988               49.40 per sweep_variables
+c sweep_flipped_backbone:                 177               18 %  sweep_flip_backbone
+c sweep_flip_equivalences:                175                8.75 per sweep_variables
+c sweep_flipped_equivalences:               4                2 %  sweep_flip_equivalences
+c sweep_sat:                              193               91 %  sweep_solved
+c sweep_sat_backbone:                      88              100 %  sweep_solved_backbone
+c sweep_sat_equivalences:                  85               83 %  sweep_solved_equivalences
+c sweep_solved_backbone:                   88               42 %  sweep_solved
+c sweep_solved_equivalences:              103               49 %  sweep_solved
+c sweep_unsat:                             18                9 %  sweep_solved
+c sweep_unsat_equivalences:                18               17 %  sweep_solve_equivalences
+c sweep_variables:                         20              100 %  variables
 c switched:                                 0                0    interval
 c
 c ---- [ checker ] -----------------------------------------------------------
 c
-c checker_added:                      6335207              100 %  
-c checker_checked:                          0                0 %  added
-c checker_removed:                          0                0 %  added
+c checker_added:                           90              100 %  
+c checker_checked:                         28               31 %  added
+c checker_removed:                          8                9 %  added
 c
 c ---- [ glue usage ] --------------------------------------------------------
 c
-c no clauses used at all
+c focused glue 2 used 9 clauses 60.00% accumulated 66.67% tier1
+c focused glue 3 used 2 clauses 13.33% accumulated 80.00%
+c focused glue 4 used 2 clauses 13.33% accumulated 93.33% tier2
 c
 c ---- [ resources ] ---------------------------------------------------------
 c
-c maximum-resident-set-size:       1174200320 bytes       1120 MB
-c max-allocated:                   1394533144 bytes        119 %
-c process-time:                             8s               7.93 seconds
-c raising signal 2 (SIGINT)
+c maximum-resident-set-size:          4153344 bytes          4 MB
+c max-allocated:                        44116 bytes          1 %
+c process-time:                                              0.01 seconds
+c
+c ---- [ shutting down ] -----------------------------------------------------
+c
+c exit 20
+vars = 20
+size = 20
+level = 0
+active = 8
+assigned = 12
+unassigned = 8
+frame[0] has 8 assignments
+block[0] = trail[0..7]
+trail[0] 18 UNIT
+trail[1] -8 UNIT
+trail[2] -5 UNIT
+trail[3] 9 UNIT
+trail[4] -2 UNIT
+trail[5] -19 UNIT
+trail[6] -6 UNIT
+trail[7] -15 UNIT
+binary = 12
+irredundant = 64
+redundant = 3
+binary clause -5 -1
+binary clause -9 -2
+binary clause -13 -3
+binary clause -17 -4
+binary clause -10 -6
+binary clause -14 -7
+binary clause -18 -8
+binary clause -15 -11
+binary clause 19 20
+binary clause -19 -12
+binary clause -20 -16
+binary clause 4 12
+irredundant clause[0] 5 9 13 17
+irredundant clause[2] 14 1 18
+irredundant clause[4] 15 2 6 19
+irredundant clause[6] 3 11 20
+irredundant garbage clause[8] 8 12 4 16
+irredundant clause[10] -6 2 -1
+irredundant clause[12] 3 -7 -1
+irredundant clause[14] -8 4 -1
+irredundant clause[16] -2 1 -10
+irredundant clause[18] -2 -11 3
+irredundant clause[20] -2 -12 4
+irredundant clause[22] -3 -14 1
+irredundant clause[24] -3 -15 2
+irredundant clause[26] -3 -16 4
+irredundant clause[28] 1 -4 -18
+irredundant clause[30] 2 -4 -19
+irredundant clause[32] 3 -4 -20
+irredundant clause[34] -5 -2 6
+irredundant clause[36] -3 7 -5
+irredundant clause[38] -5 -4 8
+irredundant clause[40] -9 -6 5
+irredundant clause[42] -6 -11 7
+irredundant clause[44] -6 -12 8
+irredundant clause[46] 5 -13 -7
+irredundant clause[48] 6 -15 -7
+irredundant clause[50] -7 -16 8
+irredundant clause[52] 5 -8 -17
+irredundant clause[54] 6 -19 -8
+irredundant clause[56] 7 -8 -20
+irredundant clause[58] -1 10 -9
+irredundant clause[60] -3 11 -9
+irredundant clause[62] -4 12 -9
+irredundant clause[64] -5 9 -10
+irredundant clause[66] -7 11 -10
+irredundant clause[68] -8 12 -10
+irredundant clause[70] -13 9 -11
+irredundant clause[72] 10 -11 -14
+irredundant clause[74] 12 -11 -16
+irredundant clause[76] 9 -12 -17
+irredundant clause[78] 10 -12 -18
+irredundant clause[80] 11 -12 -20
+irredundant clause[82] -1 -13 14
+irredundant clause[84] -2 15 -13
+irredundant clause[86] -13 -4 16
+irredundant clause[88] -5 -14 13
+irredundant clause[90] -6 15 -14
+irredundant clause[92] -14 -8 16
+irredundant clause[94] -15 -9 13
+irredundant clause[96] -10 -15 14
+irredundant clause[98] -15 -12 16
+irredundant clause[100] -17 13 -16
+irredundant clause[102] -18 14 -16
+irredundant clause[104] -19 15 -16
+irredundant clause[106] -1 -17 18
+irredundant clause[108] -2 19 -17
+irredundant clause[110] -3 20 -17
+irredundant clause[112] -5 -18 17
+irredundant clause[114] -6 19 -18
+irredundant clause[116] -7 20 -18
+irredundant clause[118] -9 -19 17
+irredundant clause[120] -10 -19 18
+irredundant clause[122] -19 -11 20
+irredundant clause[124] -13 -20 17
+irredundant clause[126] -14 18 -20
+irredundant clause[128] -15 19 -20
+redundant glue 1 clause[130] 10 14 13 17 18
+redundant glue 3 clause[132] 15 19 17 18
+redundant glue 2 clause[135] 11 20 17
+redundant glue 2 garbage clause[137] 18 19 20
+redundant glue 2 garbage clause[139] 3 11 20 18 1
+redundant glue 2 garbage clause[141] 19 20 -17
+redundant glue 2 garbage clause[143] 11 -17 20

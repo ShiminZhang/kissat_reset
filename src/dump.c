@@ -1,4 +1,4 @@
-#ifndef NDEBUG
+// #ifndef NDEBUG
 
 #include "inline.h"
 
@@ -292,6 +292,6 @@ int kissat_dump (kissat *solver) {
   return 0;
 }
 
-#else
-int kissat_dump_dummy_to_avoid_warning;
-#endif
+// #else
+// int kissat_dump_dummy_to_avoid_warning;
+// #endif

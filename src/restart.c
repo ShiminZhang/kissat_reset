@@ -11,8 +11,8 @@
 #include "inlineheap.h"
 
 #include <inttypes.h>
-#define FixedReset true
-#define PartialResetK 10
+#define FixedReset false
+// #define PartialResetK 10
 
 void randomize_activity_score(kissat *solver){
   // printf("  mylog: reset\n");

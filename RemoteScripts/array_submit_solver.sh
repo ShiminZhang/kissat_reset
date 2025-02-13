@@ -1,14 +1,14 @@
 #!/bin/bash                                                    
-#SBATCH --time=0-0:0:5300                                                      
+#SBATCH --time=0-0:0:5300                                                     
 #SBATCH --account=def-vganesh   
-#SBATCH --mem=32g         
+#SBATCH --mem=20g         
 
 build=$1
 suffix=$2
 path=$3
-
+# module load boost
 # Get the length of the array
-echo 
+# echo 
 i=$(find $path -name "*.cnf" | sed -n "${SLURM_ARRAY_TASK_ID}p")
 l=$(wc -l)
 

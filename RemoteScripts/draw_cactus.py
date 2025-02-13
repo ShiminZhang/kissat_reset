@@ -30,16 +30,18 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process log files.')
     parser.add_argument('--UseCache', action='store_true', help='Enable cache usage')
     parser.add_argument('--PlotScaling', action='store_true', help='Plot bit scaling plot instead of cactus')
+    parser.add_argument('--PlotScalingPar2', action='store_true', help='Plot bit scaling plot instead of cactus')
     parser.add_argument('--PlotMem', action='store_true', help='Plot bit scaling plot instead of cactus')
     args = parser.parse_args()
     states.use_cache_flag = args.UseCache
     print(states.use_cache_flag)
     plt.figure(figsize=(10, 6))
-    benchmark_name = "nbitmultva"
+    benchmark_name = "statcommu"
     CollectStat = False
     arc=None
     # arc=1
     # CollectStat = True
+    # mult_commu_arc1
     log_paths = {
         "SAT2024" : "../Benchmark/2024/benchmarks/",
         "test" : "./Benchmark_test/",
@@ -50,16 +52,25 @@ if __name__ == "__main__":
         "float1" : "../CryptoBenchmark/float/",
         "nbitaddassoc" : "../FPBenchmark/nbitadd/add_assoc/",
         "nbitaddall" : "../FPBenchmark/nbitadd/mixed/",
+        "nbitaddva" : "../FPBenchmark/nbitadd/vanilla/",
         "nbitmultall" : "../FPBenchmark/nbitmult/mixed/",
         "nbitmultva" : "../FPBenchmark/nbitmult/vanilla/",
+        "nbitmultsingle" : "../FPBenchmark/nbitmult/vanilla_arc1/",
+        "nbitmultvacommu" : "../FPBenchmark/nbitmult/vanillacommu/",
+        "nbitmultvaasso" : "../FPBenchmark/nbitmult/vanillaasso/",
         "nbitaddcommu" : "../FPBenchmark/nbitadd/add_commu/",
         "nbitmultassoc" : "../FPBenchmark/nbitmult/mult_assoc/",
         "nbitmultcommu" : "../FPBenchmark/nbitmult/mult_commu/",
+        "15bitcommu" : "../FPBenchmark/nbitmult/15bitcommu/",
+        "statcommu" : "../FPBenchmark/nbitmult/statcommu/",
+        "op" : "../FPBenchmark/op/",
         "bvsmt" : "../FPBenchmark/bvsmts/",
         "fpsmt" : "../FPBenchmark/fpsmts/",
         "bvmult" : "../FPBenchmark/bvmult/",
         "bvmult_nonlinear" : "../FPBenchmark/bvmult_nonlinear/",
         "mitercircuits" : "../FPBenchmark/mitercircuits/all/",
+        "miters" : "../FPBenchmark/miters/hwmcc12/opt/",
+        "mitersnonopt" : "../FPBenchmark/miters/hwmcc12/nonopt/",
         "bvadd" : "../FPBenchmark/bvadd/",
         "bvaddxor" : "../FPBenchmark/bvaddxor/",
         "nbitadd_translation" : "../FPBenchmark/nbitadd_translation/",
@@ -70,13 +81,32 @@ if __name__ == "__main__":
     if arc:
         states.kissat_log_path = states.kissat_log_path[0:-1] + f"_arc{arc}/" 
     InterestedTags=[
-        "fixed05",
-        "fixed10",
-        "baseline",
-        "partial10"
+        # "baseline_nocongruence",
+        # "fixed05_nocongruence"
         # "fixed05_stat",
-        # "fixed10_stat",
-        # "baseline_stat"
+        # "fixed05_stattest",
+        # "stattest1",
+        # "dumptest1",
+        # "stattest2",
+        # "dumptest2",
+        # "baseline_stat",
+        # "reset05decay10",
+        # "reset05decay20",
+        # "reset05decay30",
+        # "reset05decay40",
+        # "reset05decay50",
+        # "reset05decay60",
+        # "reset05decay70",
+        # "reset05decay80",
+        # "reset05decay90",
+        
+        "baselinedump",
+        "fixed05dump",
+        # "baselinenodump",
+        # "fixed05nodump"
+        
+        # "baseline",
+        # "fixed05"
                    ]
     OverrideFigureTitle={
         "bvaddjku" : "N-bit addition translation"
@@ -96,8 +126,10 @@ if __name__ == "__main__":
     ConstructVBFlag = False
     print(f"checking {states.kissat_log_path}")
     for tag in InterestedTags:
-        if args.PlotScaling:
-            WrappedPlotScaling(tag)
+        if args.PlotScalingPar2:
+            WrappedPlotScaling(tag,True)
+        elif args.PlotScaling:
+            WrappedPlotScaling(tag,False)
         elif args.PlotMem:
             WrappedPlotMem(tag)
         else:
@@ -132,8 +164,17 @@ if __name__ == "__main__":
         PlotName=f"../Figures/{benchmark_name}.scaling.png"
         plt.title(f'Scaling plot for Benchmark: {benchmark_title} ({states.matched} instances in total)')
         plt.legend()
-        plt.xlabel('bits')
+        # plt.xlabel('bits')
+        plt.xlabel('elements')
         plt.ylabel('Number of Instances Solved')
+    elif args.PlotScalingPar2:
+        PlotName=f"../Figures/{benchmark_name}.scalingPar2.png"
+        plt.title(f'Scaling plot for Benchmark: {benchmark_title} ({states.matched} instances in total)')
+        plt.legend()
+        # plt.xlabel('bits')
+        plt.xlabel('elements')
+        plt.ylabel('Par2 score of the intances with the bits')
+        
     elif args.PlotMem:
         PlotName=f"../Figures/{benchmark_name}.mem.png"
         plt.title(f'Mem plot for Benchmark: {benchmark_title} ({states.matched} instances in total)')

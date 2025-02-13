@@ -6,15 +6,19 @@ import numpy as np
 from matplotlib.ticker import MaxNLocator
 
 def Plot(data : list, solver_name):
-    data.sort()
-    y_array = np.arange(1, len(data) + 1)
-    x_array = np.array(data)
-    
+    if data:
+        data.append(0)
+        data.sort()
+        y_array = np.arange(0, len(data))
+        x_array = np.array(data)
+    else:
+        x_array = [0,5300]
+        y_array = [0,0]
     plt.plot(x_array, y_array, label=f'{solver_name}')
 
 def GetDataAndPlot(LogPath, tag, use_cache_flag):
     data,map,par2,mem = GetData(LogPath, tag, use_cache_flag)
-    if not data:
+    if not par2:
         print(f"no data for {tag}")
         return
     Plot(data, tag)
@@ -29,9 +33,8 @@ def GetDataAndPlotMem(LogPath, tag, use_cache_flag):
     Plot(list(mem.values()), tag)
     return len(data),par2
 
-def PlotScaling(LogPath, tag, use_cache_flag):
+def PlotScaling(LogPath, tag, use_cache_flag, plot_par2_flag):
     bits = ParseBits(LogPath,tag,use_cache_flag)
-    
     if not bits:
         print("Found no bits")
         return
@@ -40,8 +43,13 @@ def PlotScaling(LogPath, tag, use_cache_flag):
     # print(f"bits: {bits}")
     for bit in set(bits):
         data,map,par2,mem = GetDataForBit(LogPath, tag, bit,use_cache_flag)
-        y_instances.append(len(data))
+        if plot_par2_flag:
+            y_instances.append(par2)
+        else:
+            y_instances.append(len(data))
         x_bits.append(bit)
+        # print(par2)
+        # print(data)
         print(f"bits{bit} : {len(map)}")
     # print(x_bits)
     # print(sorted(pairs))

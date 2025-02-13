@@ -21,21 +21,73 @@
 # buildlist=("fixed05" "fixed20" "baseline" "fixed15" "fixed10")
 # suffixlist=("fixed05" "fixed20" "baseline" "fixed15" "fixed10")
 
-# buildlist=("fixed05" "baseline" "partial3")
-# suffixlist=("fixed05" "baseline" "partial3")
 buildlist=(
-    # "fixed05_stat"
-    # "fixed10_stat"
-    # "baseline_stat"
-    "partial10"
-    )
+    "reset05decay10"
+    "baselinedecay10"
+    # # "reset05decay20"
+    # "reset05decay30"
+    # # "reset05decay40"
+    "baselinedecay40"
+    # # "reset05decay50"
 
-suffixlist=(
-    # "fixed05_stat"
-    # "fixed10_stat"
-    # "baseline_stat"
-    "partial10"
+    # # "reset05decay60"
+    # # "reset05decay70"
+    # # "reset05decay80"
+    "baselinedecay60"
+    "baselinedecay70"
+    "baselinedecay80"
+    # "reset05decay90"
+    # "baselinedecay90"
     )
+suffixlist=(
+    "reset05decay10"
+    "baselinedecay10"
+    # # "reset05decay20"
+    # "reset05decay30"
+    # # "reset05decay40"
+    "baselinedecay40"
+    # # "reset05decay50"
+
+    # # "reset05decay60"
+    # # "reset05decay70"
+    # # "reset05decay80"
+    "baselinedecay60"
+    "baselinedecay70"
+    "baselinedecay80"
+    # "reset05decay90"
+    # "baselinedecay90"
+    )
+# buildlist=(
+#     # "fixed05"
+#     # "baseline"
+#     # "baseline_nocongruence"
+#     # "fixed05_nocongruence"
+#     # "fixed05_stat"
+#     # "fixed10_stat"
+#     # "baseline_stat"
+#     # "fixed05_stattest"
+#     "stattest"
+#     "dumptest"
+#     "stattest"
+#     "dumptest"
+#     # "partial5"
+#     )
+
+# suffixlist=(
+#     # "fixed05"
+#     # "baseline"
+#     # "baseline_nocongruence"
+#     # "fixed05_nocongruence"
+#     # "fixed05_stat"
+#     # "fixed10_stat"
+#     "stattest1"
+#     "dumptest1"
+#     "stattest2"
+#     "dumptest2"
+#     # "baseline_stat"
+#     # "fixed05_stattest"
+#     # "partial5"
+#     )
 # buildlist=("fixed20" "baseline" "fixed10"  "partial10" "fixed10" "fixed10" "fixed05" "partial15" "partial20" "partial10")
 # suffixlist=("fixed20" "baseline"  "fixed10a" "partial10a" "fixed10b" "fixed10c" "fixed05" "partial15" "partial20" "partial10b")
 # buildlist=("partial10" "baseline" "partial15"  "partial10" "partial15" "partial20" "partial20" "partial15" "partial20" "partial10")
@@ -52,19 +104,26 @@ suffixlist=(
 # benchmark=("../FPBenchmark/bvadd/")
 # benchmark=("../FPBenchmark/bvaddjku_arc1/")
 # benchmark=("../FPBenchmark/bvaddjku/")
-# benchmark=(
+benchmark=(
+# "../FPBenchmark/mitercircuits/all/"
+# "../FPBenchmark/miters/hwmcc12/opt/"
+# "../FPBenchmark/nbitadd_translation/"
 # "../FPBenchmark/nbitadd/add_assoc/"
+# "../FPBenchmark/nbitadd/mixed/"
 # "../FPBenchmark/nbitadd/add_commu/"
 # "../FPBenchmark/nbitmult/mult_assoc/"
+# "../FPBenchmark/nbitmult/15bitcommu/"
+# "../FPBenchmark/nbitadd/vanilla/"
+"../FPBenchmark/op/"
+# "../FPBenchmark/nbitmult/statcommu/"
 # "../FPBenchmark/nbitmult/mult_commu/"
-# )
-# benchmark=("../FPBenchmark/nbitadd/add_commu/")
-# benchmark=("../FPBenchmark/nbitadd/mult_assoc/")
-# benchmark=("../FPBenchmark/nbitmult/mult_commu/")
+# "../FPBenchmark/nbitmult/vanillaasso/"
 
-benchmark=("../FPBenchmark/nbitadd_translation/")
+)
 
-# benchmark=("../FPBenchmark/fpsmts/")
+# benchmark=("../FPBenchmark/nbitadd_translation/")
+
+# benchmark=("2333../FPBenchmark/fpsmts/")
 # benchmark=("../FPBenchmark/cppvsbv_smts/")
 # benchmark=("../CryptoBenchmark/ascon/" "../CryptoBenchmark/soos/")
 # benchmark=("../CryptoBenchmark/soos2/")

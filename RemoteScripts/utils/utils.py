@@ -7,11 +7,11 @@ from tqdm import tqdm
 
 def ParseBits(folder, name, try_use_cache = False):
     #Relaxed parsing here
-    file_name = f'{folder}*.{name}.*log'
+    file_name = f'{folder}*.{name}*log'
     cache_name = f'{folder}/BitsGroup.json'
     log_files = glob.glob(file_name)
     if len(log_files) == 0:
-        print("ParseBits: not matched any log")
+        print(f"ParseBits: not matched any log with {name}")
         return None
     bits=[]
     result_table={}
@@ -46,8 +46,8 @@ def GetAllKeys(folder, name):
         basename = os.path.basename(filename)
         # key = basename[0:32]
         key = basename
-        parts = key.split('.')
-        key = parts[0]
+        # parts = key.split('.')
+        # key = parts[0]
         keys.append(key)
     return keys
 
@@ -63,6 +63,7 @@ def GetData(folder,name, use_cache = False, bit=None):
     file_name = f'{folder}*{name}*.log'
     cache_name = f'{folder}/{name}.solverCache.json'
     log_files = glob.glob(file_name)
+    file_counted = 0
     if bit:
         None
         # print(f'{file_name} matched {len(log_files)} for bit {bit}')
@@ -82,7 +83,8 @@ def GetData(folder,name, use_cache = False, bit=None):
             data_for_this_solver = result_table["data"]
             instance_time_map = result_table["map"]
             par2 = result_table["par2"]
-            instance_mem_map = result_table["mem"]
+            instance_mem_map = {}
+            # instance_mem_map = result_table["mem"]
     else:
         for filename in tqdm(log_files):
             basename = os.path.basename(filename)
@@ -91,12 +93,13 @@ def GetData(folder,name, use_cache = False, bit=None):
                 # if f"add_{bit}_" not in basename:
                     # print(basename, f"bits_{bit}")
                     continue
+            file_counted += 1
             # print(basename)
             # key = basename[0:32]
             # key = basename[0:32]
             key = basename
-            parts = key.split('.')
-            key = parts[0]
+            # parts = key.split('.')
+            # key = parts[0]
             solved = False
             
             # if process_stat:
@@ -110,7 +113,7 @@ def GetData(folder,name, use_cache = False, bit=None):
                 line = b''
                 linecnt=0
                 phase=0 # 0 for time, 1 for mem
-                while position >= 0 and linecnt <= 2000:        
+                while position >= 0 and linecnt <= 6000:        
                     # print(linecnt)
                     file.seek(position)
                     char = file.read(1)
@@ -135,7 +138,7 @@ def GetData(folder,name, use_cache = False, bit=None):
                         if "process-time" in decoded_line or "total process time" in decoded_line:
                             match = re.search(r'(\d+\.?\d*)\s+seconds', decoded_line) or re.search(r'total process time[^:]*:\s*([0-9]+(?:\.[0-9]+)?)\s*seconds', decoded_line)
                             if match:
-                                print(basename)
+                                # print(basename)
                                 time = float(match.group(1))
                                 sum_time += time
                                 solved = True
@@ -149,10 +152,11 @@ def GetData(folder,name, use_cache = False, bit=None):
                 if not solved:
                     sum_time += 10000.0 
         
-        if len(log_files) > 0:
-            par2 = sum_time / len(log_files)
+        if file_counted > 0:
+            # print(f"par2 calculatedby {sum_time}/{file_counted}")
+            par2 = sum_time / file_counted
         else:
-            par2 = 0
+            par2 = None
             
         with open(cache_name, "w") as file:
             result_table = {}

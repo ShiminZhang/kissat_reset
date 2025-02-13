@@ -134,9 +134,9 @@ def WrappedPlotMem(tag):
     print(f"Plotting mem for {tag} in {states.kissat_log_path}")
     GetDataAndPlotMem(states.kissat_log_path, tag, states.use_cache_flag)
     
-def WrappedPlotScaling(tag):
+def WrappedPlotScaling(tag,plotPar2=False):
     print(f"Plotting Scaling for {tag} in {states.kissat_log_path}")
-    PlotScaling(states.kissat_log_path, tag, states.use_cache_flag)
+    PlotScaling(states.kissat_log_path, tag, states.use_cache_flag,plotPar2)
     
 def HowMuchBetter(base_tag, better_tag):
     _,base,_,_ = GetData(states.kissat_log_path,base_tag,states.use_cache_flag)
