@@ -30,7 +30,10 @@ def ParseBits(folder, name, try_use_cache = False):
             # print(filename)
             
             if match:
-                bit = int(match.group(1))
+                bstr=match.group(1)
+                # if len(bstr) > 3:
+                #     bstr = bstr[0:3]
+                bit = int(bstr)
                 bits.append(bit)
         with open(cache_name, "w") as file:
             result_table["bits"] = bits
@@ -60,7 +63,10 @@ def GetData(folder,name, use_cache = False, bit=None):
     else:
         states.refreshed.append(states.refreshed)
     # file_name = f'{folder}*.{name}.*log'
-    file_name = f'{folder}*{name}*.log'
+    # if bit:
+    #     file_name = f'{folder}*{name}.*.log'
+    # else:
+    file_name = f'{folder}*{name}.*log'
     cache_name = f'{folder}/{name}.solverCache.json'
     log_files = glob.glob(file_name)
     file_counted = 0
@@ -77,7 +83,7 @@ def GetData(folder,name, use_cache = False, bit=None):
     sum_time = 0.0
     instance_mem_map = {}
     data_for_this_solver,instance_time_map,par2 = [],{},-1
-    if use_cache:
+    if use_cache and os.path.isfile(cache_name):
         with open(cache_name, "r") as file:
             result_table = json.load(file)
             data_for_this_solver = result_table["data"]
@@ -90,6 +96,7 @@ def GetData(folder,name, use_cache = False, bit=None):
             basename = os.path.basename(filename)
             if bit:
                 if f"bits_{bit}." not in basename:
+                # if f"bits_{bit}." not in basename:
                 # if f"add_{bit}_" not in basename:
                     # print(basename, f"bits_{bit}")
                     continue
@@ -113,13 +120,20 @@ def GetData(folder,name, use_cache = False, bit=None):
                 line = b''
                 linecnt=0
                 phase=0 # 0 for time, 1 for mem
-                while position >= 0 and linecnt <= 6000:        
+                while position >= 0 and linecnt <= 500:        
                     # print(linecnt)
                     file.seek(position)
                     char = file.read(1)
                     if char == b'\n' and line:
                         linecnt+=1
                         decoded_line = line.decode('utf-8')
+                        if "raising signal" in decoded_line:
+                            print(f"!!!!!!!!!!!!!!!!!!!!!!!!!!!!! {filename}")
+                            continue
+                            # break
+                        if "mylog" in decoded_line:
+                            continue
+                            # assert(0)
                 # for line in reversed(file.readlines()):
                     # i+=1
                         # print(f"{decoded_line}\n")
@@ -145,12 +159,24 @@ def GetData(folder,name, use_cache = False, bit=None):
                                 data_for_this_solver.append(time)
                                 instance_time_map[key] = time
                                 phase = 1
+                            
+                        if "CPU time" in decoded_line in decoded_line:
+                            match = re.search(r'CPU time[^:]*:\s*([0-9]+(?:\.[0-9]+)?)\s*s', decoded_line)
+                            if match:
+                                # print(basename)
+                                time = float(match.group(1))
+                                sum_time += time
+                                solved = True
+                                data_for_this_solver.append(time)
+                                instance_time_map[key] = time
+                                phase = 1
                         line = b''
                     else:
                         line = char + line  # 将字节追加到当前行内容
                     position -= 1
                 if not solved:
                     sum_time += 10000.0 
+                    # sum_time += 5000.0 
         
         if file_counted > 0:
             # print(f"par2 calculatedby {sum_time}/{file_counted}")

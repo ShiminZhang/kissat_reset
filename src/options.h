@@ -85,7 +85,7 @@
   OPTION (otfs, 1, 0, 1, "on-the-fly strengthening") \
   OPTION (phase, 1, 0, 1, "initial decision phase") \
   OPTION (phasesaving, 1, 0, 1, "enable phase saving") \
-  OPTION (preprocess, 1, 0, 1, "initial preprocessing") \
+  OPTION (preprocess, 0, 0, 1, "initial preprocessing") \
   OPTION (preprocessbackbone, 1, 0, 1, "backbone preprocessing") \
   OPTION (preprocesscongruence, 1, 0, 1, "congruence preprocessing") \
   OPTION (preprocessfactor, 1, 0, 1, "variable addition preprocessing") \

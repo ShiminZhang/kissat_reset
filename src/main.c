@@ -47,7 +47,7 @@ int main (int argc, char **argv) {
   kissat_init_alarm (kissat_alarm_handler);
   kissat_init_signal_handler (kissat_signal_handler);
   res = kissat_application (solver, argc, argv);
-  kissat_dump (solver);
+  // kissat_dump (solver);
   kissat_reset_signal_handler ();
   ignore_alarm = true;
   kissat_reset_alarm ();

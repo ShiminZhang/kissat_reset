@@ -11,33 +11,126 @@
 #include "inlineheap.h"
 
 #include <inttypes.h>
-#define FixedReset false
-// #define PartialResetK 10
+#define FixedReset true
+#define PartialResetK 10
+#include <stdio.h>
+
+typedef struct {
+  double value;
+  int index;
+} element_t;
+// Swap function
+void swap(element_t *a, element_t *b) {
+  element_t temp = *a;
+  *a = *b;
+  *b = temp;
+}
+
+// Max-Heapify function
+void max_heapify(element_t heap[], int size, int i) {
+  int largest = i;
+  int left = 2 * i + 1;
+  int right = 2 * i + 2;
+
+  if (left < size && heap[left].value > heap[largest].value)
+      largest = left;
+  
+  if (right < size && heap[right].value > heap[largest].value)
+      largest = right;
+  
+  if (largest != i) {
+      swap(&heap[i], &heap[largest]);
+      max_heapify(heap, size, largest);
+  }
+}
+
+// Extract max (root) from the heap
+element_t extract_max(element_t heap[], int *size) {
+  if (*size <= 0) return (element_t){-1, -1};
+
+  element_t max_element = heap[0];
+
+  // Move the last element to root and reduce heap size
+  heap[0] = heap[*size - 1];
+  (*size)--;
+
+  // Restore heap property
+  max_heapify(heap, *size, 0);
+
+  return max_element;
+}
+
+// Function to get top K elements and their positions without modifying arr
+void find_top_k(heap* inHeap, unsigned n, unsigned k, double top_k_scores[], unsigned top_k_indices[]) {
+  if (k <= 0 || k > n) {
+      // printf("Invalid value of K\n");
+      return;
+  }
+
+  // Create a copy of the heap with original indices
+  element_t heap[n];
+  for (unsigned i = 0; i < n; i++) {
+      unsigned lit = PEEK_STACK (inHeap->stack, i);
+      double score = kissat_get_heap_score (inHeap, lit);
+      heap[i].value = score;
+      heap[i].index = i;
+  }
+
+  int heap_size = n;
+
+  for (unsigned i = 0; i < k; i++) {
+      element_t max_element = extract_max(heap, &heap_size);
+      top_k_scores[i] = max_element.value;
+      top_k_indices[i] = max_element.index;
+  }
+}
 
 void randomize_activity_score(kissat *solver){
   // printf("  mylog: reset\n");
 #ifdef PartialResetK
   heap *heap = &solver->scores;
-  unsigned ValidK = MIN(PartialResetK, solver->vars);
-  unsigned KLits[ValidK];
+  unsigned valid_K = MIN(PartialResetK, solver->vars);
+  // unsigned valid_K = MIN(kissat_size_heap(heap), solver->vars);
+  unsigned K_lits[valid_K];
+  unsigned K_pos[valid_K];
+  double K_scores[valid_K];
+  double max_score_in_K = 0;
+  double max_score_in_random = 0;
+
   if (kissat_empty_heap (heap))
     return;
-  for (unsigned i = 0;i < ValidK; i++ ) {
-    unsigned l = PEEK_STACK (heap->stack, i);
-    // KLits[i] = LIT(l);
-    KLits[i] = l;
+
+  find_top_k(heap, kissat_size_heap(heap), valid_K, K_scores, K_pos);
+
+  for (unsigned rank = 0; rank < valid_K; rank++){
+      unsigned pos = K_pos[rank];
+      K_lits[rank] = PEEK_STACK(heap->stack, pos);;
   }
-  
-  for (unsigned i = 0;i < ValidK; i++ ) {
-    unsigned idx = KLits[i];
-#else
-  for (unsigned idx = 0; idx < solver->vars; idx++ ) {
 #endif
-    double new_score = (double) rand() / RAND_MAX * 0.00001;
+
+  for (unsigned idx = 0; idx < solver->vars; idx++ ) {
+    double new_score = (double) rand() / RAND_MAX * 0.0001;
+#ifdef PartialResetK
+    max_score_in_random = max_score_in_random > new_score ? max_score_in_random : new_score;
+#endif
     kissat_update_heap (solver, &solver->scores, idx, new_score);
   }
+
+#ifdef PartialResetK
+  max_score_in_K = K_scores[0];
+  for (unsigned i = 0; i < valid_K; i++){
+    unsigned lit = K_lits[i];
+    // assert(K_scores[i] > 0);
+    if (K_scores[i] < 0){
+      break;
+    }
+    double new_score = max_score_in_random + K_scores[i] / max_score_in_K;
+    kissat_update_heap (solver, &solver->scores, lit, new_score);
+  }
+#endif
   kissat_update_scores(solver);
 }
+
 
 bool kissat_restarting (kissat *solver) {
   assert (solver->unassigned);

@@ -14,3 +14,8 @@ Outputs/*.out
 *.log
 tmp*
 Outputs/
+*.pyc
+*.drat
+*.out
+RemoteScripts/utils/__pycache__/*
+*.cnf

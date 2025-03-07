@@ -1,5 +1,5 @@
 #!/bin/bash                                                    
-#SBATCH --time=0-0:0:5300                                                     
+#SBATCH --time=0-0:0:5000                                                     
 #SBATCH --account=def-vganesh   
 #SBATCH --mem=20g         
 
@@ -30,7 +30,9 @@ LOG_FILE="./$path$filename.$suffix.log"
 PROOF_FILE="./$path$filename.$suffix.drat"
 test -f $LOG_FILE && rm $LOG_FILE
 test -f $build && echo $build $suffix
-time $build $i $PROOF_FILE &> $LOG_FILE
+# time $build $i $PROOF_FILE | grep "c " &> $LOG_FILE
+# time $build $i | grep -v "mylog" | grep "c " &> $LOG_FILE
+time $build $i &> $LOG_FILE
 echo $suffix "${@:4}"
 echo run $build $suffix $filename "${@:4}"
 

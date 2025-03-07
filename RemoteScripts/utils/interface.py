@@ -4,8 +4,14 @@ import utils.states as states
 import pandas as pd
 from collections import Counter
 import sqlite3    
+import matplotlib.cm as cm
+import numpy as np
 
+tag_count = 0
 
+def ClearTagCount():
+    global tag_count
+    tag_count = 0
 
 def query_hashes_par2(par2_map, hash_tag="Frequency"):
     hashes = list(par2_map.keys())
@@ -128,15 +134,33 @@ def CompareByNormalPar2(base_tag, better_tag):
 
 def WrappedPlot(tag):
     print(f"Plotting for {tag} in {states.kissat_log_path}")
-    GetDataAndPlot(states.kissat_log_path, tag, states.use_cache_flag)
+    global tag_count
+    values = np.linspace(0, 1, states.num_lines)
+    # print(values)
+    # assert(0)
+    cmap = cm.get_cmap('tab20')
+    # color = cm.viridis(values[tag_count])
+    color = cmap(values[tag_count])
+    # print(color)
+    tag_count += 1
+    GetDataAndPlot(states.kissat_log_path, tag, states.use_cache_flag,color)
     
 def WrappedPlotMem(tag):
     print(f"Plotting mem for {tag} in {states.kissat_log_path}")
-    GetDataAndPlotMem(states.kissat_log_path, tag, states.use_cache_flag)
+    global tag_count
+    values = np.linspace(0, 1, states.num_lines)
+    color = cm.viridis(values[tag_count])
+    tag_count += 1
+    GetDataAndPlotMem(states.kissat_log_path, tag, states.use_cache_flag,color)
     
 def WrappedPlotScaling(tag,plotPar2=False):
     print(f"Plotting Scaling for {tag} in {states.kissat_log_path}")
-    PlotScaling(states.kissat_log_path, tag, states.use_cache_flag,plotPar2)
+    global tag_count
+    values = np.linspace(0, 1, states.num_lines)
+    cmap = cm.get_cmap('tab20')
+    color = cmap(values[tag_count])
+    tag_count += 1
+    PlotScaling(states.kissat_log_path, tag, states.use_cache_flag,plotPar2,color)
     
 def HowMuchBetter(base_tag, better_tag):
     _,base,_,_ = GetData(states.kissat_log_path,base_tag,states.use_cache_flag)

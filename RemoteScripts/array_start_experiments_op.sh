@@ -2,98 +2,117 @@
 #SBATCH --time=0-0:0:5300                                                      
 #SBATCH --account=def-vganesh   
 
-# buildlist=("cadical-uip" "cadical-dip" "kissat")
-# suffixlist=("cadical-uip" "cadical-dip" "kissat")
-# buildlist=("llrmab" "tickmab" "kissat" "allstable" "allfocus")
-# suffixlist=("llr" "tick" "kissat" "allstable" "allfocus")
-# buildlist=("tickEMA")
-# suffixlist=("tickEMA")
-# buildlist=("baseline")
-# suffixlist=("baseline")
-# buildlist=("fixed05")
-# suffixlist=("fixed05")
-# buildlist=("tickfix")
-# suffixlist=("tickfix")
-# buildlist=("fixed40" "fixed50")
-# suffixlist=("fixed40" "fixed50")
-# buildlist=("fixed15" "fixed20" "fixed30" "baseline" "fixed13" "fixed10"  "fixed05" "fixed07" "fixed40" "fixed50" "fixed10" "fixed10" "fixed10" "fixed10" "fixed10" "fixed10" "fixed10" "fixed10" "fixed10" "fixed10") 
-# suffixlist=("fixed15" "fixed20" "fixed30" "baseline" "fixed13" "fixed10" "fixed05" "fixed07" "fixed40" "fixed50" "f10a" "f10b" "f10c" "f10d" "f10e" "f10f" "f10g" "f10h" "f10i" "f10j")
-# buildlist=("fixed05" "fixed20" "baseline" "fixed15" "fixed10")
-# suffixlist=("fixed05" "fixed20" "baseline" "fixed15" "fixed10")
-
 buildlist=(
-    "reset05decay10"
-    "baselinedecay10"
-    # # "reset05decay20"
-    # "reset05decay30"
-    # # "reset05decay40"
-    "baselinedecay40"
-    # # "reset05decay50"
-
-    # # "reset05decay60"
-    # # "reset05decay70"
-    # # "reset05decay80"
-    "baselinedecay60"
-    "baselinedecay70"
-    "baselinedecay80"
-    # "reset05decay90"
-    # "baselinedecay90"
+    # "fixed05_decay10"
+    # "baseline_decay10"
+    # "partial10_decay10"
+    # "fixed05nodump"
+    # "baselinenodump"
+    # "fixed05_decay20"
+    # "baseline_decay20"
+    # "fixed05_decay30"
+    # "baseline_decay30"
+    # "partial10_decay30"
+    # "fixed05_decay40"
+    # "baseline_decay40"
+    # "fixed05_decay50"
+    # "baseline_decay50"
+    # "partial10_decay50"
+    # "fixed05_decay60"
+    # "baseline_decay60"
+    # "baseline_decay70"
+    # "fixed05_decay70"
+    # "partial10_decay70"
+    # "baseline_decay80"
+    # "fixed05_decay80"
+    # "fixed05_decay90"
+    # "baseline_decay90"
+    # "partial10_decay90"
+    # "kissat_nopreprocessing_decay25"
+    # "kissat_nopreprocessing_decay50"
+    # "kissat_nopreprocessing_decay75"
+    # "kissat_nopreprocessing_default"
+    "minisat_decay25"
+    "minisat_decay50"
+    "minisat_decay75"
+    "minisat_default"
     )
 suffixlist=(
-    "reset05decay10"
-    "baselinedecay10"
-    # # "reset05decay20"
-    # "reset05decay30"
-    # # "reset05decay40"
-    "baselinedecay40"
-    # # "reset05decay50"
-
-    # # "reset05decay60"
-    # # "reset05decay70"
-    # # "reset05decay80"
-    "baselinedecay60"
-    "baselinedecay70"
-    "baselinedecay80"
-    # "reset05decay90"
-    # "baselinedecay90"
+    # "fixed05_decay10"
+    # "baseline_decay10"
+    # "partial10_decay10"
+    # "fixed05nodump"
+    # "baselinenodump"
+    # "fixed05_decay20"
+    # "baseline_decay20"
+    # "fixed05_decay30"
+    # "baseline_decay30"
+    # "partial10_decay30"
+    # "fixed05_decay40"
+    # "baseline_decay40"
+    # "fixed05_decay50"
+    # "baseline_decay50"
+    # "partial10_decay50"
+    # "fixed05_decay60"
+    # "baseline_decay60"
+    # "baseline_decay70"
+    # "fixed05_decay70"
+    # "partial10_decay70"
+    # "baseline_decay80"
+    # "fixed05_decay80"
+    # "fixed05_decay90"
+    # "baseline_decay90"
+    # "partial10_decay90"
+    # "kissat_nopreprocessing_decay25"
+    # "kissat_nopreprocessing_decay50"
+    # "kissat_nopreprocessing_decay75"
+    # "kissat_nopreprocessing_default"
+    "minisat_decay25"
+    "minisat_decay50"
+    "minisat_decay75"
+    "minisat_default"
     )
 # buildlist=(
-#     # "fixed05"
+#     # "f05a"
+#     # # "fixed05"
+#     # "fixed05nodump"
 #     # "baseline"
-#     # "baseline_nocongruence"
-#     # "fixed05_nocongruence"
-#     # "fixed05_stat"
-#     # "fixed10_stat"
-#     # "baseline_stat"
-#     # "fixed05_stattest"
-#     "stattest"
-#     "dumptest"
-#     "stattest"
-#     "dumptest"
-#     # "partial5"
+#     # "vanilla_kissat_reset"
+#     # "vanilla_kissat"
+# #     # "baseline_nocongruence"
+# #     # "fixed05_nocongruence"
+# #     # "fixed05_stat"
+# #     # "fixed10_stat"
+# #     # "baseline_stat"
+# #     # "fixed05_stattest"
+# #     "stattest"
+# #     "dumptest"
+# #     "stattest"
+# #     "dumptest"
+# #     # "partial5"
 #     )
 
 # suffixlist=(
+#     # "kissat_reset"
+#     # "kissat"
+#     # "f05a"
+#     # # "f05b"
+#     # "f05c"
+#     # "b1"
 #     # "fixed05"
 #     # "baseline"
 #     # "baseline_nocongruence"
 #     # "fixed05_nocongruence"
 #     # "fixed05_stat"
 #     # "fixed10_stat"
-#     "stattest1"
-#     "dumptest1"
-#     "stattest2"
-#     "dumptest2"
+#     # "stattest1"
+#     # "dumptest1"
+#     # "stattest2"
+#     # "dumptest2"
 #     # "baseline_stat"
 #     # "fixed05_stattest"
 #     # "partial5"
 #     )
-# buildlist=("fixed20" "baseline" "fixed10"  "partial10" "fixed10" "fixed10" "fixed05" "partial15" "partial20" "partial10")
-# suffixlist=("fixed20" "baseline"  "fixed10a" "partial10a" "fixed10b" "fixed10c" "fixed05" "partial15" "partial20" "partial10b")
-# buildlist=("partial10" "baseline" "partial15"  "partial10" "partial15" "partial20" "partial20" "partial15" "partial20" "partial10")
-# suffixlist=("partial10c" "baseline"  "partial15a" "partial10a" "partial15c" "partial20a" "partial20c" "partial15b" "partial20b" "partial10b")
-# buildlist=("partial15")
-# suffixlist=("partial15")
 # buildlist=("baseline_stat")
 # suffixlist=("baseline_stat")
 # benchmark=("../Benchmark/2024/benchmarks/")
@@ -112,13 +131,19 @@ benchmark=(
 # "../FPBenchmark/nbitadd/mixed/"
 # "../FPBenchmark/nbitadd/add_commu/"
 # "../FPBenchmark/nbitmult/mult_assoc/"
-# "../FPBenchmark/nbitmult/15bitcommu/"
-# "../FPBenchmark/nbitadd/vanilla/"
-"../FPBenchmark/op/"
+# "../FPBenchmark/nbitmult/commu/"
+# "../FPBenchmark/nbitadd/addition/"
+"../FPBenchmark/opeasy/"
+"../FPBenchmark/gop/"
+"../FPBenchmark/4regular_gop/"
+"../FPBenchmark/6regular_gop/"
+"../FPBenchmark/8regular_gop/"
+# "../SATBenchmark/"
+# "../FPBenchmark/opext/"
+# "../FPBenchmark/opfull/"
 # "../FPBenchmark/nbitmult/statcommu/"
 # "../FPBenchmark/nbitmult/mult_commu/"
 # "../FPBenchmark/nbitmult/vanillaasso/"
-
 )
 
 # benchmark=("../FPBenchmark/nbitadd_translation/")
@@ -159,7 +184,7 @@ for (( k=0; k<benchmark_l; k++ )); do
             # jj=$((jj+300))
         # done
 
-        jobid=$(sbatch --priority 0 -o ./Outputs/output_%A_%a.out --array=1-${num_tasks} ./RemoteScripts/array_submit_solver.sh $build ${suffix} $benchmark_path | awk '{print $4}')
+        jobid=$(sbatch --priority 0 --constraint=cascade -o ./Outputs/output_%A_%a.out --array=1-${num_tasks} ./RemoteScripts/array_submit_solver.sh $build ${suffix} $benchmark_path | awk '{print $4}')
         echo "Submitted job with ID: $jobid" ${suffix}
     done
 done

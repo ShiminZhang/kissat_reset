@@ -4,8 +4,9 @@ import utils.states as states
 from utils.utils import GetData,ParseBits,GetDataForBit
 import numpy as np
 from matplotlib.ticker import MaxNLocator
+import math
 
-def Plot(data : list, solver_name):
+def Plot(data : list, solver_name,color):
     if data:
         data.append(0)
         data.sort()
@@ -14,26 +15,29 @@ def Plot(data : list, solver_name):
     else:
         x_array = [0,5300]
         y_array = [0,0]
-    plt.plot(x_array, y_array, label=f'{solver_name}')
+    plt.plot(x_array, y_array, label=f'{solver_name}',color=color)
 
-def GetDataAndPlot(LogPath, tag, use_cache_flag):
+def GetDataAndPlot(LogPath, tag, use_cache_flag,color):
     data,map,par2,mem = GetData(LogPath, tag, use_cache_flag)
     if not par2:
         print(f"no data for {tag}")
         return
-    Plot(data, tag)
+    # print(data)
+    # print(map)
+    
+    Plot(data, tag,color)
     return len(data),par2
 
-def GetDataAndPlotMem(LogPath, tag, use_cache_flag):
+def GetDataAndPlotMem(LogPath, tag, use_cache_flag,color):
     data,map,par2,mem = GetData(LogPath, tag, use_cache_flag)
     if not data:
         print(f"no data for {tag}")
         return
     print(list(mem.values()))
-    Plot(list(mem.values()), tag)
+    Plot(list(mem.values()), tag,color)
     return len(data),par2
 
-def PlotScaling(LogPath, tag, use_cache_flag, plot_par2_flag):
+def PlotScaling(LogPath, tag, use_cache_flag, plot_par2_flag, color):
     bits = ParseBits(LogPath,tag,use_cache_flag)
     if not bits:
         print("Found no bits")
@@ -43,12 +47,16 @@ def PlotScaling(LogPath, tag, use_cache_flag, plot_par2_flag):
     # print(f"bits: {bits}")
     for bit in set(bits):
         data,map,par2,mem = GetDataForBit(LogPath, tag, bit,use_cache_flag)
+        # print(data,map)
         if plot_par2_flag:
+            if par2 == 10000:
+                par2 = 5000
+            
             y_instances.append(par2)
         else:
             y_instances.append(len(data))
         x_bits.append(bit)
-        # print(par2)
+        print(par2)
         # print(data)
         print(f"bits{bit} : {len(map)}")
     # print(x_bits)
@@ -64,8 +72,15 @@ def PlotScaling(LogPath, tag, use_cache_flag, plot_par2_flag):
     # 提取排序后的 x 和 y 数据
     sorted_x, sorted_y = zip(*sorted_pairs)
     x_indices = range(len(sorted_x))
-    plt.plot(x_indices, sorted_y, label=f'{tag}')
-    plt.xticks(x_indices,sorted_x)
+    num_lines = len(sorted_x)
+    
+    plt.plot(x_indices, sorted_y, label=f'{tag}',color=color)
+    x_percentiles = [0,25,50,75,100]
+    l = len(sorted_x)
+    indexes = [ math.floor(x_percentile * (l-1) / 100) for x_percentile in x_percentiles]
+    # print(len(x_indices))
+    # print(indexes)
+    plt.xticks([x_indices[p] for p in indexes],[sorted_x[p] for p in indexes])
         
 
 def DrawDF(InDF, FigureName="DF.png", better="better", base="worse"):

@@ -281,13 +281,13 @@ int kissat_dump (kissat *solver) {
   // else
   //   dump_queue (solver);
   // dump_values (solver);
-  printf ("binary = %" PRIu64 "\n", solver->statistics.clauses_binary);
-  printf ("irredundant = %" PRIu64 "\n",
-          solver->statistics.clauses_irredundant);
-  printf ("redundant = %" PRIu64 "\n",
-          solver->statistics.clauses_redundant);
-  dump_binaries (solver);
-  dump_clauses (solver);
+  // printf ("binary = %" PRIu64 "\n", solver->statistics.clauses_binary);
+  // printf ("irredundant = %" PRIu64 "\n",
+  //         solver->statistics.clauses_irredundant);
+  // printf ("redundant = %" PRIu64 "\n",
+  //         solver->statistics.clauses_redundant);
+  // dump_binaries (solver);
+  // dump_clauses (solver);
   // dump_extend (solver);
   return 0;
 }
