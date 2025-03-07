@@ -12,7 +12,7 @@
 
 #include <inttypes.h>
 #define FixedReset true
-#define PartialResetK 10
+#define PartialResetK 25
 #include <stdio.h>
 
 typedef struct {
@@ -86,7 +86,6 @@ void find_top_k(heap* inHeap, unsigned n, unsigned k, double top_k_scores[], uns
 }
 
 void randomize_activity_score(kissat *solver){
-  // printf("  mylog: reset\n");
 #ifdef PartialResetK
   heap *heap = &solver->scores;
   unsigned valid_K = MIN(PartialResetK, solver->vars);
@@ -109,28 +108,28 @@ void randomize_activity_score(kissat *solver){
 #endif
 
   for (unsigned idx = 0; idx < solver->vars; idx++ ) {
-    double new_score = (double) rand() / RAND_MAX * 0.0001;
+    double new_score = (double) rand() / RAND_MAX * 0.00001;
 #ifdef PartialResetK
     max_score_in_random = max_score_in_random > new_score ? max_score_in_random : new_score;
 #endif
     kissat_update_heap (solver, &solver->scores, idx, new_score);
   }
 
-#ifdef PartialResetK
-  max_score_in_K = K_scores[0];
-  for (unsigned i = 0; i < valid_K; i++){
-    unsigned lit = K_lits[i];
-    // assert(K_scores[i] > 0);
-    if (K_scores[i] < 0){
-      break;
+  #ifdef PartialResetK
+    max_score_in_K = K_scores[0];
+    for (unsigned i = 0; i < valid_K; i++){
+      unsigned lit = K_lits[i];
+      // assert(K_scores[i] > 0);
+      if (K_scores[i] < 0){
+        break;
+      }
+      double new_score = max_score_in_random + K_scores[i] / max_score_in_K;
+      kissat_update_heap (solver, &solver->scores, lit, new_score);
     }
-    double new_score = max_score_in_random + K_scores[i] / max_score_in_K;
-    kissat_update_heap (solver, &solver->scores, lit, new_score);
-  }
-#endif
+  #endif
+
   kissat_update_scores(solver);
 }
-
 
 bool kissat_restarting (kissat *solver) {
   assert (solver->unassigned);
@@ -138,22 +137,6 @@ bool kissat_restarting (kissat *solver) {
     return false;
   if (!solver->level)
     return false;
-    
-#if TickReset
-  statistics *statistics = &solver->statistics;
-  { // Interval
-    solver->delta = statistics->search_ticks - solver->reset_ticks;
-    solver->reset_ticks = statistics->search_ticks;
-  }
-  { // EMA
-    // float decay = 0.8;
-    // int CurrentDelta = (statistics->search_ticks - solver->reset_ticks);
-    // solver->delta *= decay;
-    // solver->delta += CurrentDelta * (1.0 - decay);
-    // solver->reset_ticks = statistics->search_ticks;
-  }
-  solver->nof_propagates++;
-#endif
   if (CONFLICTS < solver->limits.restart.conflicts)
     return false;
   if (solver->stable)
@@ -262,24 +245,15 @@ void kissat_restart (kissat *solver) {
   LOG ("restarting to level %u", level);
   kissat_backtrack_in_consistent_state (solver, level);
   if (!solver->stable){
-
 #if FixedReset
-    double probability = 0.05;
-    double random_number = (double) rand() / RAND_MAX;
-    if (random_number <= probability) {
-      randomize_activity_score(solver);
-    }
-#endif
-
-#if TickReset
-    // int limit = solver->reset_tick_limit;
-    // if (solver->delta > limit){
-    //   randomize_activity_score(solver);
-    // }
+      double probability = 0.05;
+      double random_number = (double) rand() / RAND_MAX;
+      if (random_number <= probability) {
+        randomize_activity_score(solver);
+      }
 #endif
     kissat_update_focused_restart_limit (solver);
   }
-
   REPORT (1, 'R');
   STOP (restart);
 }

@@ -13,7 +13,6 @@
 #define SMALLER(A, B) (RANK (A) < RANK (B))
 
 #define RADIX_SORT_BUMP_LIMIT 32
-#define OverwriteDecay 75
 
 static void sort_bump (kissat *solver) {
   const size_t size = SIZE_STACK (solver->analyzed);
@@ -43,14 +42,9 @@ void kissat_rescale_scores (kissat *solver) {
 
 void kissat_bump_score_increment (kissat *solver) {
   const double old_scinc = solver->scinc;
-#ifdef OverwriteDecay
-  const double decay = OverwriteDecay * 1e-2;
-#else
   const double decay = GET_OPTION (decay) * 1e-3;
   assert (0 <= decay), assert (decay <= 0.5);
-#endif
   const double factor = 1.0 / (1.0 - decay);
-  // printf("mylog:%f",factor);
   const double new_scinc = old_scinc * factor;
   LOG ("new score increment %g = %g * %g", new_scinc, factor, old_scinc);
   solver->scinc = new_scinc;
@@ -118,10 +112,7 @@ void kissat_bump_analyzed (kissat *solver) {
 }
 
 void kissat_update_scores (kissat *solver) {
-// #if FixedReset || TickReset || OverwriteDecay || true
-// #else
-//   assert (solver->stable);
-// #endif
+  // assert (solver->stable);
   heap *scores = SCORES;
   for (all_variables (idx))
     if (ACTIVE (idx) && !kissat_heap_contains (scores, idx))
